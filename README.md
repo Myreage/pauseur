@@ -1,2 +1,2 @@
-# pauseur
-swag project please
+make
+./hello
