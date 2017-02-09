@@ -50,12 +50,10 @@ void switchcolor(char **colortable, char color, int x, int y) {
 void updateconnexetab(char **colortable,char **connexetab, int n){ /* Je verrai bien un petit truc recursif */}
 
 void switchconnexecolors(char **colortable, char color, int x, int y){
-    int i,j;
     char initcolor=colortable[0][0];
-    for (i=0;i<n;i++){
-        for (j=0;j<m;j++){
-            if ()
-        }
-    }
+}
+
+int main(){
+    printf("lulz\n");
 }
 
