@@ -1,5 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
+
 char **createcolortable(int n){
     int i;
     char **colortable=NULL;
@@ -18,6 +20,7 @@ void freecolortable(char **colortable, int n){
 
 void fillcolortablerand(char **colortable, int n){
     int i,j;
+    srand(time(NULL));
     char colors[6]={'B','V','R','J','M','G'};
     for (i=0;i<n;i++){
         for (j=0;j<n;j++){
