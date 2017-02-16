@@ -43,6 +43,7 @@ int testfile (char *filename, int n){
         }
         fseek(file,1,SEEK_CUR);
     }
+    return res;
 
 }
 

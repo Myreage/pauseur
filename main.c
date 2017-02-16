@@ -16,6 +16,7 @@ int main(){
     fillcolortablefile(colortable, n, "./colortablefile.txt");
     displaycolortable(colortable, n);
     createnewcolorfile("bite.txt", n);
+
     freecolortable(colortable, n);
     return 0;
 }
