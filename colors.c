@@ -38,7 +38,7 @@ void updateconnexetab(char **colortable, char **connexetab, char color, int n){
     }
 }
 
-void switchconnexecolors(char **colortable, char **connexetab, char color, int n){
+/*void switchconnexecolors(char **colortable, char **connexetab, char color, int n){
     updateconnexetab(colortable, connexetab, color, n);
     int i,j;
     for (i=0; i<n;i++){
@@ -46,4 +46,4 @@ void switchconnexecolors(char **colortable, char **connexetab, char color, int n
             if (connexetab[i][j]==1) switchcolor(colortable, color, i, j);
         }
     }
-}
+}*/

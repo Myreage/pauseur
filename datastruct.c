@@ -30,14 +30,36 @@ void fillcolortablerand(char **colortable, int n){
     }
 }
 
+int testfile (char *filename, int n){
+    FILE *file=fopen(filename, "r");
+    int res=1;
+    int i,j;
+    char temp;
+    if (file==NULL) res=0;
+    for (i=0; i<n; i++){
+        for (j=0; j<n; j++){
+            temp=fgetc(file);
+            if (temp!='B' && temp!='V' && temp!='R' && temp!='J' && temp!='M' && temp!='G') res=0;
+        }
+        fseek(file,1,SEEK_CUR);
+    }
+
+}
+
 void fillcolortablefile(char **colortable, int n, char *filename){
     FILE *file=fopen(filename, "r");
     int i,j;
-    for (i=0;i<n;i++){
-        for (j=0;j<n;j++){
-            colortable[i][j]=fgetc(file);
+    if (testfile(filename, n)) {
+        for (i = 0; i < n; i++) {
+            for (j = 0; j < n; j++) {
+                colortable[i][j] = fgetc(file);
+            }
+            fseek(file, 1, SEEK_CUR);
         }
-        fseek(file,1,SEEK_CUR);
+    }
+    else {
+        printf("Invalid File\n");
+        exit(0);
     }
     fclose(file);
 }
