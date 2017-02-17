@@ -11,6 +11,8 @@ char **createcolortable(int n){
     return colortable;
 }
 
+
+
 void freecolortable(char **colortable, int n){
     int i;
     for (i=0;i<n;i++){
@@ -76,6 +78,7 @@ void createnewcolorfile(char *filename, int n){
         }
         fprintf(file, "\n");
     }
+    fclose(file);
 }
 void switchcolor(char **colortable, char color, int x, int y) {
     if (colortable[x][y] == ' ') printf("Error switch color\n");
