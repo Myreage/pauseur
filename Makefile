@@ -1,5 +1,16 @@
-hello:  main.o
-	gcc -o hello main.o
+APPLI=Colorflood
+CSRC= datastruct.c colors.c main.c
+CC = gcc
 
-main.o: main.c
-	gcc -o main.o -c datastruct.c -W -Wall -ansi
+CFLAGS = -Wall -Wextra -g
+
+COBJ=$(CSRC:.c=.o)
+
+.c.o:
+	$(CC) $(CFLAGS) -c $*.c
+
+$(APPLI):	$(COBJ)
+	$(CC) -o $(APPLI) $(COBJ) -lm
+
+clean:
+	-rm *.o *[~%] core *.bak
