@@ -6,7 +6,7 @@
 char **createcolortable(int n){
     int i;
     char **colortable=NULL;
-    colortable=malloc(n*n*sizeof(char));
+    colortable=malloc(n*sizeof(char *));
     for (i=0;i<n;i++) colortable[i]=malloc(n*sizeof(char));
     return colortable;
 }
