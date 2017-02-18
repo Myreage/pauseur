@@ -1,8 +1,5 @@
-make <br />
-./hello <br />
+<h2>HOW TO COMPILE TEST</h2> <br />
 
-<h1>HOW TO COMPILE TEST</h1> <br />
-
-colors : gcc tests/colorsTest.c colors.c datastruct.c -o colorsTest -lcunit <br />
-datastructs : gcc tests/datastructTests.c datastruct.c -o datastructTests -lcunit
+<h3>colors :</h3> gcc tests/colorsTest.c colors.c datastruct.c -o colorsTest -lcunit <br />
+<h3>datastructs :</h3> gcc tests/datastructTests.c datastruct.c -o datastructTests -lcunit
 
