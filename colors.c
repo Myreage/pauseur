@@ -15,7 +15,7 @@ int wintest(int **connexetab, int n){
 
 }
 
-int isconnexe(char **connexetab, int x, int y, int n){
+int isconnexe(int **connexetab, int x, int y, int n){
     int res;
     if (connexetab[x][y]) res=1;
     else if (x+1<n && connexetab[x+1][y]==1) res=1;
@@ -26,7 +26,7 @@ int isconnexe(char **connexetab, int x, int y, int n){
     return res;
 }
 
-void updateconnexetab(char **colortable, char **connexetab, char color, int n){
+void updateconnexetab(char **colortable, int **connexetab, char color, int n){
     /* Je pense que la fonction est à modifier dans le cas ou il y a un groupe de couleurs connexes ou peut être regler le problème
      * avec un while style tant que (connexetable!=updateconnexetab(...)) (En changeant le type de la fonction) */
     int i,j;
@@ -37,7 +37,7 @@ void updateconnexetab(char **colortable, char **connexetab, char color, int n){
     }
 }
 
-void switchconnexecolors(char **colortable, char **connexetab, char color, int n){
+void switchconnexecolors(char **colortable, int **connexetab, char color, int n){
     updateconnexetab(colortable, connexetab, color, n);
     int i,j;
     for (i=0; i<n;i++){
