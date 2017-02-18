@@ -3,16 +3,15 @@
 #include "datastruct.h"
 #include "colors.h"
 
-int wintest(char **colortable, int n){
-    char color=colortable[0][0];
+int wintest(int **connexetab, int n){
     int i,j;
     int res;
     for (i=0;i<n;i++){
         for (j=0;j<n;j++){
-            if (colortable[i][j]==color) res++;
+            if (connexetab[i][j] != 1) return 0;
         }
     }
-    return(res==n*n);
+    return 1;
 
 }
 
