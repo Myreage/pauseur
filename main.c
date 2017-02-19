@@ -12,7 +12,7 @@ int **createconnexetab(int n){
     int **tab=NULL;
     tab=malloc(n*sizeof(int *));
     for (i=0;i<n;i++) tab[i]=malloc(n*sizeof(int));
-    return tab;
+    return tab;/**/
 }
 
 int getche(void) {
