@@ -20,7 +20,7 @@ int getche(void) {
     tcsetattr( STDIN_FILENO, TCSANOW, &newattr );
     ch = getchar();
     tcsetattr( STDIN_FILENO, TCSANOW, &oldattr );
-    return ch;
+    return ch;/**/
 }
 
 /*!\mainpage Colorflood : Les Pauseurs
