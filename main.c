@@ -7,15 +7,11 @@
 #include "datastruct.h"
 #include "colors.h"
 
-int **createconnexetab(int n){
-    int i;
-    int **tab=NULL;
-    tab=malloc(n*sizeof(int *));
-    for (i=0;i<n;i++) tab[i]=malloc(n*sizeof(int));
-    return tab;
-}
 
 int getche(void) {
+    /**
+     * Permet de récuperer un caractère entré par l'utilisateur.
+     */
     struct termios oldattr, newattr;
     int ch;
     tcgetattr( STDIN_FILENO, &oldattr );
@@ -27,16 +23,15 @@ int getche(void) {
     return ch;
 }
 
-void displayconnexetab(int **tab, int n){
-    int i,j;
-    for (i=0;i<n;i++){
-        for (j=0;j<n;j++){
-            printf("%d",tab[i][j]);
-        }
-        printf("\n");
-    }
-    printf("\n");
-}
+/*!\mainpage Colorflood : Les Pauseurs
+ * \section intro_sec Mode d'Emploie :
+ * Appuyez sur "R" "V" "G" "B" "M" "J" pour changer la couleur de la composante connexe à la première case.
+ *
+ * \section install_sec Compilation et Execution :
+ * Pour l'execution normale : make && ./Colorflood \n
+ * Pour l'execution des tests : ******** à remplir ************
+ * @return
+ */
 
 int main(){
     int n=6;
@@ -47,14 +42,16 @@ int main(){
     fillcolortablerand(colortable, n);
     updateconnexetab(colortable, connexetab, color, n);
     displaycolortable(colortable, n);
-
     while (!wintest(connexetab, n)){
         displaycolortable(colortable, n);
-        displayconnexetab(connexetab, n);
+        /*displayconnexetab(connexetab, n);*/
         printf("new color ?\n");
         color=getche();
-        switchconnexecolors(colortable, connexetab, color, n);
-
+        if (color=='B' || color=='V' || color=='R' || color=='J'|| color=='M'|| color=='G'){
+            switchconnexecolors(colortable, connexetab, color, n);
+        }
+        else printf("Entrée invalide !\n Entrée autorisée : 'B','V','R','J','M','G' \n");
     }
+    printf(" Victoire !\n");
     return 0;
 }
