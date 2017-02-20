@@ -29,7 +29,7 @@ int getche(void) {
  *
  * \section install_sec Compilation et Execution :
  * Pour l'execution normale : make && ./Colorflood \n
- * Pour l'execution des tests : ******** à remplir *************
+ * Pour l'execution des tests : ******** à remplir ************
  * @return
  */
 
