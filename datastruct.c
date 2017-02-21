@@ -4,6 +4,9 @@
 #include "datastruct.h"
 
 char **createcolortable(int n){
+    /**
+     * Crée une matrice de taille n*n de char.
+     */
     int i;
     char **colortable=NULL;
     colortable=malloc(n*sizeof(char *));
@@ -11,7 +14,22 @@ char **createcolortable(int n){
     return colortable;
 }
 
+int **createconnexetab(int n){
+    /**
+     * Crée une matrice de connexité : Elle a pour but de marquer les cases qui appartiennent à la composante connexe.
+     * Contient un 1 si la case est dans la composante connexe, 0 sinon.
+     */
+    int i;
+    int **tab=NULL;
+    tab=malloc(n*sizeof(int *));
+    for (i=0;i<n;i++) tab[i]=malloc(n*sizeof(int));
+    return tab;
+}
+
 void freecolortable(char **colortable, int n){
+    /**
+     * Libère l'espace mémoire attribué à la matrice de couleur et à la matrice de connexité.
+     */
     int i;
     for (i=0;i<n;i++){
         free(colortable[i]);
@@ -20,6 +38,9 @@ void freecolortable(char **colortable, int n){
 }
 
 void fillcolortablerand(char **colortable, int n){
+    /**
+     * Remplit une matrice de couleur de valeurs aléatoires.
+     */
     int i,j;
     srand(time(NULL));
     char colors[6]={'B','V','R','J','M','G'};
@@ -31,6 +52,11 @@ void fillcolortablerand(char **colortable, int n){
 }
 
 void fillcolortablefile(char **colortable, int n, char *filename){
+    /**
+     * Remplit une matrice de couleur à partir d'un fichier.
+     * L'entrée attendue est un fichier conforme aux règles du jeu, c'est à dire ne contenant que les couleures autorisées,
+     * n lignes et n colonnes, sans espaces.
+     */
     FILE *file=fopen(filename, "r");
     int i,j;
 
@@ -45,6 +71,10 @@ void fillcolortablefile(char **colortable, int n, char *filename){
 }
 
 void createnewcolorfile(char *filename, int n){
+    /**
+     * Génère un fichier de couleur aléatoire, conforme aux conditions d'entrée de la fonction de remplissage
+     * de la table de couleur à partir d'un fichier.
+     */
     int i,j;
     srand(time(NULL));
     char colors[6]={'B','V','R','J','M','G'};
@@ -59,15 +89,35 @@ void createnewcolorfile(char *filename, int n){
     fclose(file);
 }
 void switchcolor(char **colortable, char color, int x, int y) {
+    /**
+     * Change la couleur de la case (x,y) par la couleur entrée en paramètre.
+     */
     if (colortable[x][y] == ' ') printf("Error switch color\n");
     else colortable[x][y] = color;
 }
 
 void displaycolortable(char **colortable, int n){
+    /**
+     * Affiche la matrice de couleur entrée en paramètre.
+     */
     int i,j;
     for (i=0;i<n;i++){
         for (j=0;j<n;j++){
             printf("%c",colortable[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+}
+
+void displayconnexetab(int **tab, int n){
+    /**
+     * Affiche la matrice de connexité entrée en paramètre
+     */
+    int i,j;
+    for (i=0;i<n;i++){
+        for (j=0;j<n;j++){
+            printf("%d",tab[i][j]);
         }
         printf("\n");
     }
