@@ -22,7 +22,8 @@ int **createconnexetab(int n){
     int i;
     int **tab=NULL;
     tab=malloc(n*sizeof(int *));
-    for (i=0;i<n;i++) tab[i]=malloc(n*sizeof(int));
+    for (i=0;i<n;i++) tab[i]=calloc(n,sizeof(int));
+    tab[0][0]=1;
     return tab;
 }
 

@@ -37,15 +37,13 @@ int main(){
     int n=6;
     char **colortable=createcolortable(n);
     int **connexetab=createconnexetab(n);
-    connexetab[0][0]=1;
     fillcolortablerand(colortable, n);
     char color=colortable[0][0];
     updateconnexetab(colortable, connexetab, color, n);
     displaycolortable(colortable, n);
     while (!wintest(connexetab, n)){
         displaycolortable(colortable, n);
-        /*displayconnexetab(connexetab, n);*/
-        printf("new color ?\n");
+        displayconnexetab(connexetab, n);
         color=getche();
         if (color=='B' || color=='V' || color=='R' || color=='J'|| color=='M'|| color=='G'){
             switchconnexecolors(colortable, connexetab, color, n);

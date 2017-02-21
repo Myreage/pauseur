@@ -34,24 +34,27 @@ int isconnexe(int **connexetab, int x, int y, int n){
 
 void updateconnexetab(char **colortable, int **connexetab, char color, int n){
     /**
-     * Met à jour la matrice de connexité.
+     * Met à jour la matrice de connexité en fonction de la couleur jouée color.
      */
     int i,j;
-    int **temp=createconnexetab(n);
-    while (connexetab!=temp) {
+    int modif=1;
+    while (modif) {
         /**
          * Un seul parcourt ne suffit pas tout le temps à remplir correctement la matrice de connexité,
-         * à cause de certaines taches possibles.
-         * On modifie donc la matrice jusqu'au moment où aucuns changements n'est detecté.
+         * à cause de certaines tâches possibles.
+         * On modifie donc la matrice jusqu'à ce qu'aucun changement ne soit plus effectué.
          */
-        temp=connexetab;
+        modif = 0;
         for (i = 0; i < n; i++) {
             for (j = 0; j < n; j++) {
-                if (isconnexe(connexetab, i, j, n) && colortable[i][j] == color) connexetab[i][j] = 1;
+                if (isconnexe(connexetab, i, j, n) && colortable[i][j] == color && connexetab[i][j]==0){
+                    connexetab[i][j] = 1;
+                    modif+=1;
+                }
             }
         }
     }
-    freeconnextab(temp,n);
+
 }
 
 void switchconnexecolors(char **colortable, int **connexetab, char color, int n){
