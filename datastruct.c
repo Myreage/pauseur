@@ -28,13 +28,24 @@ int **createconnexetab(int n){
 
 void freecolortable(char **colortable, int n){
     /**
-     * Libère l'espace mémoire attribué à la matrice de couleur et à la matrice de connexité.
+     * Libère l'espace mémoire attribué à la matrice de couleur
      */
     int i;
     for (i=0;i<n;i++){
         free(colortable[i]);
     }
     free(colortable);
+}
+
+void freeconnextab(int **connextab, int n){
+    /**
+     * Libère l'espace mémoire attribu à la matrice de connexité.
+     */
+    int i;
+    for (i=0;i<n;i++){
+        free(connextab[i]);
+    }
+    free(connextab);
 }
 
 void fillcolortablerand(char **colortable, int n){

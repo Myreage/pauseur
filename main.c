@@ -53,5 +53,7 @@ int main(){
         else printf("Entrée invalide !\n Entrée autorisée : 'B','V','R','J','M','G' \n");
     }
     printf(" Victoire !\n");
+    freecolortable(colortable, n);
+    freeconnextab(connexetab, n);
     return 0;
 }

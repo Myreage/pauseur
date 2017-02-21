@@ -37,21 +37,21 @@ void updateconnexetab(char **colortable, int **connexetab, char color, int n){
      * Met à jour la matrice de connexité.
      */
     int i,j;
-    char **temp=createcolortable(n);
-    while (colortable!=temp) {
+    int **temp=createconnexetab(n);
+    while (connexetab!=temp) {
         /**
          * Un seul parcourt ne suffit pas tout le temps à remplir correctement la matrice de connexité,
          * à cause de certaines taches possibles.
          * On modifie donc la matrice jusqu'au moment où aucuns changements n'est detecté.
          */
-        temp=colortable;
+        temp=connexetab;
         for (i = 0; i < n; i++) {
             for (j = 0; j < n; j++) {
                 if (isconnexe(connexetab, i, j, n) && colortable[i][j] == color) connexetab[i][j] = 1;
             }
         }
     }
-    freecolortable(temp,n);
+    freeconnextab(temp,n);
 }
 
 void switchconnexecolors(char **colortable, int **connexetab, char color, int n){
