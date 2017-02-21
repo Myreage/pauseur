@@ -51,6 +51,7 @@ void updateconnexetab(char **colortable, int **connexetab, char color, int n){
             }
         }
     }
+    freecolortable(temp,n);
 }
 
 void switchconnexecolors(char **colortable, int **connexetab, char color, int n){

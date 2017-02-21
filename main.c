@@ -38,8 +38,8 @@ int main(){
     char **colortable=createcolortable(n);
     int **connexetab=createconnexetab(n);
     connexetab[0][0]=1;
-    char color=colortable[0][0];
     fillcolortablerand(colortable, n);
+    char color=colortable[0][0];
     updateconnexetab(colortable, connexetab, color, n);
     displaycolortable(colortable, n);
     while (!wintest(connexetab, n)){
