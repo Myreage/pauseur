@@ -8,7 +8,14 @@
 #include "colors.h"
 #include <SDL/SDL.h>
 
-
+/**
+ * Explications : La fenêtre crée peut se ramener a une matrice de taille n+1
+ * de carrés de 64x64 pixels.
+ * La surface colorcase est de manière imagée, un tampon de 64x64 pixels dont on peut
+ * choisir la couleur et la position.
+ * Une fois ces paramètres ajustés, on tamponne sur la fenetre avec la fonction : SDL_Blit_Surface
+ * et on met a jour l'écran grâce à SDL_Flip.
+ */
 void SDLwait() {
     int continuer = 1;
     SDL_Event event;
@@ -82,7 +89,13 @@ int main(){
         SDL_WaitEvent(&event);
         switch (event.type){
             case SDL_KEYDOWN :
+                /**
+                 * Premier switch : On appuie sur une touche ou pas
+                 */
                 switch(event.key.keysym.sym) {
+                    /**
+                     * Second switch : Si on appuie sur une touche, et que cette touche est R,V,B,J,G, ou M, on change la couleur.
+                     */
                     case SDLK_r :
                         color = 'R';
                         k++;
