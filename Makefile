@@ -25,4 +25,4 @@ test:   $(CTOBJ)
 	$(CC) -o TestColorflood $(CTOBJ) -lm -lcunit
 
 gui:    $(GUIOBJ)
-	$(CC) -o guiColorflood $(GUIOBJ) -lSDL
+	$(CC) -o guiColorflood $(GUIOBJ) -lSDL -lSDL_ttf
