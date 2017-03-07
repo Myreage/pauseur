@@ -59,7 +59,7 @@ void updateCaseColor(char **colortable, SDL_Surface *colorcase, SDL_Surface *scr
     }
 }
 
-void TextOnScreen(SDL_Surface *screen, char *msg, char *font, SDL_Color color, SDL_Rect pos, int n){
+void TextOnScreen(SDL_Surface *screen, char *msg, char *font, SDL_Color color, SDL_Rect pos){
     SDL_Surface *txt;
     TTF_Font *txtfont;
     txtfont=TTF_OpenFont(font,28);
@@ -86,8 +86,15 @@ void TextOnScreen(SDL_Surface *screen, char *msg, char *font, SDL_Color color, S
  * "J" (255,255,0)
  * */
 
-int main(){
-    int n=12;
+int main(int argc, char *argv[]){
+    if (argc<2){
+        printf("Deux arguments nécéssaires : Taille de la Grille et Nombre de Coups\n");
+        exit(0);
+    }
+
+    int n=atoi(argv[1]);
+    int kmax=atoi(argv[2]);
+    printf("%d\n", n);
     char **colortable=createcolortable(n);
     fillcolortablerand(colortable, n);
     int **connexetab=createconnexetab(n);
@@ -113,12 +120,15 @@ int main(){
     SDL_Rect txtpos;
     txtpos.y=96+n*64;
     txtpos.x=16;
+    /*===== Créations des Popups =====*/
+    const SDL_MessageBoxButtonData buttons[]={{SDL_MESSAGEBOX_RETURNKEY_DEFAULT,0,"OK"}, {}};
 
+    /*================================*/
     SDL_Event event;
     while(!wintest(connexetab, n) && color!='Q') {
         updateCaseColor(colortable, colorcase, screen, n);
-        sprintf(msg,"Nombre de coups : %d",k);
-        TextOnScreen(screen, msg, "Xenotron.ttf", txt_color, txtpos, n);
+        sprintf(msg,"Nombre de coups : %d/%d",k,kmax);
+        TextOnScreen(screen, msg, "Xenotron.ttf", txt_color, txtpos);
         SDL_WaitEvent(&event);
         switch (event.type){
             case SDL_KEYDOWN :
