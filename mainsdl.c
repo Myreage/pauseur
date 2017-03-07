@@ -59,23 +59,52 @@ void updateCaseColor(char **colortable, SDL_Surface *colorcase, SDL_Surface *scr
     }
 }
 
-void TextOnScreen(SDL_Surface *screen, char *msg, char *font, SDL_Color color, SDL_Rect pos){
-    SDL_Surface *txt;
-    SDL_Color white={255,255,255,255};
+void TextOnScreen(SDL_Surface *screen, char *msg, char *font, char color, SDL_Rect pos){
     TTF_Font *txtfont;
-    txtfont=TTF_OpenFont(font,28);
+    SDL_Surface *txt;
+    txtfont=TTF_OpenFont(font,20);
+
     if (txtfont==NULL){
         perror("Invalid Font");
         exit(EXIT_FAILURE);
     }
-
-    txt=TTF_RenderText_Shaded(txtfont, msg, color, white);
+    SDL_Color colorR = {255,0,0,0};
+    SDL_Color colorG = {128,128,128,0};
+    SDL_Color colorV = {0,204,0,0};
+    SDL_Color colorB = {0,0,255,0};
+    SDL_Color colorJ = {255,255,0,0};
+    SDL_Color colorM = {102,51,0,0};
+    SDL_Color black={0,0,0,0};
+    switch (color) {
+        case 'R' :
+            txt=TTF_RenderText_Shaded(txtfont, msg, colorR,black);
+            break;
+        case 'G' :
+            txt=TTF_RenderText_Shaded(txtfont, msg, colorG,black);
+            break;
+        case 'V' :
+            txt=TTF_RenderText_Shaded(txtfont, msg, colorV,black);
+            break;
+        case 'B' :
+            txt=TTF_RenderText_Shaded(txtfont, msg, colorB,black);
+            break;
+        case 'J' :
+            txt=TTF_RenderText_Shaded(txtfont, msg, colorJ,black);
+            break;
+        case 'M' :
+            txt=TTF_RenderText_Shaded(txtfont, msg, colorM,black);
+            break;
+        default :
+            break;
+    }
 
     SDL_BlitSurface(txt, NULL, screen, &pos);
     SDL_Flip(screen);
-    SDL_FreeSurface(txt);
     TTF_CloseFont(txtfont);
+    SDL_FreeSurface(txt);
 }
+
+
 
 
 /* RGB Color Code :
@@ -110,14 +139,12 @@ int main(int argc, char *argv[]){
     SDL_Surface *screen=initscreen(n);
 
 
-    SDL_Color txt_color={0,0,0,255};
-
     if(TTF_Init() == -1) {
         fprintf(stderr, "Erreur d'initialisation de TTF_Init : %s\n", TTF_GetError());
         exit(EXIT_FAILURE);
     }
 
-    char msg[64];
+    char msgCount[64];
     SDL_Rect txtpos;
     txtpos.y=90+n*64;
     txtpos.x=16;
@@ -125,18 +152,44 @@ int main(int argc, char *argv[]){
     /*const SDL_MessageBoxButtonData buttons[]={{SDL_MESSAGEBOX_RETURNKEY_DEFAULT,0,"OK"}, {}};*/
 
     /*================================*/
-    SDL_Event event;
+    /**
+     * Affichage du Menu
+     */
+
+    SDL_Event startEvent;
+    SDL_Event move;
+
+    
+
+    /**
+     * Boucle de Jeu
+     */
+
+    SDL_Event keyevent;
+
     while(!wintest(connexetab, n) && color!='Q') {
         updateCaseColor(colortable, colorcase, screen, n);
-        sprintf(msg,"Nombre de coups : %d/%d",k,kmax);
-        TextOnScreen(screen, msg, "Xenotron.ttf", txt_color, txtpos);
+
+        if (k%10==1) {
+            sprintf(msgCount, "Nombre de coup :  %d/%d ",k, kmax);
+        }
+        else {
+            sprintf(msgCount, "Nombre de coup : %d/%d ", k, kmax);
+        }
+
+        TextOnScreen(screen, msgCount,"Xenotron.ttf", color, txtpos);
         SDL_WaitEvent(&event);
-        switch (event.type){
+
+        /**
+         * Mettre l'event j'appuie sur une touche dans un fonction
+         */
+
+        switch (keyevent.type){
             case SDL_KEYDOWN :
                 /**
                  * Premier switch : On appuie sur une touche ou pas
                  */
-                switch(event.key.keysym.sym) {
+                switch(keyevent.key.keysym.sym) {
                     /**
                      * Second switch : Si on appuie sur une touche, et que cette touche est R,V,B,J,G, ou M, on change la couleur.
                      */
