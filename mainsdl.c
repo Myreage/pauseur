@@ -61,6 +61,7 @@ void updateCaseColor(char **colortable, SDL_Surface *colorcase, SDL_Surface *scr
 
 void TextOnScreen(SDL_Surface *screen, char *msg, char *font, SDL_Color color, SDL_Rect pos){
     SDL_Surface *txt;
+    SDL_Color white={255,255,255,255};
     TTF_Font *txtfont;
     txtfont=TTF_OpenFont(font,28);
     if (txtfont==NULL){
@@ -68,7 +69,7 @@ void TextOnScreen(SDL_Surface *screen, char *msg, char *font, SDL_Color color, S
         exit(EXIT_FAILURE);
     }
 
-    txt=TTF_RenderText_Solid(txtfont, msg, color);
+    txt=TTF_RenderText_Shaded(txtfont, msg, color, white);
 
     SDL_BlitSurface(txt, NULL, screen, &pos);
     SDL_Flip(screen);
@@ -109,7 +110,7 @@ int main(int argc, char *argv[]){
     SDL_Surface *screen=initscreen(n);
 
 
-    SDL_Color txt_color={255,255,255,255};
+    SDL_Color txt_color={0,0,0,255};
 
     if(TTF_Init() == -1) {
         fprintf(stderr, "Erreur d'initialisation de TTF_Init : %s\n", TTF_GetError());
@@ -118,10 +119,10 @@ int main(int argc, char *argv[]){
 
     char msg[64];
     SDL_Rect txtpos;
-    txtpos.y=96+n*64;
+    txtpos.y=90+n*64;
     txtpos.x=16;
     /*===== Créations des Popups =====*/
-    const SDL_MessageBoxButtonData buttons[]={{SDL_MESSAGEBOX_RETURNKEY_DEFAULT,0,"OK"}, {}};
+    /*const SDL_MessageBoxButtonData buttons[]={{SDL_MESSAGEBOX_RETURNKEY_DEFAULT,0,"OK"}, {}};*/
 
     /*================================*/
     SDL_Event event;
