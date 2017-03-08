@@ -8,6 +8,7 @@
 #include "colors.h"
 #include <SDL/SDL.h>
 #include <SDL/SDL_ttf.h>
+#include <SDL/SDL_image.h>
 
 /**
  * Explications : La fenêtre crée peut se ramener a une matrice de taille n+1
@@ -35,6 +36,14 @@ SDL_Surface *initscreen(int n){
         perror("SDL_INIT :");
         exit(EXIT_FAILURE);
     }
+    if (IMG_Init(IMG_INIT_JPG)==-1){
+        perror("IMG_INIT :");
+        exit(EXIT_FAILURE);
+    }
+    if(TTF_Init() == -1) {
+        fprintf(stderr, "Erreur d'initialisation de TTF_Init : %s\n", TTF_GetError());
+        exit(EXIT_FAILURE);
+    }
     SDL_WM_SetCaption("Colorflood : Les Pauseurs", "logo.png");
 
     return screen;
@@ -59,10 +68,10 @@ void updateCaseColor(char **colortable, SDL_Surface *colorcase, SDL_Surface *scr
     }
 }
 
-void TextOnScreen(SDL_Surface *screen, char *msg, char *font, char color, SDL_Rect pos){
+void TextOnScreen(SDL_Surface *screen, char *msg, char *font, char color, int fontsize, SDL_Rect pos){
     TTF_Font *txtfont;
     SDL_Surface *txt;
-    txtfont=TTF_OpenFont(font,20);
+    txtfont=TTF_OpenFont(font,fontsize);
 
     if (txtfont==NULL){
         perror("Invalid Font");
@@ -75,6 +84,8 @@ void TextOnScreen(SDL_Surface *screen, char *msg, char *font, char color, SDL_Re
     SDL_Color colorJ = {255,255,0,0};
     SDL_Color colorM = {102,51,0,0};
     SDL_Color black={0,0,0,0};
+    SDL_Color white={255,255,255,0};
+
     switch (color) {
         case 'R' :
             txt=TTF_RenderText_Shaded(txtfont, msg, colorR,black);
@@ -94,6 +105,8 @@ void TextOnScreen(SDL_Surface *screen, char *msg, char *font, char color, SDL_Re
         case 'M' :
             txt=TTF_RenderText_Shaded(txtfont, msg, colorM,black);
             break;
+        case 'W' :
+            txt=TTF_RenderText_Shaded(txtfont, msg, white, black);
         default :
             break;
     }
@@ -138,16 +151,6 @@ int main(int argc, char *argv[]){
 
     SDL_Surface *screen=initscreen(n);
 
-
-    if(TTF_Init() == -1) {
-        fprintf(stderr, "Erreur d'initialisation de TTF_Init : %s\n", TTF_GetError());
-        exit(EXIT_FAILURE);
-    }
-
-    char msgCount[64];
-    SDL_Rect txtpos;
-    txtpos.y=90+n*64;
-    txtpos.x=16;
     /*===== Créations des Popups =====*/
     /*const SDL_MessageBoxButtonData buttons[]={{SDL_MESSAGEBOX_RETURNKEY_DEFAULT,0,"OK"}, {}};*/
 
@@ -156,16 +159,159 @@ int main(int argc, char *argv[]){
      * Affichage du Menu
      */
 
-    SDL_Event startEvent;
     SDL_Event move;
+    int actualpos=0;
+    SDL_Surface *menuimg=IMG_Load("drowncube.jpg");
 
-    
+    SDL_Rect menupos;
+
+    menupos.x=32*(n+1)-100;
+    menupos.y=32*(n+1)-162;
+    SDL_BlitSurface(menuimg, NULL, screen, &menupos);
+
+    menupos.x=32*n+64-210;
+    menupos.y=64;
+    TextOnScreen(screen, "Colorflood", "Xenotron.ttf", 'W', 40, menupos);
+
+
+    menupos.y=n*64;
+    menupos.x=10*n;
+
+
+    TextOnScreen(screen, "Start", "Xenotron.ttf", 'G', 20, menupos);
+
+    menupos.x=32*n-26;
+    TextOnScreen(screen, "Controles", "Xenotron.ttf", 'W', 20, menupos);
+
+    menupos.x=64*n-70;
+    TextOnScreen(screen, "Quitter", "Xenotron.ttf", 'W', 20, menupos);
+    /**
+     * Afficher les autres champs avec avec la couleur blanche : Controlles et Quitter
+     */
+    int exitcond=0;
+    while(!exitcond) {
+        SDL_WaitEvent(&move);
+        switch (move.type) {
+            case SDL_KEYDOWN :
+                switch (move.key.keysym.sym) {
+                    case SDLK_LEFT :
+                        if (actualpos == 0) {
+                            menupos.x=10*n;
+
+                            TextOnScreen(screen, "Start", "Xenotron.ttf", 'W', 20, menupos);
+
+                            menupos.x=32*n-26;
+                            TextOnScreen(screen, "Controles", "Xenotron.ttf", 'W', 20, menupos);
+
+                            menupos.x=64*n-70;
+                            TextOnScreen(screen, "Quitter", "Xenotron.ttf", 'G', 20, menupos);
+                            actualpos = 2;
+                            break;
+                        }
+                        else if (actualpos == 1) {
+                            menupos.x=10*n;
+
+                            TextOnScreen(screen, "Start", "Xenotron.ttf", 'G', 20, menupos);
+
+                            menupos.x=32*n-26;
+                            TextOnScreen(screen, "Controles", "Xenotron.ttf", 'W', 20, menupos);
+
+                            menupos.x=64*n-70;
+                            TextOnScreen(screen, "Quitter", "Xenotron.ttf", 'W', 20, menupos);
+                            actualpos = 0;
+                            break;
+                        }
+                        else if (actualpos == 2) {
+                            menupos.x=10*n;
+
+                            TextOnScreen(screen, "Start", "Xenotron.ttf", 'W', 20, menupos);
+
+                            menupos.x=32*n-26;
+                            TextOnScreen(screen, "Controles", "Xenotron.ttf", 'G', 20, menupos);
+
+                            menupos.x=64*n-70;
+                            TextOnScreen(screen, "Quitter", "Xenotron.ttf", 'W', 20, menupos);
+                            actualpos = 1;
+                            break;
+                        }
+
+                    case SDLK_RIGHT :
+                        if (actualpos == 0) {
+                            menupos.x=10*n;
+
+                            TextOnScreen(screen, "Start", "Xenotron.ttf", 'W', 20, menupos);
+
+                            menupos.x=32*n-26;
+                            TextOnScreen(screen, "Controles", "Xenotron.ttf", 'G', 20, menupos);
+
+                            menupos.x=64*n-70;
+                            TextOnScreen(screen, "Quitter", "Xenotron.ttf", 'W', 20,menupos);
+                            actualpos = 1;
+                            break;
+                        }
+                        else if (actualpos == 1) {
+                            menupos.x=10*n;
+
+                            TextOnScreen(screen, "Start", "Xenotron.ttf", 'W', 20,menupos);
+
+                            menupos.x=32*n-26;
+                            TextOnScreen(screen, "Controles", "Xenotron.ttf", 'W', 20, menupos);
+
+                            menupos.x=64*n-70;
+                            TextOnScreen(screen, "Quitter", "Xenotron.ttf", 'G', 20,menupos);
+                            actualpos = 2;
+                            break;
+                        }
+                        else if (actualpos == 2) {
+                            menupos.x=10*n;
+
+                            TextOnScreen(screen, "Start", "Xenotron.ttf", 'G', 20,menupos);
+
+                            menupos.x=32*n-26;
+                            TextOnScreen(screen, "Controles", "Xenotron.ttf", 'W', 20, menupos);
+
+                            menupos.x=64*n-70;
+                            TextOnScreen(screen, "Quitter", "Xenotron.ttf", 'W', 20,menupos);
+                            actualpos = 0;
+                            break;
+                        }
+
+                    case SDLK_RETURN :
+                        if (actualpos == 0) {
+                            exitcond=1;
+                            break;
+                        }
+                        else if (actualpos == 1) {
+                            /**
+                             * Afficher le menu des Options
+                             */
+
+                        }
+                        else if (actualpos == 2) {
+                            color='Q';
+                            exitcond=1;
+                            break;
+                        }
+                    default :
+                        break;
+
+                }
+            default :
+                break;
+        }
+    }
+
 
     /**
      * Boucle de Jeu
      */
 
     SDL_Event keyevent;
+
+    char msgCount[64];
+    SDL_Rect txtpos;
+    txtpos.y=90+n*64;
+    txtpos.x=32*n-100;
 
     while(!wintest(connexetab, n) && color!='Q') {
         updateCaseColor(colortable, colorcase, screen, n);
@@ -177,8 +323,8 @@ int main(int argc, char *argv[]){
             sprintf(msgCount, "Nombre de coup : %d/%d ", k, kmax);
         }
 
-        TextOnScreen(screen, msgCount,"Xenotron.ttf", color, txtpos);
-        SDL_WaitEvent(&event);
+        TextOnScreen(screen, msgCount,"Xenotron.ttf", color, 20,txtpos);
+        SDL_WaitEvent(&keyevent);
 
         /**
          * Mettre l'event j'appuie sur une touche dans un fonction
