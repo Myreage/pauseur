@@ -30,6 +30,11 @@ void SDLwait() {
     }
 }
 
+void BlackScreen(SDL_Surface *screen)
+{
+  SDL_FillRect(screen,NULL,SDL_MapRGB(screen->format, 0, 0, 0));
+}
+
 SDL_Surface *initscreen(int n){
     SDL_Surface *screen=SDL_SetVideoMode(64*n+128,64*n+128, 32, SDL_HWSURFACE);
     if (SDL_Init(SDL_INIT_VIDEO)==-1){
@@ -50,6 +55,7 @@ SDL_Surface *initscreen(int n){
 }
 
 void updateCaseColor(char **colortable, SDL_Surface *colorcase, SDL_Surface *screen, int n) {
+    BlackScreen(screen);
     int i, j;
     SDL_Rect pos;
     for (i = 0; i < n; i++) {
@@ -117,6 +123,62 @@ void TextOnScreen(SDL_Surface *screen, char *msg, char *font, char color, int fo
     SDL_FreeSurface(txt);
 }
 
+void HelpPage(SDL_Surface *screen,int n)
+{
+  BlackScreen(screen);
+  SDL_Event BackToGame;
+
+  SDL_Rect helppos;
+
+  int b = 0;
+
+  while(b==0)
+  {
+
+    helppos.x=32*n+64-210;
+    helppos.y=64;
+    TextOnScreen(screen, "Pour jouer, pressez ", "Xenotron.ttf", 'W', 25, helppos);
+    helppos.y=84;
+    TextOnScreen(screen, "une touche :", "Xenotron.ttf", 'W', 25, helppos);
+    helppos.y=124;
+    TextOnScreen(screen, "r pour jouer rouge", "Xenotron.ttf", 'W', 20, helppos);
+    helppos.y=144;
+    TextOnScreen(screen, "b pour jouer bleu", "Xenotron.ttf", 'W', 20, helppos);
+    helppos.y=164;
+    TextOnScreen(screen, "m pour jouer marron", "Xenotron.ttf", 'W', 20, helppos);
+    helppos.y=184;
+    TextOnScreen(screen, "g pour jouer gris", "Xenotron.ttf", 'W', 20, helppos);
+    helppos.y=204;
+    TextOnScreen(screen, "j pour jouer jaune", "Xenotron.ttf", 'W', 20, helppos);
+    helppos.y=224;
+    TextOnScreen(screen, "v pour jouer vert", "Xenotron.ttf", 'W', 20, helppos);
+    helppos.y=244;
+    TextOnScreen(screen, "q pour quitter la partie", "Xenotron.ttf", 'W', 20, helppos);
+    helppos.y=284;
+    TextOnScreen(screen, "Pressez R pour", "Xenotron.ttf", 'W', 25, helppos);
+    helppos.y=304;
+    TextOnScreen(screen, "revenir a la partie.", "Xenotron.ttf", 'W', 25, helppos);
+
+
+
+
+    SDL_WaitEvent(&BackToGame);
+    switch (BackToGame.type)
+    {
+        case SDL_KEYDOWN :
+            switch(BackToGame.key.keysym.sym)
+            {
+                case SDLK_r :
+                    b = 1;
+                    break;
+                default :
+                    break;
+            }
+        default :
+            break;
+    }
+  }
+}
 
 
 
@@ -128,6 +190,8 @@ void TextOnScreen(SDL_Surface *screen, char *msg, char *font, char color, int fo
  * "M" (102,51,0)
  * "J" (255,255,0)
  * */
+
+
 
 int main(int argc, char *argv[]){
     if (argc<2){
@@ -175,15 +239,15 @@ int main(int argc, char *argv[]){
 
 
     menupos.y=n*64;
-    menupos.x=10*n;
+    menupos.x=10*n-10;
 
 
     TextOnScreen(screen, "Start", "Xenotron.ttf", 'G', 20, menupos);
 
-    menupos.x=32*n-26;
+    menupos.x=32*n-20;
     TextOnScreen(screen, "Controles", "Xenotron.ttf", 'W', 20, menupos);
 
-    menupos.x=64*n-70;
+    menupos.x=64*n;
     TextOnScreen(screen, "Quitter", "Xenotron.ttf", 'W', 20, menupos);
     /**
      * Afficher les autres champs avec avec la couleur blanche : Controlles et Quitter
@@ -362,6 +426,9 @@ int main(int argc, char *argv[]){
                     case SDLK_m :
                         color = 'M';
                         k++;
+                        break;
+                    case SDLK_h :
+                        HelpPage(screen,n);
                         break;
                     case SDLK_q:
                         color='Q';
