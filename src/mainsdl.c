@@ -69,15 +69,19 @@ int main(int argc, char *argv[]){
                 gamestate=HelpPage(screen, n);
                 break;
             case 3:
-                /*gamestate=VictoryScreen();*/
+                gamestate=VictoryScreen(screen);
                 exitcond=1;
                 break;
             case 4:
-                /*gamestate=LoseScreen();*/
-                exitcond=1;
+                gamestate=LooseScreen(screen);
                 break;
             case 5:
                 exitcond=1;
+                break;
+            case 6:
+                fillcolortablerand(colortable, n);
+                updateconnexetab(colortable, connexetab, colortable[0][0], n);
+                gamestate=1;
                 break;
             default:
                 exitcond=1;

@@ -1,7 +1,7 @@
-//
-// Created by baron on 3/9/17.
-//
 #include "gui.h"
+#include <time.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 #define FONT_PATH "design/Xenotron.ttf"
 #define IMG_PATH "design/drowncube.jpg"
@@ -26,17 +26,6 @@
 
 
 
-void SDLwait() {
-    int continuer = 1;
-    SDL_Event event;
-    while (continuer) {
-        SDL_WaitEvent(&event);
-        switch(event.type) {
-            case SDL_QUIT:
-                continuer = 0;
-        }
-    }
-}
 
 SDL_Surface *initscreen(){
 
@@ -419,23 +408,93 @@ int GameLoop(SDL_Surface *screen, int n, char color, int kmax, char **colortable
                 break;
 
         }
-        if (kmax<k){
-            gamestate=4;
+
+    }
+    if (kmax<=k){
+        gamestate=4;
+    }
+
+    if (kmax>k){
+        gamestate=3;
+    }
+    if (color=='Q'){
+        gamestate=5;
+    }
+    SDL_FreeSurface(screen);
+    updateconnexetab(colortable, connexetab, color, n);
+    switchconnexecolors(colortable, connexetab, color, n);
+    return gamestate;
+}
+
+int LooseScreen(SDL_Surface *screen){
+    SDL_Rect pos;
+    pos.x=screen->w*TITLEPOS;
+    pos.y=screen->h/10;
+    BlackScreen(screen);
+
+    SDL_Event event;
+    srand(time(NULL));
+
+    int gamestate=0;
+    char color[6]={'R','B','V','G','M','J'};
+    while(gamestate==0){
+        TextOnScreen(screen, "MDR KOMMENT Té NUL !!", FONT_PATH, color[rand()%6], 40,pos);
+        SDL_WaitEvent(&event);
+        switch(event.type) {
+            case SDL_KEYDOWN :
+                switch (event.key.keysym.sym) {
+                    case SDLK_q :
+                        gamestate=5;
+                        break;
+                    case SDLK_r:
+                        gamestate=6;
+                        break;
+                    default :
+                        break;
+
+                }
+            default:
+                break;
         }
 
-        if (kmax>k){
-            gamestate=3;
-        }
-        if (color=='Q'){
-            gamestate=5;
-        }
-        SDL_FreeSurface(screen);
-        updateconnexetab(colortable, connexetab, color, n);
-        switchconnexecolors(colortable, connexetab, color, n);
     }
     return gamestate;
 }
 
+int VictoryScreen(SDL_Surface *screen){
+    SDL_Rect pos;
+    pos.x=screen->w*TITLEPOS;
+    pos.y=screen->h/10;
+    BlackScreen(screen);
+
+    SDL_Event event;
+    srand(time(NULL));
+
+    int gamestate=0;
+    char color[6]={'R','B','V','G','M','J'};
+    while(gamestate==0){
+        TextOnScreen(screen, "BOGOSS", FONT_PATH, color[rand()%6], 40,pos);
+        SDL_WaitEvent(&event);
+        switch(event.type) {
+            case SDL_KEYDOWN :
+                switch (event.key.keysym.sym) {
+                    case SDLK_q :
+                        gamestate=5;
+                        break;
+                    case SDLK_r:
+                        gamestate=6;
+                        break;
+                    default :
+                        break;
+
+                }
+            default:
+                break;
+        }
+
+    }
+    return gamestate;
+}
 
 
 

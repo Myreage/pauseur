@@ -25,5 +25,6 @@ int HelpPage(SDL_Surface *screen,int n);
 void BlackScreen(SDL_Surface *screen);
 char HomePage(SDL_Surface *screen);
 int GameLoop(SDL_Surface *screen, int n, char color, int kmax, char **colortable, int **connexetab, SDL_Surface *colorcase);
-
+int LooseScreen(SDL_Surface *screen);
+int VictoryScreen(SDL_Surface *screen);
 #endif //PAUSEUR_GUI_H
