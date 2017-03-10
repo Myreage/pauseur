@@ -408,6 +408,9 @@ int GameLoop(SDL_Surface *screen, int n, char color, int kmax, char **colortable
                 break;
 
         }
+        updateconnexetab(colortable, connexetab, color, n);
+        switchconnexecolors(colortable, connexetab, color, n);
+
 
     }
     if (kmax<=k){
@@ -420,9 +423,6 @@ int GameLoop(SDL_Surface *screen, int n, char color, int kmax, char **colortable
     if (color=='Q'){
         gamestate=5;
     }
-    SDL_FreeSurface(screen);
-    updateconnexetab(colortable, connexetab, color, n);
-    switchconnexecolors(colortable, connexetab, color, n);
     return gamestate;
 }
 
