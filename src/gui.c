@@ -179,20 +179,20 @@ char HomePage(SDL_Surface *screen, int n, char color){
 
     menupos.x=32*n+64-210;
     menupos.y=64;
-    TextOnScreen(screen, "Colorflood", "Xenotron.ttf", 'W', 40, menupos);
+    TextOnScreen(screen, "Colorflood", FONT_PATH, 'W', 40, menupos);
 
 
     menupos.y=n*64;
     menupos.x=10*n-10;
 
 
-    TextOnScreen(screen, "Start", "Xenotron.ttf", 'G', 20, menupos);
+    TextOnScreen(screen, "Start", FONT_PATH, 'G', 20, menupos);
 
     menupos.x=32*n-20;
-    TextOnScreen(screen, "Controles", "Xenotron.ttf", 'W', 20, menupos);
+    TextOnScreen(screen, "Controles", FONT_PATH, 'W', 20, menupos);
 
     menupos.x=64*n;
-    TextOnScreen(screen, "Quitter", "Xenotron.ttf", 'W', 20, menupos);
+    TextOnScreen(screen, "Quitter", FONT_PATH, 'W', 20, menupos);
 
     int exitcond=0;
     while(!exitcond) {
@@ -204,39 +204,39 @@ char HomePage(SDL_Surface *screen, int n, char color){
                         if (actualpos == 0) {
                             menupos.x=10*n;
 
-                            TextOnScreen(screen, "Start", "Xenotron.ttf", 'W', 20, menupos);
+                            TextOnScreen(screen, "Start", FONT_PATH, 'W', 20, menupos);
 
                             menupos.x=32*n-26;
-                            TextOnScreen(screen, "Controles", "Xenotron.ttf", 'W', 20, menupos);
+                            TextOnScreen(screen, "Controles", FONT_PATH, 'W', 20, menupos);
 
                             menupos.x=64*n-70;
-                            TextOnScreen(screen, "Quitter", "Xenotron.ttf", 'G', 20, menupos);
+                            TextOnScreen(screen, "Quitter", FONT_PATH, 'G', 20, menupos);
                             actualpos = 2;
                             break;
                         }
                         else if (actualpos == 1) {
                             menupos.x=10*n;
 
-                            TextOnScreen(screen, "Start", "Xenotron.ttf", 'G', 20, menupos);
+                            TextOnScreen(screen, "Start", FONT_PATH, 'G', 20, menupos);
 
                             menupos.x=32*n-26;
-                            TextOnScreen(screen, "Controles", "Xenotron.ttf", 'W', 20, menupos);
+                            TextOnScreen(screen, "Controles", FONT_PATH, 'W', 20, menupos);
 
                             menupos.x=64*n-70;
-                            TextOnScreen(screen, "Quitter", "Xenotron.ttf", 'W', 20, menupos);
+                            TextOnScreen(screen, "Quitter", FONT_PATH, 'W', 20, menupos);
                             actualpos = 0;
                             break;
                         }
                         else if (actualpos == 2) {
                             menupos.x=10*n;
 
-                            TextOnScreen(screen, "Start", "Xenotron.ttf", 'W', 20, menupos);
+                            TextOnScreen(screen, "Start", FONT_PATH, 'W', 20, menupos);
 
                             menupos.x=32*n-26;
-                            TextOnScreen(screen, "Controles", "Xenotron.ttf", 'G', 20, menupos);
+                            TextOnScreen(screen, "Controles", FONT_PATH, 'G', 20, menupos);
 
                             menupos.x=64*n-70;
-                            TextOnScreen(screen, "Quitter", "Xenotron.ttf", 'W', 20, menupos);
+                            TextOnScreen(screen, "Quitter",FONT_PATH, 'W', 20, menupos);
                             actualpos = 1;
                             break;
                         }
@@ -245,39 +245,39 @@ char HomePage(SDL_Surface *screen, int n, char color){
                         if (actualpos == 0) {
                             menupos.x=10*n;
 
-                            TextOnScreen(screen, "Start", "Xenotron.ttf", 'W', 20, menupos);
+                            TextOnScreen(screen, "Start", FONT_PATH, 'W', 20, menupos);
 
                             menupos.x=32*n-26;
-                            TextOnScreen(screen, "Controles", "Xenotron.ttf", 'G', 20, menupos);
+                            TextOnScreen(screen, "Controles", FONT_PATH, 'G', 20, menupos);
 
                             menupos.x=64*n-70;
-                            TextOnScreen(screen, "Quitter", "Xenotron.ttf", 'W', 20,menupos);
+                            TextOnScreen(screen, "Quitter", FONT_PATH, 'W', 20,menupos);
                             actualpos = 1;
                             break;
                         }
                         else if (actualpos == 1) {
                             menupos.x=10*n;
 
-                            TextOnScreen(screen, "Start", "Xenotron.ttf", 'W', 20,menupos);
+                            TextOnScreen(screen, "Start", FONT_PATH, 'W', 20,menupos);
 
                             menupos.x=32*n-26;
-                            TextOnScreen(screen, "Controles", "Xenotron.ttf", 'W', 20, menupos);
+                            TextOnScreen(screen, "Controles", FONT_PATH, 'W', 20, menupos);
 
                             menupos.x=64*n-70;
-                            TextOnScreen(screen, "Quitter", "Xenotron.ttf", 'G', 20,menupos);
+                            TextOnScreen(screen, "Quitter", FONT_PATH, 'G', 20,menupos);
                             actualpos = 2;
                             break;
                         }
                         else if (actualpos == 2) {
                             menupos.x=10*n;
 
-                            TextOnScreen(screen, "Start", "Xenotron.ttf", 'G', 20,menupos);
+                            TextOnScreen(screen, "Start", FONT_PATH, 'G', 20,menupos);
 
                             menupos.x=32*n-26;
-                            TextOnScreen(screen, "Controles", "Xenotron.ttf", 'W', 20, menupos);
+                            TextOnScreen(screen, "Controles", FONT_PATH, 'W', 20, menupos);
 
                             menupos.x=64*n-70;
-                            TextOnScreen(screen, "Quitter", "Xenotron.ttf", 'W', 20,menupos);
+                            TextOnScreen(screen, "Quitter", FONT_PATH, 'W', 20,menupos);
                             actualpos = 0;
                             break;
                         }
