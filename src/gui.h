@@ -21,8 +21,9 @@ void SDLwait();
 SDL_Surface *initscreen();
 void updateCaseColor(char **colortable, SDL_Surface *colorcase, SDL_Surface *screen, int n,int off, int boardS, int squareS);
 void TextOnScreen(SDL_Surface *screen, char *msg, char *font, char color, int fontsize, SDL_Rect pos);
-void HelpPage(SDL_Surface *screen,int n);
+int HelpPage(SDL_Surface *screen,int n);
 void BlackScreen(SDL_Surface *screen);
-int GameLoop(SDL_Surface *screen, int n, char color, int off, int boardS, int squareS, int kmax, char **colortable, int **connexetab, SDL_Surface *colorcase);
+char HomePage(SDL_Surface *screen);
+int GameLoop(SDL_Surface *screen, int n, char color, int kmax, char **colortable, int **connexetab, SDL_Surface *colorcase);
 
 #endif //PAUSEUR_GUI_H
