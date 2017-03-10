@@ -23,5 +23,6 @@ void updateCaseColor(char **colortable, SDL_Surface *colorcase, SDL_Surface *scr
 void TextOnScreen(SDL_Surface *screen, char *msg, char *font, char color, int fontsize, SDL_Rect pos);
 void HelpPage(SDL_Surface *screen,int n);
 void BlackScreen(SDL_Surface *screen);
+void GameLoop(SDL_Surface *screen, int n, char color, int off, int boardS, int squareS, int kmax, char **colortable, int **connexetab, SDL_Surface *colorcase);
 
 #endif //PAUSEUR_GUI_H

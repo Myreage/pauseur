@@ -3,6 +3,8 @@
 //
 #include "gui.h"
 
+#define FONT_PATH "design/Xenotron.ttf"
+#define IMG_PATH "design/drowncube.jpg"
 
 void SDLwait() {
     int continuer = 1;
@@ -306,7 +308,7 @@ char HomePage(SDL_Surface *screen, int n, char color){
 }
 
 
-void GameLoop(SDL_Surface *screen, int n, char color, int kmax, char **colortable, int **connexetab, SDL_Surface *colorcase) {
+void GameLoop(SDL_Surface *screen, int n, char color, int off, int boardS, int squareS, int kmax, char **colortable, int **connexetab, SDL_Surface *colorcase) {
     SDL_Event keyevent;
 
     int k=0;
@@ -316,7 +318,7 @@ void GameLoop(SDL_Surface *screen, int n, char color, int kmax, char **colortabl
     txtpos.x=32*n-100;
 
     while(!wintest(connexetab, n) && color!='Q') {
-        updateCaseColor(colortable, colorcase, screen, n);
+        updateCaseColor(colortable, colorcase, screen, n, off, boardS, squareS);
 
         if (k%10==1) {
             sprintf(msgCount, "Nombre de coup :  %d/%d ",k, kmax);
