@@ -144,13 +144,13 @@ void BlackScreen(SDL_Surface *screen) {
 }
 
 
-int HelpPage(SDL_Surface *screen,int n) {
+void HelpPage(SDL_Surface *screen,int n) {
     BlackScreen(screen);
     SDL_Event BackToGame;
     SDL_Rect helppos;
 
 
-    while(!(SDL_KEYDOWN && SDLK_r))    {
+    while(!(BackToGame.type == SDL_KEYDOWN && BackToGame.key.keysym.sym == SDLK_r))    {
 
 
         helppos.x=32*n+64-210;
@@ -180,7 +180,7 @@ int HelpPage(SDL_Surface *screen,int n) {
         SDL_WaitEvent(&BackToGame);
     }
 
-    return 1;
+
 }
 
 
@@ -314,9 +314,9 @@ char HomePage(SDL_Surface *screen){
                           break;
                       }
                       else if (actualpos == 1) {
-                          /**
-                           * Afficher le menu des Options
-                           */
+                          gamestate = 2;
+                          exitcond=1;
+                          break;
 
                       }
                       else if (actualpos == 2) {
@@ -349,6 +349,7 @@ int GameLoop(SDL_Surface *screen, int n, char color, int kmax, char **colortable
     int squareS = boardS/n; /*taille du côté d'un carré*/
 
     int gamestate;
+    int backmenu=0;
 
     int k=0;
     char msgCount[64];
@@ -356,7 +357,8 @@ int GameLoop(SDL_Surface *screen, int n, char color, int kmax, char **colortable
     txtpos.y=screen->h*SCOREPOSH;
     txtpos.x=screen->w*SCOREPOSW;
 
-    while(!wintest(connexetab, n) && color!='Q' && kmax>k) {
+
+    while(!wintest(connexetab, n) && color!='Q' && kmax>k && !backmenu) {
         updateCaseColor(colortable, colorcase, screen, n, off, boardS, squareS);
 
         if (k%10==1) {
@@ -408,10 +410,12 @@ int GameLoop(SDL_Surface *screen, int n, char color, int kmax, char **colortable
                         break;
                     case SDLK_h :
                         HelpPage(screen,n);
+                        BlackScreen(screen);
                         break;
-                    case SDLK_ESCAPE :
-                        HomePage(screen);
-                        break;
+                    /*case SDLK_ESCAPE :
+
+                        BlackScreen(screen);
+                        break;*/
                     case SDLK_q:
                         color='Q';
                     default :

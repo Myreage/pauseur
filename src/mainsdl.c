@@ -28,7 +28,7 @@
 
 int main(int argc, char *argv[]){
     if (argc<2){
-        printf("Deux arguments nécéssaires : Taille de la Grille et Nombre de Coups\n");
+        printf("Deux arguments nécessaires : Taille de la Grille et Nombre de Coups\n");
         exit(0);
     }
 
@@ -52,7 +52,6 @@ int main(int argc, char *argv[]){
 
 
 
-    int k=0;
 
     SDL_Surface *colorcase=NULL;
     colorcase=SDL_CreateRGBSurface(0,squareS,squareS,32,0,0,0,0);
@@ -77,18 +76,22 @@ int main(int argc, char *argv[]){
                 gamestate=GameLoop(screen,n,color,kmax,colortable,connexetab,colorcase);
                 break;
             case 2:
-                gamestate=HelpPage(screen, n);
+                HelpPage(screen,n);
+                gamestate=0;
                 break;
-            /*case 3:
-                gamestate=VictoryScreen();
+            case 3:
+                /*gamestate=VictoryScreen();*/
+                exitcond=1;
                 break;
             case 4:
-                gamestate=LoseScreen();
-                break;*/
+                /*gamestate=LoseScreen();*/
+                exitcond=1;
+                break;
             case 5:
                 exitcond=1;
                 break;
         }
+
     }
 
 
