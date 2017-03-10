@@ -10,6 +10,26 @@
 #include <SDL/SDL_ttf.h>
 #include <SDL/SDL_image.h>
 
+#include "gui.h"
+
+
+
+/*------****Menu positions--***------*/
+/* L'écran est coupé en 100 colonnes */
+#define TITLEPOS (float)38/100
+#define STARTPOS (float)20/100
+#define CONTROLSPOS (float)45/100
+#define QUITPOS (float)80/100
+
+/*------****Game positions--***------*/
+/* L'écran est coupé en 100 colonnes */
+#define SCOREPOSH (float)95/100
+#define SCOREPOSW (float)40/100
+
+/*Offset vertical*/
+#define OFF 10/100
+
+
 /**
  * Explications : La fenêtre crée peut se ramener a une matrice de taille n+1
  * de carrés de 64x64 pixels.
@@ -18,116 +38,7 @@
  * Une fois ces paramètres ajustés, on tamponne sur la fenetre avec la fonction : SDL_Blit_Surface
  * et on met a jour l'écran grâce à SDL_Flip.
  */
-void SDLwait() {
-    int continuer = 1;
-    SDL_Event event;
-    while (continuer) {
-        SDL_WaitEvent(&event);
-        switch(event.type) {
-            case SDL_QUIT:
-                continuer = 0;
-        }
-    }
-}
 
-SDL_Surface *initscreen(int n){
-    SDL_Surface *screen=SDL_SetVideoMode(64*n+128,64*n+128, 32, SDL_HWSURFACE);
-    if (SDL_Init(SDL_INIT_VIDEO)==-1){
-        perror("SDL_INIT :");
-        exit(EXIT_FAILURE);
-    }
-    if (IMG_Init(IMG_INIT_JPG)==-1){
-        perror("IMG_INIT :");
-        exit(EXIT_FAILURE);
-    }
-    if(TTF_Init() == -1) {
-        fprintf(stderr, "Erreur d'initialisation de TTF_Init : %s\n", TTF_GetError());
-        exit(EXIT_FAILURE);
-    }
-    SDL_WM_SetCaption("Colorflood : Les Pauseurs", "logo.png");
-
-    return screen;
-}
-
-void updateCaseColor(char **colortable, SDL_Surface *colorcase, SDL_Surface *screen, int n) {
-    int i, j;
-    SDL_Rect pos;
-    for (i = 0; i < n; i++) {
-        for (j = 0; j < n; j++) {
-            pos.x= 64 + i * 64;
-            pos.y= 64 + j * 64;
-            if (colortable[i][j] == 'R') SDL_FillRect(colorcase, NULL, SDL_MapRGB(colorcase->format, 255, 0, 0));
-            if (colortable[i][j] == 'V') SDL_FillRect(colorcase, NULL, SDL_MapRGB(colorcase->format, 0, 204, 0));
-            if (colortable[i][j] == 'G') SDL_FillRect(colorcase, NULL, SDL_MapRGB(colorcase->format, 128, 128, 128));
-            if (colortable[i][j] == 'M') SDL_FillRect(colorcase, NULL, SDL_MapRGB(colorcase->format, 102, 51, 0));
-            if (colortable[i][j] == 'B') SDL_FillRect(colorcase, NULL, SDL_MapRGB(colorcase->format, 0, 0, 255));
-            if (colortable[i][j] == 'J') SDL_FillRect(colorcase, NULL, SDL_MapRGB(colorcase->format, 255, 255, 0));
-            SDL_BlitSurface(colorcase, NULL, screen, &pos);
-        }
-        SDL_Flip(screen);
-    }
-}
-
-void TextOnScreen(SDL_Surface *screen, char *msg, char *font, char color, int fontsize, SDL_Rect pos){
-    TTF_Font *txtfont;
-    SDL_Surface *txt;
-    txtfont=TTF_OpenFont(font,fontsize);
-
-    if (txtfont==NULL){
-        perror("Invalid Font");
-        exit(EXIT_FAILURE);
-    }
-    SDL_Color colorR = {255,0,0,0};
-    SDL_Color colorG = {128,128,128,0};
-    SDL_Color colorV = {0,204,0,0};
-    SDL_Color colorB = {0,0,255,0};
-    SDL_Color colorJ = {255,255,0,0};
-    SDL_Color colorM = {102,51,0,0};
-    SDL_Color black={0,0,0,0};
-    SDL_Color white={255,255,255,0};
-
-    switch (color) {
-        case 'R' :
-            txt=TTF_RenderText_Shaded(txtfont, msg, colorR,black);
-            break;
-        case 'G' :
-            txt=TTF_RenderText_Shaded(txtfont, msg, colorG,black);
-            break;
-        case 'V' :
-            txt=TTF_RenderText_Shaded(txtfont, msg, colorV,black);
-            break;
-        case 'B' :
-            txt=TTF_RenderText_Shaded(txtfont, msg, colorB,black);
-            break;
-        case 'J' :
-            txt=TTF_RenderText_Shaded(txtfont, msg, colorJ,black);
-            break;
-        case 'M' :
-            txt=TTF_RenderText_Shaded(txtfont, msg, colorM,black);
-            break;
-        case 'W' :
-            txt=TTF_RenderText_Shaded(txtfont, msg, white, black);
-        default :
-            break;
-    }
-
-    SDL_BlitSurface(txt, NULL, screen, &pos);
-    SDL_Flip(screen);
-    TTF_CloseFont(txtfont);
-    SDL_FreeSurface(txt);
-}
-
-
-
-
-/* RGB Color Code :
- * "R" (255,0,0)
- * "V" (0,204,0)
- * "G" (128,128,128)
- * "B" (0,0,255)
- * "M" (102,51,0)
- * "J" (255,255,0)
- * */
 
 int main(int argc, char *argv[]){
     if (argc<2){
@@ -144,12 +55,23 @@ int main(int argc, char *argv[]){
     char color=colortable[0][0];
     updateconnexetab(colortable, connexetab, color, n);
 
+    SDL_Surface *screen=initscreen();
+
+    /*-----Params de placement-----*/
+    int off = screen->h*OFF;
+    int boardS = screen->h - 2*off; /*taille d'un coté du board*/
+    int squareS = boardS/n; /*taille du côté d'un carré*/
+
+
     int k=0;
 
     SDL_Surface *colorcase=NULL;
-    colorcase=SDL_CreateRGBSurface(0,64,64,32,0,0,0,0);
+    colorcase=SDL_CreateRGBSurface(0,squareS,squareS,32,0,0,0,0);
 
-    SDL_Surface *screen=initscreen(n);
+
+
+
+
 
     /*===== Créations des Popups =====*/
     /*const SDL_MessageBoxButtonData buttons[]={{SDL_MESSAGEBOX_RETURNKEY_DEFAULT,0,"OK"}, {}};*/
@@ -164,26 +86,23 @@ int main(int argc, char *argv[]){
     SDL_Surface *menuimg=IMG_Load("drowncube.jpg");
 
     SDL_Rect menupos;
-
-    menupos.x=32*(n+1)-100;
-    menupos.y=32*(n+1)-162;
     SDL_BlitSurface(menuimg, NULL, screen, &menupos);
 
-    menupos.x=32*n+64-210;
-    menupos.y=64;
+    menupos.x=screen->w*TITLEPOS;
+    menupos.y=screen->h/10;
     TextOnScreen(screen, "Colorflood", "Xenotron.ttf", 'W', 40, menupos);
 
 
-    menupos.y=n*64;
-    menupos.x=10*n;
+    menupos.y=screen->h/2;
+    menupos.x=screen->w*STARTPOS;
 
 
     TextOnScreen(screen, "Start", "Xenotron.ttf", 'G', 20, menupos);
 
-    menupos.x=32*n-26;
+    menupos.x=screen->w*CONTROLSPOS;
     TextOnScreen(screen, "Controles", "Xenotron.ttf", 'W', 20, menupos);
 
-    menupos.x=64*n-70;
+    menupos.x=screen->w*QUITPOS;
     TextOnScreen(screen, "Quitter", "Xenotron.ttf", 'W', 20, menupos);
     /**
      * Afficher les autres champs avec avec la couleur blanche : Controlles et Quitter
@@ -196,40 +115,40 @@ int main(int argc, char *argv[]){
                 switch (move.key.keysym.sym) {
                     case SDLK_LEFT :
                         if (actualpos == 0) {
-                            menupos.x=10*n;
+                            menupos.x=screen->w*STARTPOS;
 
                             TextOnScreen(screen, "Start", "Xenotron.ttf", 'W', 20, menupos);
 
-                            menupos.x=32*n-26;
+                            menupos.x=screen->w*CONTROLSPOS;
                             TextOnScreen(screen, "Controles", "Xenotron.ttf", 'W', 20, menupos);
 
-                            menupos.x=64*n-70;
+                            menupos.x=screen->w*QUITPOS;
                             TextOnScreen(screen, "Quitter", "Xenotron.ttf", 'G', 20, menupos);
                             actualpos = 2;
                             break;
                         }
                         else if (actualpos == 1) {
-                            menupos.x=10*n;
+                            menupos.x=screen->w*STARTPOS;
 
                             TextOnScreen(screen, "Start", "Xenotron.ttf", 'G', 20, menupos);
 
-                            menupos.x=32*n-26;
+                            menupos.x=screen->w*CONTROLSPOS;
                             TextOnScreen(screen, "Controles", "Xenotron.ttf", 'W', 20, menupos);
 
-                            menupos.x=64*n-70;
+                            menupos.x=screen->w*QUITPOS;
                             TextOnScreen(screen, "Quitter", "Xenotron.ttf", 'W', 20, menupos);
                             actualpos = 0;
                             break;
                         }
                         else if (actualpos == 2) {
-                            menupos.x=10*n;
+                            menupos.x=screen->w*STARTPOS;
 
                             TextOnScreen(screen, "Start", "Xenotron.ttf", 'W', 20, menupos);
 
-                            menupos.x=32*n-26;
+                            menupos.x=screen->w*CONTROLSPOS;
                             TextOnScreen(screen, "Controles", "Xenotron.ttf", 'G', 20, menupos);
 
-                            menupos.x=64*n-70;
+                            menupos.x=screen->w*QUITPOS;
                             TextOnScreen(screen, "Quitter", "Xenotron.ttf", 'W', 20, menupos);
                             actualpos = 1;
                             break;
@@ -237,40 +156,40 @@ int main(int argc, char *argv[]){
 
                     case SDLK_RIGHT :
                         if (actualpos == 0) {
-                            menupos.x=10*n;
+                            menupos.x=screen->w*STARTPOS;
 
                             TextOnScreen(screen, "Start", "Xenotron.ttf", 'W', 20, menupos);
 
-                            menupos.x=32*n-26;
+                            menupos.x=screen->w*CONTROLSPOS;
                             TextOnScreen(screen, "Controles", "Xenotron.ttf", 'G', 20, menupos);
 
-                            menupos.x=64*n-70;
+                            menupos.x=screen->w*QUITPOS;
                             TextOnScreen(screen, "Quitter", "Xenotron.ttf", 'W', 20,menupos);
                             actualpos = 1;
                             break;
                         }
                         else if (actualpos == 1) {
-                            menupos.x=10*n;
+                            menupos.x=screen->w*STARTPOS;
 
                             TextOnScreen(screen, "Start", "Xenotron.ttf", 'W', 20,menupos);
 
-                            menupos.x=32*n-26;
+                            menupos.x=screen->w*CONTROLSPOS;
                             TextOnScreen(screen, "Controles", "Xenotron.ttf", 'W', 20, menupos);
 
-                            menupos.x=64*n-70;
+                            menupos.x=screen->w*QUITPOS;
                             TextOnScreen(screen, "Quitter", "Xenotron.ttf", 'G', 20,menupos);
                             actualpos = 2;
                             break;
                         }
                         else if (actualpos == 2) {
-                            menupos.x=10*n;
+                            menupos.x=screen->w*STARTPOS;
 
                             TextOnScreen(screen, "Start", "Xenotron.ttf", 'G', 20,menupos);
 
-                            menupos.x=32*n-26;
+                            menupos.x=screen->w*CONTROLSPOS;
                             TextOnScreen(screen, "Controles", "Xenotron.ttf", 'W', 20, menupos);
 
-                            menupos.x=64*n-70;
+                            menupos.x=screen->w*QUITPOS;
                             TextOnScreen(screen, "Quitter", "Xenotron.ttf", 'W', 20,menupos);
                             actualpos = 0;
                             break;
@@ -301,20 +220,29 @@ int main(int argc, char *argv[]){
         }
     }
 
+    SDL_FreeSurface(menuimg);
+
+
+
+
+
+
 
     /**
      * Boucle de Jeu
      */
 
+
+
     SDL_Event keyevent;
 
     char msgCount[64];
     SDL_Rect txtpos;
-    txtpos.y=90+n*64;
-    txtpos.x=32*n-100;
+    txtpos.y=screen->h*SCOREPOSH;
+    txtpos.x=screen->w*SCOREPOSW;
 
-    while(!wintest(connexetab, n) && color!='Q') {
-        updateCaseColor(colortable, colorcase, screen, n);
+    while(!wintest(connexetab, n) && color!='Q' && k<kmax) {
+        updateCaseColor(colortable, colorcase, screen, n,off,boardS,squareS);
 
         if (k%10==1) {
             sprintf(msgCount, "Nombre de coup :  %d/%d ",k, kmax);
@@ -378,6 +306,8 @@ int main(int argc, char *argv[]){
     }
     SDL_FreeSurface(colorcase);
     SDL_FreeSurface(screen);
+    freecolortable(colortable,n);
+    freeconnextab(connexetab,n);
     SDL_Quit();
     TTF_Quit();
     return 0;

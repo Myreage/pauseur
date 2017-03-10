@@ -1,7 +1,7 @@
 APPLI=Colorflood
 CSRC= datastruct.c colors.c main.c
 CTSRC=test/colorsTest.c tests/datastructTests.c $(CSRC)
-GUISRC= datastruct.c colors.c mainsdl.c
+GUISRC= datastruct.c colors.c mainsdl.c gui.c
 CC = gcc
 
 CFLAGS = -Wall -Wextra -g
