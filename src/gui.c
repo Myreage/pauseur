@@ -3,6 +3,28 @@
 //
 #include "gui.h"
 
+#define FONT_PATH "design/Xenotron.ttf"
+#define IMG_PATH "design/drowncube.jpg"
+
+/*------****Menu positions--***------*/
+/* L'écran est coupé en 100 colonnes */
+#define MENUPOS (float)80/100
+#define LOGOPOSH (float)50/100
+#define LOGOPOSW (float)50/100
+#define TITLEPOS (float)36/100
+#define STARTPOS (float)20/100
+#define CONTROLSPOS (float)45/100
+#define QUITPOS (float)80/100
+
+/*------****Game positions--***------*/
+/* L'écran est coupé en 100 colonnes */
+#define SCOREPOSH (float)95/100
+#define SCOREPOSW (float)40/100
+
+/*Offset vertical*/
+#define OFF 10/100
+
+
 
 void SDLwait() {
     int continuer = 1;
@@ -23,7 +45,7 @@ SDL_Surface *initscreen(){
 
     FILE* f = NULL;
     if((f = fopen("config.ini", "r")) == NULL){
-        printf("Please launch ./setup.ini script\n");
+        printf("Please launch ./setup.ini \n");
         exit(1);
     }
 
@@ -122,44 +144,300 @@ void BlackScreen(SDL_Surface *screen) {
 }
 
 
-void HelpPage(SDL_Surface *screen,int n) {
+int HelpPage(SDL_Surface *screen,int n) {
     BlackScreen(screen);
     SDL_Event BackToGame;
     SDL_Rect helppos;
 
-    while(!(SDL_KEYDOWN && SDLK_r))
-    {
+
+    while(!(SDL_KEYDOWN && SDLK_r))    {
+
 
         helppos.x=32*n+64-210;
         helppos.y=64;
-        TextOnScreen(screen, "Pour jouer, pressez ", "Xenotron.ttf", 'W', 25, helppos);
+        TextOnScreen(screen, "Pour jouer, pressez ", FONT_PATH, 'W', 25, helppos);
         helppos.y=84;
-        TextOnScreen(screen, "une touche :", "Xenotron.ttf", 'W', 25, helppos);
+        TextOnScreen(screen, "une touche :", FONT_PATH, 'W', 25, helppos);
         helppos.y=124;
-        TextOnScreen(screen, "r pour jouer rouge", "Xenotron.ttf", 'W', 20, helppos);
+        TextOnScreen(screen, "r pour jouer rouge", FONT_PATH, 'W', 20, helppos);
         helppos.y=144;
-        TextOnScreen(screen, "b pour jouer bleu", "Xenotron.ttf", 'W', 20, helppos);
+        TextOnScreen(screen, "b pour jouer bleu", FONT_PATH, 'W', 20, helppos);
         helppos.y=164;
-        TextOnScreen(screen, "m pour jouer marron", "Xenotron.ttf", 'W', 20, helppos);
+        TextOnScreen(screen, "m pour jouer marron", FONT_PATH, 'W', 20, helppos);
         helppos.y=184;
-        TextOnScreen(screen, "g pour jouer gris", "Xenotron.ttf", 'W', 20, helppos);
+        TextOnScreen(screen, "g pour jouer gris", FONT_PATH, 'W', 20, helppos);
         helppos.y=204;
-        TextOnScreen(screen, "j pour jouer jaune", "Xenotron.ttf", 'W', 20, helppos);
+        TextOnScreen(screen, "j pour jouer jaune", FONT_PATH, 'W', 20, helppos);
         helppos.y=224;
-        TextOnScreen(screen, "v pour jouer vert", "Xenotron.ttf", 'W', 20, helppos);
+        TextOnScreen(screen, "v pour jouer vert", FONT_PATH, 'W', 20, helppos);
         helppos.y=244;
-        TextOnScreen(screen, "q pour quitter la partie", "Xenotron.ttf", 'W', 20, helppos);
+        TextOnScreen(screen, "q pour quitter la partie", FONT_PATH, 'W', 20, helppos);
         helppos.y=284;
-        TextOnScreen(screen, "Pressez R pour", "Xenotron.ttf", 'W', 25, helppos);
+        TextOnScreen(screen, "Pressez R pour", FONT_PATH, 'W', 25, helppos);
         helppos.y=304;
-        TextOnScreen(screen, "revenir a la partie.", "Xenotron.ttf", 'W', 25, helppos);
-
-
-
+        TextOnScreen(screen, "revenir a la partie.", FONT_PATH, 'W', 25, helppos);
 
         SDL_WaitEvent(&BackToGame);
     }
+
+    return 1;
 }
+
+
+char HomePage(SDL_Surface *screen){
+
+    BlackScreen(screen);
+    int gamestate=0;
+
+    SDL_Event move;
+    int actualpos=0;
+    SDL_Surface *menuimg=IMG_Load(IMG_PATH);
+
+    SDL_Rect menupos;
+    menupos.x=screen->w*LOGOPOSW - 250/2;
+    menupos.y=screen->h*LOGOPOSH - 215/2;
+    SDL_BlitSurface(menuimg, NULL, screen, &menupos);
+
+    menupos.x=screen->w*TITLEPOS;
+    menupos.y=screen->h/10;
+    TextOnScreen(screen, "Colorflood", FONT_PATH, 'W', 40, menupos);
+
+
+    menupos.y=screen->h*MENUPOS;
+    menupos.x=screen->w*STARTPOS;
+
+
+    TextOnScreen(screen, "Start", FONT_PATH, 'G', 20, menupos);
+
+    menupos.x=screen->w*CONTROLSPOS;
+    TextOnScreen(screen, "Controles", FONT_PATH, 'W', 20, menupos);
+
+    menupos.x=screen->w*QUITPOS;
+    TextOnScreen(screen, "Quitter", FONT_PATH, 'W', 20, menupos);
+    /**
+     * Afficher les autres champs avec avec la couleur blanche : Controlles et Quitter
+     */
+
+
+    int exitcond=0;
+    while(!exitcond) {
+      SDL_WaitEvent(&move);
+      switch (move.type) {
+          case SDL_KEYDOWN :
+              switch (move.key.keysym.sym) {
+                  case SDLK_LEFT :
+                      if (actualpos == 0) {
+                          menupos.x=screen->w*STARTPOS;
+
+                          TextOnScreen(screen, "Start", FONT_PATH, 'W', 20, menupos);
+
+                          menupos.x=screen->w*CONTROLSPOS;
+                          TextOnScreen(screen, "Controles", FONT_PATH, 'W', 20, menupos);
+
+                          menupos.x=screen->w*QUITPOS;
+                          TextOnScreen(screen, "Quitter", FONT_PATH, 'G', 20, menupos);
+                          actualpos = 2;
+                          break;
+                      }
+                      else if (actualpos == 1) {
+                          menupos.x=screen->w*STARTPOS;
+
+                          TextOnScreen(screen, "Start", FONT_PATH, 'G', 20, menupos);
+
+                          menupos.x=screen->w*CONTROLSPOS;
+                          TextOnScreen(screen, "Controles", FONT_PATH, 'W', 20, menupos);
+
+                          menupos.x=screen->w*QUITPOS;
+                          TextOnScreen(screen, "Quitter", FONT_PATH, 'W', 20, menupos);
+                          actualpos = 0;
+                          break;
+                      }
+                      else if (actualpos == 2) {
+                          menupos.x=screen->w*STARTPOS;
+
+                          TextOnScreen(screen, "Start", FONT_PATH, 'W', 20, menupos);
+
+                          menupos.x=screen->w*CONTROLSPOS;
+                          TextOnScreen(screen, "Controles", FONT_PATH, 'G', 20, menupos);
+
+                          menupos.x=screen->w*QUITPOS;
+                          TextOnScreen(screen, "Quitter", FONT_PATH, 'W', 20, menupos);
+                          actualpos = 1;
+                          break;
+                      }
+
+                  case SDLK_RIGHT :
+                      if (actualpos == 0) {
+                          menupos.x=screen->w*STARTPOS;
+
+                          TextOnScreen(screen, "Start", FONT_PATH, 'W', 20, menupos);
+
+                          menupos.x=screen->w*CONTROLSPOS;
+                          TextOnScreen(screen, "Controles", FONT_PATH, 'G', 20, menupos);
+
+                          menupos.x=screen->w*QUITPOS;
+                          TextOnScreen(screen, "Quitter", FONT_PATH, 'W', 20,menupos);
+                          actualpos = 1;
+                          break;
+                      }
+                      else if (actualpos == 1) {
+                          menupos.x=screen->w*STARTPOS;
+
+                          TextOnScreen(screen, "Start", FONT_PATH, 'W', 20,menupos);
+
+                          menupos.x=screen->w*CONTROLSPOS;
+                          TextOnScreen(screen, "Controles", FONT_PATH, 'W', 20, menupos);
+
+                          menupos.x=screen->w*QUITPOS;
+                          TextOnScreen(screen, "Quitter", FONT_PATH, 'G', 20,menupos);
+                          actualpos = 2;
+                          break;
+                      }
+                      else if (actualpos == 2) {
+                          menupos.x=screen->w*STARTPOS;
+
+                          TextOnScreen(screen, "Start", FONT_PATH, 'G', 20,menupos);
+
+                          menupos.x=screen->w*CONTROLSPOS;
+                          TextOnScreen(screen, "Controles", FONT_PATH, 'W', 20, menupos);
+
+                          menupos.x=screen->w*QUITPOS;
+                          TextOnScreen(screen, "Quitter", FONT_PATH, 'W', 20,menupos);
+                          actualpos = 0;
+                          break;
+                      }
+
+                  case SDLK_RETURN :
+                      if (actualpos == 0) {
+                          exitcond=1;
+                          gamestate=1;
+                          break;
+                      }
+                      else if (actualpos == 1) {
+                          /**
+                           * Afficher le menu des Options
+                           */
+
+                      }
+                      else if (actualpos == 2) {
+                          gamestate=5;
+                          exitcond=1;
+                          break;
+                      }
+                  default :
+                      break;
+
+              }
+          default :
+              break;
+      }
+
+    }
+    SDL_FreeSurface(menuimg);
+    return gamestate;
+}
+
+
+int GameLoop(SDL_Surface *screen, int n, char color, int kmax, char **colortable, int **connexetab, SDL_Surface *colorcase) {
+
+    BlackScreen(screen);
+    SDL_Event keyevent;
+
+    /*-----Params de placement-----*/
+    int off = screen->h*OFF;
+    int boardS = screen->h - 2*off; /*taille d'un coté du board*/
+    int squareS = boardS/n; /*taille du côté d'un carré*/
+
+    int gamestate;
+
+    int k=0;
+    char msgCount[64];
+    SDL_Rect txtpos;
+    txtpos.y=screen->h*SCOREPOSH;
+    txtpos.x=screen->w*SCOREPOSW;
+
+    while(!wintest(connexetab, n) && color!='Q' && kmax>k) {
+        updateCaseColor(colortable, colorcase, screen, n, off, boardS, squareS);
+
+        if (k%10==1) {
+            sprintf(msgCount, "Nombre de coup :  %d/%d ",k, kmax);
+        }
+        else {
+            sprintf(msgCount, "Nombre de coup : %d/%d ", k, kmax);
+        }
+
+        TextOnScreen(screen, msgCount,FONT_PATH, color, 20,txtpos);
+        SDL_WaitEvent(&keyevent);
+
+        /**
+         * Mettre l'event j'appuie sur une touche dans un fonction
+         */
+
+        switch (keyevent.type){
+            case SDL_KEYDOWN :
+                /**
+                 * Premier switch : On appuie sur une touche ou pas
+                 */
+                switch(keyevent.key.keysym.sym) {
+                    /**
+                     * Second switch : Si on appuie sur une touche, et que cette touche est R,V,B,J,G, ou M, on change la couleur.
+                     */
+                    case SDLK_r :
+                        color = 'R';
+                        k++;
+                        break;
+                    case SDLK_v :
+                        color = 'V';
+                        k++;
+                        break;
+                    case SDLK_b :
+                        color = 'B';
+                        k++;
+                        break;
+                    case SDLK_g :
+                        color = 'G';
+                        k++;
+                        break;
+                    case SDLK_j :
+                        color = 'J';
+                        k++;
+                        break;
+                    case SDLK_m :
+                        color = 'M';
+                        k++;
+                        break;
+                    case SDLK_h :
+                        HelpPage(screen,n);
+                        break;
+                    case SDLK_ESCAPE :
+                        HomePage(screen);
+                        break;
+                    case SDLK_q:
+                        color='Q';
+                    default :
+                        break;
+                }
+            default :
+                break;
+
+        }
+        if (kmax<k){
+            gamestate=4;
+        }
+
+        if (kmax>k){
+            gamestate=3;
+        }
+        if (color=='Q'){
+            gamestate=5;
+        }
+        SDL_FreeSurface(screen);
+        updateconnexetab(colortable, connexetab, color, n);
+        switchconnexecolors(colortable, connexetab, color, n);
+    }
+    return gamestate;
+}
+
 
 
 
