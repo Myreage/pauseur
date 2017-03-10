@@ -1,11 +1,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdio.h>
-#include <termios.h>
 #include <unistd.h>
+
 #include "datastruct.h"
 #include "colors.h"
+
 #include <SDL/SDL.h>
 #include <SDL/SDL_ttf.h>
 #include <SDL/SDL_image.h>
@@ -52,19 +52,8 @@ int main(int argc, char *argv[]){
 
 
 
-    int k=0;
-
     SDL_Surface *colorcase=NULL;
     colorcase=SDL_CreateRGBSurface(0,squareS,squareS,32,0,0,0,0);
-
-
-
-
-
-
-    /*===== Créations des Popups =====*/
-    /*const SDL_MessageBoxButtonData buttons[]={{SDL_MESSAGEBOX_RETURNKEY_DEFAULT,0,"OK"}, {}};*/
-
     int exitcond=0;
     int gamestate=0;
 
@@ -79,13 +68,18 @@ int main(int argc, char *argv[]){
             case 2:
                 gamestate=HelpPage(screen, n);
                 break;
-            /*case 3:
-                gamestate=VictoryScreen();
+            case 3:
+                /*gamestate=VictoryScreen();*/
+                exitcond=1;
                 break;
             case 4:
-                gamestate=LoseScreen();
-                break;*/
+                /*gamestate=LoseScreen();*/
+                exitcond=1;
+                break;
             case 5:
+                exitcond=1;
+                break;
+            default:
                 exitcond=1;
                 break;
         }

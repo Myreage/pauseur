@@ -150,7 +150,7 @@ int HelpPage(SDL_Surface *screen,int n) {
     SDL_Rect helppos;
 
 
-    while(!(SDL_KEYDOWN && SDLK_r))    {
+    while(!((BackToGame.type==SDL_KEYDOWN) && (BackToGame.key.keysym.sym==SDLK_r)))    {
 
 
         helppos.x=32*n+64-210;
@@ -314,9 +314,9 @@ char HomePage(SDL_Surface *screen){
                           break;
                       }
                       else if (actualpos == 1) {
-                          /**
-                           * Afficher le menu des Options
-                           */
+                          gamestate=2;
+                          exitcond=1;
+                          break;
 
                       }
                       else if (actualpos == 2) {
@@ -408,9 +408,6 @@ int GameLoop(SDL_Surface *screen, int n, char color, int kmax, char **colortable
                         break;
                     case SDLK_h :
                         HelpPage(screen,n);
-                        break;
-                    case SDLK_ESCAPE :
-                        HomePage(screen);
                         break;
                     case SDLK_q:
                         color='Q';
