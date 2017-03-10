@@ -34,6 +34,7 @@
 /*Offset vertical*/
 #define OFF 10/100
 
+#define font "/Xenotron"
 
 /**
  * Explications : La fenêtre crée peut se ramener a une matrice de taille n+1
@@ -115,6 +116,26 @@ int main(int argc, char *argv[]){
      * Afficher les autres champs avec avec la couleur blanche : Controlles et Quitter
      */
     int exitcond=0;
+    int gamestate=0;
+    /*while(!exitcond){
+        switch(gamestate){
+            case (gamestate==0):
+                gamestate=HomePage(screen, n, gamestate);
+                break;
+            case (gamestate==1):
+                gamestate=GameLoop(screen, n, color);
+                break;
+            case (gamestate==2):
+                gamestate=HelpPage(screen, n);
+                break;
+            case (gamestate==3):
+                gamestate=VictoryScreen();
+                break;
+            case (gamestate=4):
+                gamestate=LoseScreen
+
+        }
+    }*/
     while(!exitcond) {
         SDL_WaitEvent(&move);
         switch (move.type) {

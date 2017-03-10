@@ -132,27 +132,27 @@ void HelpPage(SDL_Surface *screen,int n) {
 
         helppos.x=32*n+64-210;
         helppos.y=64;
-        TextOnScreen(screen, "Pour jouer, pressez ", "Xenotron.ttf", 'W', 25, helppos);
+        TextOnScreen(screen, "Pour jouer, pressez ", FONT_PATH, 'W', 25, helppos);
         helppos.y=84;
-        TextOnScreen(screen, "une touche :", "Xenotron.ttf", 'W', 25, helppos);
+        TextOnScreen(screen, "une touche :", FONT_PATH, 'W', 25, helppos);
         helppos.y=124;
-        TextOnScreen(screen, "r pour jouer rouge", "Xenotron.ttf", 'W', 20, helppos);
+        TextOnScreen(screen, "r pour jouer rouge", FONT_PATH, 'W', 20, helppos);
         helppos.y=144;
-        TextOnScreen(screen, "b pour jouer bleu", "Xenotron.ttf", 'W', 20, helppos);
+        TextOnScreen(screen, "b pour jouer bleu", FONT_PATH, 'W', 20, helppos);
         helppos.y=164;
-        TextOnScreen(screen, "m pour jouer marron", "Xenotron.ttf", 'W', 20, helppos);
+        TextOnScreen(screen, "m pour jouer marron", FONT_PATH, 'W', 20, helppos);
         helppos.y=184;
-        TextOnScreen(screen, "g pour jouer gris", "Xenotron.ttf", 'W', 20, helppos);
+        TextOnScreen(screen, "g pour jouer gris", FONT_PATH, 'W', 20, helppos);
         helppos.y=204;
-        TextOnScreen(screen, "j pour jouer jaune", "Xenotron.ttf", 'W', 20, helppos);
+        TextOnScreen(screen, "j pour jouer jaune", FONT_PATH, 'W', 20, helppos);
         helppos.y=224;
-        TextOnScreen(screen, "v pour jouer vert", "Xenotron.ttf", 'W', 20, helppos);
+        TextOnScreen(screen, "v pour jouer vert", FONT_PATH, 'W', 20, helppos);
         helppos.y=244;
-        TextOnScreen(screen, "q pour quitter la partie", "Xenotron.ttf", 'W', 20, helppos);
+        TextOnScreen(screen, "q pour quitter la partie", FONT_PATH, 'W', 20, helppos);
         helppos.y=284;
-        TextOnScreen(screen, "Pressez R pour", "Xenotron.ttf", 'W', 25, helppos);
+        TextOnScreen(screen, "Pressez R pour", FONT_PATH, 'W', 25, helppos);
         helppos.y=304;
-        TextOnScreen(screen, "revenir a la partie.", "Xenotron.ttf", 'W', 25, helppos);
+        TextOnScreen(screen, "revenir a la partie.", FONT_PATH, 'W', 25, helppos);
 
 
 
@@ -160,6 +160,232 @@ void HelpPage(SDL_Surface *screen,int n) {
         SDL_WaitEvent(&BackToGame);
     }
 }
+
+
+char HomePage(SDL_Surface *screen, int n, char color){
+    BlackScreen(screen);
+    SDL_Surface *menuimg=IMG_Load("drowncube.jpg");
+
+    SDL_Event move;
+
+    int actualpos=0;
+    SDL_Rect menupos;
+
+    menupos.x=32*(n+1)-100;
+    menupos.y=32*(n+1)-162;
+    SDL_BlitSurface(menuimg, NULL, screen, &menupos);
+
+    menupos.x=32*n+64-210;
+    menupos.y=64;
+    TextOnScreen(screen, "Colorflood", "Xenotron.ttf", 'W', 40, menupos);
+
+
+    menupos.y=n*64;
+    menupos.x=10*n-10;
+
+
+    TextOnScreen(screen, "Start", "Xenotron.ttf", 'G', 20, menupos);
+
+    menupos.x=32*n-20;
+    TextOnScreen(screen, "Controles", "Xenotron.ttf", 'W', 20, menupos);
+
+    menupos.x=64*n;
+    TextOnScreen(screen, "Quitter", "Xenotron.ttf", 'W', 20, menupos);
+
+    int exitcond=0;
+    while(!exitcond) {
+        SDL_WaitEvent(&move);
+        switch (move.type) {
+            case SDL_KEYDOWN :
+                switch (move.key.keysym.sym) {
+                    case SDLK_LEFT :
+                        if (actualpos == 0) {
+                            menupos.x=10*n;
+
+                            TextOnScreen(screen, "Start", "Xenotron.ttf", 'W', 20, menupos);
+
+                            menupos.x=32*n-26;
+                            TextOnScreen(screen, "Controles", "Xenotron.ttf", 'W', 20, menupos);
+
+                            menupos.x=64*n-70;
+                            TextOnScreen(screen, "Quitter", "Xenotron.ttf", 'G', 20, menupos);
+                            actualpos = 2;
+                            break;
+                        }
+                        else if (actualpos == 1) {
+                            menupos.x=10*n;
+
+                            TextOnScreen(screen, "Start", "Xenotron.ttf", 'G', 20, menupos);
+
+                            menupos.x=32*n-26;
+                            TextOnScreen(screen, "Controles", "Xenotron.ttf", 'W', 20, menupos);
+
+                            menupos.x=64*n-70;
+                            TextOnScreen(screen, "Quitter", "Xenotron.ttf", 'W', 20, menupos);
+                            actualpos = 0;
+                            break;
+                        }
+                        else if (actualpos == 2) {
+                            menupos.x=10*n;
+
+                            TextOnScreen(screen, "Start", "Xenotron.ttf", 'W', 20, menupos);
+
+                            menupos.x=32*n-26;
+                            TextOnScreen(screen, "Controles", "Xenotron.ttf", 'G', 20, menupos);
+
+                            menupos.x=64*n-70;
+                            TextOnScreen(screen, "Quitter", "Xenotron.ttf", 'W', 20, menupos);
+                            actualpos = 1;
+                            break;
+                        }
+
+                    case SDLK_RIGHT :
+                        if (actualpos == 0) {
+                            menupos.x=10*n;
+
+                            TextOnScreen(screen, "Start", "Xenotron.ttf", 'W', 20, menupos);
+
+                            menupos.x=32*n-26;
+                            TextOnScreen(screen, "Controles", "Xenotron.ttf", 'G', 20, menupos);
+
+                            menupos.x=64*n-70;
+                            TextOnScreen(screen, "Quitter", "Xenotron.ttf", 'W', 20,menupos);
+                            actualpos = 1;
+                            break;
+                        }
+                        else if (actualpos == 1) {
+                            menupos.x=10*n;
+
+                            TextOnScreen(screen, "Start", "Xenotron.ttf", 'W', 20,menupos);
+
+                            menupos.x=32*n-26;
+                            TextOnScreen(screen, "Controles", "Xenotron.ttf", 'W', 20, menupos);
+
+                            menupos.x=64*n-70;
+                            TextOnScreen(screen, "Quitter", "Xenotron.ttf", 'G', 20,menupos);
+                            actualpos = 2;
+                            break;
+                        }
+                        else if (actualpos == 2) {
+                            menupos.x=10*n;
+
+                            TextOnScreen(screen, "Start", "Xenotron.ttf", 'G', 20,menupos);
+
+                            menupos.x=32*n-26;
+                            TextOnScreen(screen, "Controles", "Xenotron.ttf", 'W', 20, menupos);
+
+                            menupos.x=64*n-70;
+                            TextOnScreen(screen, "Quitter", "Xenotron.ttf", 'W', 20,menupos);
+                            actualpos = 0;
+                            break;
+                        }
+
+                    case SDLK_RETURN :
+                        if (actualpos == 0) {
+                            exitcond=1;
+                            break;
+                        }
+                        else if (actualpos == 1) {
+
+
+                        }
+                        else if (actualpos == 2) {
+                            color='Q';
+                            exitcond=1;
+                            break;
+                        }
+                    default :
+                        break;
+
+                }
+            default :
+                break;
+        }
+    }
+    return color;
+}
+
+
+void GameLoop(SDL_Surface *screen, int n, char color, int kmax, char **colortable, int **connexetab, SDL_Surface *colorcase) {
+    SDL_Event keyevent;
+
+    int k=0;
+    char msgCount[64];
+    SDL_Rect txtpos;
+    txtpos.y=90+n*64;
+    txtpos.x=32*n-100;
+
+    while(!wintest(connexetab, n) && color!='Q') {
+        updateCaseColor(colortable, colorcase, screen, n);
+
+        if (k%10==1) {
+            sprintf(msgCount, "Nombre de coup :  %d/%d ",k, kmax);
+        }
+        else {
+            sprintf(msgCount, "Nombre de coup : %d/%d ", k, kmax);
+        }
+
+        TextOnScreen(screen, msgCount,"Xenotron.ttf", color, 20,txtpos);
+        SDL_WaitEvent(&keyevent);
+
+        /**
+         * Mettre l'event j'appuie sur une touche dans un fonction
+         */
+
+        switch (keyevent.type){
+            case SDL_KEYDOWN :
+                /**
+                 * Premier switch : On appuie sur une touche ou pas
+                 */
+                switch(keyevent.key.keysym.sym) {
+                    /**
+                     * Second switch : Si on appuie sur une touche, et que cette touche est R,V,B,J,G, ou M, on change la couleur.
+                     */
+                    case SDLK_r :
+                        color = 'R';
+                        k++;
+                        break;
+                    case SDLK_v :
+                        color = 'V';
+                        k++;
+                        break;
+                    case SDLK_b :
+                        color = 'B';
+                        k++;
+                        break;
+                    case SDLK_g :
+                        color = 'G';
+                        k++;
+                        break;
+                    case SDLK_j :
+                        color = 'J';
+                        k++;
+                        break;
+                    case SDLK_m :
+                        color = 'M';
+                        k++;
+                        break;
+                    case SDLK_h :
+                        HelpPage(screen,n);
+                        break;
+                    case SDLK_ESCAPE :
+                        HomePage(screen,n,color);
+                        break;
+                    case SDLK_q:
+                        color='Q';
+                    default :
+                        break;
+                }
+            default :
+                break;
+
+        }
+        SDL_FreeSurface(screen);
+        updateconnexetab(colortable, connexetab, color, n);
+        switchconnexecolors(colortable, connexetab, color, n);
+    }
+}
+
 
 
 
