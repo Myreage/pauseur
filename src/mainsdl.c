@@ -13,10 +13,15 @@
 #include "gui.h"
 
 
+#define FONT_PATH "design/Xenotron.ttf"
+#define IMG_PATH "design/drowncube.jpg"
 
 /*------****Menu positions--***------*/
 /* L'écran est coupé en 100 colonnes */
-#define TITLEPOS (float)38/100
+#define MENUPOS (float)80/100
+#define LOGOPOSH (float)50/100
+#define LOGOPOSW (float)50/100
+#define TITLEPOS (float)36/100
 #define STARTPOS (float)20/100
 #define CONTROLSPOS (float)45/100
 #define QUITPOS (float)80/100
@@ -83,27 +88,29 @@ int main(int argc, char *argv[]){
 
     SDL_Event move;
     int actualpos=0;
-    SDL_Surface *menuimg=IMG_Load("drowncube.jpg");
+    SDL_Surface *menuimg=IMG_Load(IMG_PATH);
 
     SDL_Rect menupos;
+    menupos.x=screen->w*LOGOPOSW - 250/2;
+    menupos.y=screen->h*LOGOPOSH - 215/2;
     SDL_BlitSurface(menuimg, NULL, screen, &menupos);
 
     menupos.x=screen->w*TITLEPOS;
     menupos.y=screen->h/10;
-    TextOnScreen(screen, "Colorflood", "Xenotron.ttf", 'W', 40, menupos);
+    TextOnScreen(screen, "Colorflood", FONT_PATH, 'W', 40, menupos);
 
 
-    menupos.y=screen->h/2;
+    menupos.y=screen->h*MENUPOS;
     menupos.x=screen->w*STARTPOS;
 
 
-    TextOnScreen(screen, "Start", "Xenotron.ttf", 'G', 20, menupos);
+    TextOnScreen(screen, "Start", FONT_PATH, 'G', 20, menupos);
 
     menupos.x=screen->w*CONTROLSPOS;
-    TextOnScreen(screen, "Controles", "Xenotron.ttf", 'W', 20, menupos);
+    TextOnScreen(screen, "Controles", FONT_PATH, 'W', 20, menupos);
 
     menupos.x=screen->w*QUITPOS;
-    TextOnScreen(screen, "Quitter", "Xenotron.ttf", 'W', 20, menupos);
+    TextOnScreen(screen, "Quitter", FONT_PATH, 'W', 20, menupos);
     /**
      * Afficher les autres champs avec avec la couleur blanche : Controlles et Quitter
      */
@@ -117,39 +124,39 @@ int main(int argc, char *argv[]){
                         if (actualpos == 0) {
                             menupos.x=screen->w*STARTPOS;
 
-                            TextOnScreen(screen, "Start", "Xenotron.ttf", 'W', 20, menupos);
+                            TextOnScreen(screen, "Start", FONT_PATH, 'W', 20, menupos);
 
                             menupos.x=screen->w*CONTROLSPOS;
-                            TextOnScreen(screen, "Controles", "Xenotron.ttf", 'W', 20, menupos);
+                            TextOnScreen(screen, "Controles", FONT_PATH, 'W', 20, menupos);
 
                             menupos.x=screen->w*QUITPOS;
-                            TextOnScreen(screen, "Quitter", "Xenotron.ttf", 'G', 20, menupos);
+                            TextOnScreen(screen, "Quitter", FONT_PATH, 'G', 20, menupos);
                             actualpos = 2;
                             break;
                         }
                         else if (actualpos == 1) {
                             menupos.x=screen->w*STARTPOS;
 
-                            TextOnScreen(screen, "Start", "Xenotron.ttf", 'G', 20, menupos);
+                            TextOnScreen(screen, "Start", FONT_PATH, 'G', 20, menupos);
 
                             menupos.x=screen->w*CONTROLSPOS;
-                            TextOnScreen(screen, "Controles", "Xenotron.ttf", 'W', 20, menupos);
+                            TextOnScreen(screen, "Controles", FONT_PATH, 'W', 20, menupos);
 
                             menupos.x=screen->w*QUITPOS;
-                            TextOnScreen(screen, "Quitter", "Xenotron.ttf", 'W', 20, menupos);
+                            TextOnScreen(screen, "Quitter", FONT_PATH, 'W', 20, menupos);
                             actualpos = 0;
                             break;
                         }
                         else if (actualpos == 2) {
                             menupos.x=screen->w*STARTPOS;
 
-                            TextOnScreen(screen, "Start", "Xenotron.ttf", 'W', 20, menupos);
+                            TextOnScreen(screen, "Start", FONT_PATH, 'W', 20, menupos);
 
                             menupos.x=screen->w*CONTROLSPOS;
-                            TextOnScreen(screen, "Controles", "Xenotron.ttf", 'G', 20, menupos);
+                            TextOnScreen(screen, "Controles", FONT_PATH, 'G', 20, menupos);
 
                             menupos.x=screen->w*QUITPOS;
-                            TextOnScreen(screen, "Quitter", "Xenotron.ttf", 'W', 20, menupos);
+                            TextOnScreen(screen, "Quitter", FONT_PATH, 'W', 20, menupos);
                             actualpos = 1;
                             break;
                         }
@@ -158,39 +165,39 @@ int main(int argc, char *argv[]){
                         if (actualpos == 0) {
                             menupos.x=screen->w*STARTPOS;
 
-                            TextOnScreen(screen, "Start", "Xenotron.ttf", 'W', 20, menupos);
+                            TextOnScreen(screen, "Start", FONT_PATH, 'W', 20, menupos);
 
                             menupos.x=screen->w*CONTROLSPOS;
-                            TextOnScreen(screen, "Controles", "Xenotron.ttf", 'G', 20, menupos);
+                            TextOnScreen(screen, "Controles", FONT_PATH, 'G', 20, menupos);
 
                             menupos.x=screen->w*QUITPOS;
-                            TextOnScreen(screen, "Quitter", "Xenotron.ttf", 'W', 20,menupos);
+                            TextOnScreen(screen, "Quitter", FONT_PATH, 'W', 20,menupos);
                             actualpos = 1;
                             break;
                         }
                         else if (actualpos == 1) {
                             menupos.x=screen->w*STARTPOS;
 
-                            TextOnScreen(screen, "Start", "Xenotron.ttf", 'W', 20,menupos);
+                            TextOnScreen(screen, "Start", FONT_PATH, 'W', 20,menupos);
 
                             menupos.x=screen->w*CONTROLSPOS;
-                            TextOnScreen(screen, "Controles", "Xenotron.ttf", 'W', 20, menupos);
+                            TextOnScreen(screen, "Controles", FONT_PATH, 'W', 20, menupos);
 
                             menupos.x=screen->w*QUITPOS;
-                            TextOnScreen(screen, "Quitter", "Xenotron.ttf", 'G', 20,menupos);
+                            TextOnScreen(screen, "Quitter", FONT_PATH, 'G', 20,menupos);
                             actualpos = 2;
                             break;
                         }
                         else if (actualpos == 2) {
                             menupos.x=screen->w*STARTPOS;
 
-                            TextOnScreen(screen, "Start", "Xenotron.ttf", 'G', 20,menupos);
+                            TextOnScreen(screen, "Start", FONT_PATH, 'G', 20,menupos);
 
                             menupos.x=screen->w*CONTROLSPOS;
-                            TextOnScreen(screen, "Controles", "Xenotron.ttf", 'W', 20, menupos);
+                            TextOnScreen(screen, "Controles", FONT_PATH, 'W', 20, menupos);
 
                             menupos.x=screen->w*QUITPOS;
-                            TextOnScreen(screen, "Quitter", "Xenotron.ttf", 'W', 20,menupos);
+                            TextOnScreen(screen, "Quitter", FONT_PATH, 'W', 20,menupos);
                             actualpos = 0;
                             break;
                         }
@@ -232,6 +239,8 @@ int main(int argc, char *argv[]){
      * Boucle de Jeu
      */
 
+     BlackScreen(screen);
+
 
 
     SDL_Event keyevent;
@@ -251,7 +260,7 @@ int main(int argc, char *argv[]){
             sprintf(msgCount, "Nombre de coup : %d/%d ", k, kmax);
         }
 
-        TextOnScreen(screen, msgCount,"Xenotron.ttf", color, 20,txtpos);
+        TextOnScreen(screen, msgCount,FONT_PATH, color, 20,txtpos);
         SDL_WaitEvent(&keyevent);
 
         /**

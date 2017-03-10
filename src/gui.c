@@ -23,7 +23,7 @@ SDL_Surface *initscreen(){
 
     FILE* f = NULL;
     if((f = fopen("config.ini", "r")) == NULL){
-        printf("Please launch ./setup script\n");
+        printf("Please launch ./setup.ini \n");
         exit(1);
     }
 
