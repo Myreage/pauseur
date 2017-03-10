@@ -132,10 +132,14 @@ int main(int argc, char *argv[]){
                 gamestate=VictoryScreen();
                 break;
             case (gamestate=4):
-                gamestate=LoseScreen
-
+                gamestate=LoseScreen()
+                break;
+            case (gamestate==5):
+                exitcond=1;
+                break;
         }
     }*/
+    /* Boucle obsolète, implementer HomePage */
     while(!exitcond) {
         SDL_WaitEvent(&move);
         switch (move.type) {
@@ -256,9 +260,7 @@ int main(int argc, char *argv[]){
 
 
 
-    /**
-     * Boucle de Jeu
-     */
+     /*Boucle de Jeu obsolète, utiliser GameLoop()*/
 
      BlackScreen(screen);
 

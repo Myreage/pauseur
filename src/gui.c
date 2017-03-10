@@ -288,8 +288,7 @@ char HomePage(SDL_Surface *screen, int n, char color){
                             break;
                         }
                         else if (actualpos == 1) {
-
-
+                            /*Inserer Help Page Ici et retour au menu*/
                         }
                         else if (actualpos == 2) {
                             color='Q';
@@ -308,8 +307,10 @@ char HomePage(SDL_Surface *screen, int n, char color){
 }
 
 
-void GameLoop(SDL_Surface *screen, int n, char color, int off, int boardS, int squareS, int kmax, char **colortable, int **connexetab, SDL_Surface *colorcase) {
+int GameLoop(SDL_Surface *screen, int n, char color, int off, int boardS, int squareS, int kmax, char **colortable, int **connexetab, SDL_Surface *colorcase) {
     SDL_Event keyevent;
+
+    int gamestate;
 
     int k=0;
     char msgCount[64];
@@ -317,7 +318,7 @@ void GameLoop(SDL_Surface *screen, int n, char color, int off, int boardS, int s
     txtpos.y=90+n*64;
     txtpos.x=32*n-100;
 
-    while(!wintest(connexetab, n) && color!='Q') {
+    while(!wintest(connexetab, n) && color!='Q' && kmax<k) {
         updateCaseColor(colortable, colorcase, screen, n, off, boardS, squareS);
 
         if (k%10==1) {
@@ -382,10 +383,21 @@ void GameLoop(SDL_Surface *screen, int n, char color, int off, int boardS, int s
                 break;
 
         }
+        if (kmax<k){
+            gamestate=4;
+        }
+
+        if (kmax>k){
+            gamestate=3;
+        }
+        if (color=='Q'){
+            gamestate=5;
+        }
         SDL_FreeSurface(screen);
         updateconnexetab(colortable, connexetab, color, n);
         switchconnexecolors(colortable, connexetab, color, n);
     }
+    return gamestate;
 }
 
 
