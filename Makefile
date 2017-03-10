@@ -1,7 +1,7 @@
 APPLI=Colorflood
 CSRC= datastruct.c colors.c main.c
-CTSRC=test/colorsTest.c tests/datastructTests.c $(CSRC)
-GUISRC= datastruct.c colors.c mainsdl.c gui.c
+CTSRC=src/test/colorsTest.c src/tests/datastructTests.c $(CSRC)
+GUISRC= src/datastruct.c src/colors.c src/mainsdl.c src/gui.c
 CC = gcc
 
 CFLAGS = -Wall -Wextra -g
@@ -12,7 +12,7 @@ GUIOBJ=$(GUISRC:.c=.o)
 
 
 .c.o:
-	$(CC) $(CFLAGS) -c $*.c
+	$(CC) $(CFLAGS) -o $@ -c $<
 
 
 $(APPLI):	$(COBJ)
