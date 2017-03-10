@@ -179,8 +179,9 @@ int HelpPage(SDL_Surface *screen,int n) {
 
         SDL_WaitEvent(&BackToGame);
     }
+    BlackScreen(screen);
 
-    return 1;
+    return 0;
 }
 
 
