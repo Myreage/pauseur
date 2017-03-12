@@ -16,19 +16,11 @@
 #define OFF 10/100
 
 
-/**
- * Explications : La fenêtre crée peut se ramener a une matrice de taille n+1
- * de carrés de 64x64 pixels.
- * La surface colorcase est de manière imagée, un tampon de 64x64 pixels dont on peut
- * choisir la couleur et la position.
- * Une fois ces paramètres ajustés, on tamponne sur la fenetre avec la fonction : SDL_Blit_Surface
- * et on met a jour l'écran grâce à SDL_Flip.
- */
 
 
 int main(int argc, char *argv[]){
     if (argc<2){
-        printf("Deux arguments nécéssaires : Taille de la Grille et Nombre de Coups\n");
+        printf("Deux arguments nécessaires : Taille de la Grille et Nombre de Coups\n");
         exit(0);
     }
 

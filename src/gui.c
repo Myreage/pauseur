@@ -37,7 +37,7 @@ SDL_Surface *initscreen(){
 
     FILE* f = NULL;
     if((f = fopen("config.ini", "r")) == NULL){
-        printf("Please launch ./setup.ini \n");
+        printf("Please launch ./setup.ini (for MS Windows users : refer to documentation) \n");
         exit(1);
     }
 
@@ -353,10 +353,10 @@ int GameLoop(SDL_Surface *screen, int n, char color, int kmax, char **colortable
         updateCaseColor(colortable, colorcase, screen, n, off, boardS, squareS);
 
         if (k%10==1) {
-            sprintf(msgCount, "Nombre de coup :  %d/%d ",k, kmax);
+            sprintf(msgCount, "Nombre de coups :  %d/%d ",k, kmax);
         }
         else {
-            sprintf(msgCount, "Nombre de coup : %d/%d ", k, kmax);
+            sprintf(msgCount, "Nombre de coups : %d/%d ", k, kmax);
         }
 
         TextOnScreen(screen, msgCount,FONT_PATH, color, 20,txtpos);
