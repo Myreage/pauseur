@@ -186,9 +186,14 @@ int HelpPage(SDL_Surface *screen) {
         helppos.y=244;
         TextOnScreen(screen, "q pour quitter la partie", FONT_PATH, 'W', 20, helppos);
         helppos.y=284;
-        TextOnScreen(screen, "Pressez R pour", FONT_PATH, 'W', 25, helppos);
+        TextOnScreen(screen, "Pressez h pour", FONT_PATH, 'W', 25, helppos);
         helppos.y=304;
-        TextOnScreen(screen, "revenir a la partie.", FONT_PATH, 'W', 25, helppos);
+        TextOnScreen(screen, "ouvrir l'aide en jeu", FONT_PATH, 'W', 25, helppos);
+        helppos.y=344;
+        TextOnScreen(screen, "Pressez r pour", FONT_PATH, 'W', 25, helppos);
+        helppos.y=364;
+        TextOnScreen(screen, "revenir a la partie", FONT_PATH, 'W', 25, helppos);
+
 
         SDL_WaitEvent(&BackToGame);
     }
