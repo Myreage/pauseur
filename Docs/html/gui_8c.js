@@ -1,0 +1,25 @@
+var gui_8c =
+[
+    [ "CONTROLSPOS", "gui_8c.html#af5e8f9a7a4a5ecb7e24481062fc90d81", null ],
+    [ "FONT_PATH", "gui_8c.html#af326d9b4cced6fd44a9f9567dc666014", null ],
+    [ "HELPPOSW", "gui_8c.html#a254b0cd35c548a9a4fae29acd2788df2", null ],
+    [ "IMG_PATH", "gui_8c.html#ac6acca5b567b29950c4197ebacadf6dc", null ],
+    [ "LOGOPOSH", "gui_8c.html#af9e5fd9edefb6968dcec2d93fb0837d4", null ],
+    [ "LOGOPOSW", "gui_8c.html#a0a4dd091ed5fcc2ba0021625dea3d69a", null ],
+    [ "MENUPOS", "gui_8c.html#a87406fa9c80caf2d4e70ce800a71cbab", null ],
+    [ "OFF", "gui_8c.html#a29e413f6725b2ba32d165ffaa35b01e5", null ],
+    [ "QUITPOS", "gui_8c.html#a49a5020ddac3383f63ac6ac8a0c626ac", null ],
+    [ "SCOREPOSH", "gui_8c.html#afb4aa2b2df8bfed0cb1cf28dd903f65f", null ],
+    [ "SCOREPOSW", "gui_8c.html#a037a37118f0f7e8586b6589a3aa5b9bd", null ],
+    [ "STARTPOS", "gui_8c.html#ad7557b49b2830b00e5cac7cf377e29c9", null ],
+    [ "TITLEPOS", "gui_8c.html#a05a5d06fd9e5b0dc25f0ae1d02583463", null ],
+    [ "BlackScreen", "gui_8c.html#a4efed19d80e4fe3c69ce48c922821123", null ],
+    [ "GameLoop", "gui_8c.html#a4aa5503ef0361b52e649ce480912e6e3", null ],
+    [ "HelpPage", "gui_8c.html#af600318aee46ccde7a0d10c77191d05d", null ],
+    [ "HomePage", "gui_8c.html#a178e8d9e3b1886fc77f7337185603264", null ],
+    [ "initscreen", "gui_8c.html#ac3a72333a7347efee106c045df405e13", null ],
+    [ "LooseScreen", "gui_8c.html#a181f1e8f9b627528531388251e3e9521", null ],
+    [ "TextOnScreen", "gui_8c.html#a5ea314b09fd8d774197563c84f2ac613", null ],
+    [ "updateCaseColor", "gui_8c.html#a297e036a30cacde0f343cfe3613df426", null ],
+    [ "VictoryScreen", "gui_8c.html#aae251c408389e584584d1c8dc48a9d14", null ]
+];

@@ -1,0 +1,27 @@
+ _____       _             __ _                 _       _                ______                                   
+/  __ \     | |           / _| |               | |  _  | |               | ___ \                                  
+| /  \/ ___ | | ___  _ __| |_| | ___   ___   __| | (_) | |     ___  ___  | |_/ /_ _ _   _ ___  ___ _   _ _ __ ___ 
+| |    / _ \| |/ _ \| '__|  _| |/ _ \ / _ \ / _` |     | |    / _ \/ __| |  __/ _` | | | / __|/ _ \ | | | '__/ __|
+| \__/\ (_) | | (_) | |  | | | | (_) | (_) | (_| |  _  | |___|  __/\__ \ | | | (_| | |_| \__ \  __/ |_| | |  \__ \
+ \____/\___/|_|\___/|_|  |_| |_|\___/ \___/ \__,_| (_) \_____/\___||___/ \_|  \__,_|\__,_|___/\___|\__,_|_|  |___/
+
+
+Instructions pour l'execution des sources :
+
+-- Colorflood avec affichage en console : 
+						make && ./Colorflood
+
+
+
+-- Tests Colorflood : 
+						make test && ./TestColorflood
+
+
+
+-- Colorflood avec affichage graphique : 
+						make gui && ./guiColorflood TailleGrille NbrCoups
+
+
+
+	Pour le dimensionnement de la fenêtre, il est nécéssaire d'executer le script setup.sh avant execution du programme 
+	ou d'entrer manuellement la dimension de l'écran dans le fichier setup.ini (Essentiellement pour les machines Windows)
