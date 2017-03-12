@@ -11,7 +11,7 @@
 
 #include "gui.h"
 
-/*Offset vertical*/
+/**Offset vertical (Portion de l'écran)*/
 #define OFF 10/100
 
 
@@ -61,7 +61,6 @@ int main(int argc, char *argv[]){
                 break;
             case 3:
                 gamestate=VictoryScreen(screen);
-                exitcond=1;
                 break;
             case 4:
                 gamestate=LooseScreen(screen);

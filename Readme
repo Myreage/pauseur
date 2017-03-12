@@ -25,4 +25,4 @@ Instructions pour l'execution des sources :
 
 
 	Pour le dimensionnement de la fenêtre, il est nécéssaire d'executer le script setup.sh avant execution du programme 
-	ou d'entrer manuellement la dimension de l'écran dans le fichier setup.ini (Essentiellement pour les machines Windows)
+	ou d'entrer manuellement la dimension de l'écran dans le fichier config.ini (Essentiellement pour les machines Windows)
