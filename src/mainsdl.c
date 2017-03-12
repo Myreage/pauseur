@@ -66,7 +66,7 @@ int main(int argc, char *argv[]){
                 gamestate=GameLoop(screen,n,color,kmax,colortable,connexetab,colorcase);
                 break;
             case 2:
-                gamestate=HelpPage(screen, n);
+                gamestate=HelpPage(screen);
                 break;
             case 3:
                 gamestate=VictoryScreen(screen);
@@ -80,6 +80,14 @@ int main(int argc, char *argv[]){
                 break;
             case 6:
                 fillcolortablerand(colortable, n);
+
+                for(int i=0;i<n;i++){
+                  for(int j=0;j<n;j++){
+                    connexetab[i][j] = 0;
+                  }
+                }
+                connexetab[0][0] = 1;
+
                 updateconnexetab(colortable, connexetab, colortable[0][0], n);
                 gamestate=1;
                 break;

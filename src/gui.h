@@ -21,7 +21,7 @@ void SDLwait();
 SDL_Surface *initscreen();
 void updateCaseColor(char **colortable, SDL_Surface *colorcase, SDL_Surface *screen, int n,int off, int boardS, int squareS);
 void TextOnScreen(SDL_Surface *screen, char *msg, char *font, char color, int fontsize, SDL_Rect pos);
-int HelpPage(SDL_Surface *screen,int n);
+int HelpPage(SDL_Surface *screen);
 void BlackScreen(SDL_Surface *screen);
 char HomePage(SDL_Surface *screen);
 int GameLoop(SDL_Surface *screen, int n, char color, int kmax, char **colortable, int **connexetab, SDL_Surface *colorcase);

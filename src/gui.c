@@ -21,6 +21,9 @@
 #define SCOREPOSH (float)95/100
 #define SCOREPOSW (float)40/100
 
+/*Help page*/
+#define HELPPOSW (float) 36/100
+
 /*Offset vertical*/
 #define OFF 10/100
 
@@ -133,7 +136,7 @@ void BlackScreen(SDL_Surface *screen) {
 }
 
 
-int HelpPage(SDL_Surface *screen,int n) {
+int HelpPage(SDL_Surface *screen) {
     BlackScreen(screen);
     SDL_Event BackToGame;
     SDL_Rect helppos;
@@ -142,7 +145,7 @@ int HelpPage(SDL_Surface *screen,int n) {
     while(!((BackToGame.type==SDL_KEYDOWN) && (BackToGame.key.keysym.sym==SDLK_r)))    {
 
 
-        helppos.x=32*n+64-210;
+        helppos.x=screen->w*HELPPOSW;
         helppos.y=64;
         TextOnScreen(screen, "Pour jouer, pressez ", FONT_PATH, 'W', 25, helppos);
         helppos.y=84;
@@ -397,7 +400,7 @@ int GameLoop(SDL_Surface *screen, int n, char color, int kmax, char **colortable
                         k++;
                         break;
                     case SDLK_h :
-                        HelpPage(screen,n);
+                        HelpPage(screen);
                         break;
                     case SDLK_q:
                         color='Q';
@@ -428,8 +431,7 @@ int GameLoop(SDL_Surface *screen, int n, char color, int kmax, char **colortable
 
 int LooseScreen(SDL_Surface *screen){
     SDL_Rect pos;
-    pos.x=screen->w*TITLEPOS;
-    pos.y=screen->h/10;
+
     BlackScreen(screen);
 
     SDL_Event event;
@@ -438,7 +440,13 @@ int LooseScreen(SDL_Surface *screen){
     int gamestate=0;
     char color[6]={'R','B','V','G','M','J'};
     while(gamestate==0){
-        TextOnScreen(screen, "MDR KOMMENT Té NUL !!", FONT_PATH, color[rand()%6], 40,pos);
+        pos.x=screen->w*TITLEPOS;
+        pos.y=screen->h/10;
+        TextOnScreen(screen, "Defaite !", FONT_PATH, color[rand()%6], 40,pos);
+        pos.y=screen->h/2;
+        TextOnScreen(screen, "r pour rejouer", FONT_PATH, 'W', 40,pos);
+        pos.y=3*screen->h/4;
+        TextOnScreen(screen, "q pour quitter", FONT_PATH, 'W', 40,pos);
         SDL_WaitEvent(&event);
         switch(event.type) {
             case SDL_KEYDOWN :
@@ -463,8 +471,7 @@ int LooseScreen(SDL_Surface *screen){
 
 int VictoryScreen(SDL_Surface *screen){
     SDL_Rect pos;
-    pos.x=screen->w*TITLEPOS;
-    pos.y=screen->h/10;
+
     BlackScreen(screen);
 
     SDL_Event event;
@@ -473,7 +480,13 @@ int VictoryScreen(SDL_Surface *screen){
     int gamestate=0;
     char color[6]={'R','B','V','G','M','J'};
     while(gamestate==0){
-        TextOnScreen(screen, "BOGOSS", FONT_PATH, color[rand()%6], 40,pos);
+      pos.x=screen->w*TITLEPOS;
+      pos.y=screen->h/10;
+      TextOnScreen(screen, "Victoire !", FONT_PATH, color[rand()%6], 40,pos);
+      pos.y=screen->h/2;
+      TextOnScreen(screen, "r pour rejouer", FONT_PATH, 'W', 40,pos);
+      pos.y=3*screen->h/4;
+      TextOnScreen(screen, "q pour quitter", FONT_PATH, 'W', 40,pos);
         SDL_WaitEvent(&event);
         switch(event.type) {
             case SDL_KEYDOWN :
