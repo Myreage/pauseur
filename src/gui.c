@@ -371,7 +371,7 @@ int GameLoop(SDL_Surface *screen, int n, char color, int kmax, char **colortable
     txtpos.y=screen->h*SCOREPOSH;
     txtpos.x=screen->w*SCOREPOSW;
 
-    while(!wintest(connexetab, n) && color!='Q' && kmax>k) {
+    while(!wintest(connexetab, n) && color!='Q' && kmax>=k) {
         updateCaseColor(colortable, colorcase, screen, n, off, boardS, squareS);
 
         if (k%10==1) {
