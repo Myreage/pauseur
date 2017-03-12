@@ -1,9 +1,8 @@
 APPLI=Colorflood
 CSRC= src/datastruct.c src/colors.c src/main.c
-CT1SRC=src/datastruc.c src/tests/datastructTests.c
-CT2SRC=src/datastruct.c src/colors src/tests/colorTest.c
-
-GUISRC= src/datastruct.c src/colors.c src/mainsdl.c src/gui.c
+CT1SRC=src/datastruct.c src/tests/datastructTests.c
+CT2SRC=src/datastruct.c src/colors.c src/tests/colorTest.c
+GUISRC=src/datastruct.c src/colors.c src/mainsdl.c src/gui.c
 CC = gcc
 
 CFLAGS = -Wall -Wextra -g
@@ -18,7 +17,7 @@ GUIOBJ=$(GUISRC:.c=.o)
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 
-$(APPLI):	$(COBJ)
+$(APPLI):		$(COBJ)
 	$(CC) -o $(APPLI) $(COBJ) -lm
 
 clean:
@@ -28,7 +27,7 @@ testDatastruct:		$(CT1OBJ)
 	$(CC) -o TestColorflood $(CT1OBJ) -lm -lcunit
 
 testColors:		$(CT2OBJ)
-    $(CC) -o TestColors $(CT2OBJ) -lm -lcunit
+  $(CC) -o TestColors $(CT2OBJ) -lm -lcunit
 
-gui:    $(GUIOBJ)
+gui:		$(GUIOBJ)
 	$(CC) -o guiColorflood $(GUIOBJ) -lSDL -lSDL_ttf -lSDL_image
