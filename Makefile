@@ -25,7 +25,7 @@ clean:
 	-rm *.o *[~%] core *.bak
 
 testDatastruct:		$(CT1OBJ)
-	$(CC) -o TestColorflood $(CT1OBJ) -lm -lcunit
+	$(CC) -o TestDatastruct $(CT1OBJ) -lm -lcunit
 
 testColors:		$(CT2OBJ)
 	$(CC) -o TestColors $(CT2OBJ) -lm -lcunit
