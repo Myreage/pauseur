@@ -29,7 +29,10 @@ int getche(void) {
  *
  * \section install_sec Compilation et Exécution :
  * Pour l'execution normale : make && ./Colorflood \n
- * Pour l'execution des tests : ******** à remplir ************
+ * Pour l'execution des tests : make test && ./TestColorflood \n
+ * Pour l'execution avec affichage graphique : make gui && ./guiColorflood TailleGrille NombredeCoups \n
+ * 	Pour le dimensionnement de la fenêtre, il est nécéssaire d'executer le script setup.sh avant execution du programme
+	ou d'entrer manuellement la dimension de l'écran dans le fichier setup.ini (Essentiellement pour les machines Windows)
  * @return
  */
 
