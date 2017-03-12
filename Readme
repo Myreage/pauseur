@@ -8,13 +8,14 @@
 
 Instructions pour l'execution des sources :
 
+
 -- Colorflood avec affichage en console : 
 						make && ./Colorflood
 
 
 
--- Tests Colorflood : 
-						make test && ./TestColorflood
+-- Tests des fonctionnalités :
+						make testColors && make testDatastruct && ./TestColors && ./TestDatastruct
 
 
 
