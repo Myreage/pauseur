@@ -438,11 +438,11 @@ int GameLoop(SDL_Surface *screen, int n, char color, int kmax, char **colortable
 
 
     }
-    if (kmax<=k){
+    if (kmax<k){
         gamestate=4;
     }
 
-    if (kmax>k){
+    if (kmax>=k){
         gamestate=3;
     }
     if (color=='Q'){
