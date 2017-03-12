@@ -1,8 +1,10 @@
 var NAVTREE =
 [
-  [ "Colorflood : Les Pauseurs", "index.html", [
-    [ "Mode d'Emploi :", "index.html#intro_sec", null ],
-    [ "Compilation et Exécution :", "index.html#install_sec", null ],
+  [ "Les Pauseurs : Colorflood", "index.html", [
+    [ "Colorflood : Les Pauseurs", "index.html", [
+      [ "Mode d'Emploi :", "index.html#intro_sec", null ],
+      [ "Compilation et Exécution :", "index.html#install_sec", null ]
+    ] ],
     [ "Files", null, [
       [ "File List", "files.html", "files" ],
       [ "Globals", "globals.html", [
