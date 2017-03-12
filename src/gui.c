@@ -228,7 +228,7 @@ char HomePage(SDL_Surface *screen){
 
     menupos.x=screen->w*QUITPOS;
     TextOnScreen(screen, "Quitter", FONT_PATH, 'W', 20, menupos);
-    /**
+    /*
      * Afficher les autres champs avec avec la couleur blanche : Controlles et Quitter
      */
 
@@ -384,17 +384,17 @@ int GameLoop(SDL_Surface *screen, int n, char color, int kmax, char **colortable
         TextOnScreen(screen, msgCount,FONT_PATH, color, 20,txtpos);
         SDL_WaitEvent(&keyevent);
 
-        /**
+        /*
          * Mettre l'event j'appuie sur une touche dans un fonction
          */
 
         switch (keyevent.type){
             case SDL_KEYDOWN :
-                /**
+                /*
                  * Premier switch : On appuie sur une touche ou pas
                  */
                 switch(keyevent.key.keysym.sym) {
-                    /**
+                    /*
                      * Second switch : Si on appuie sur une touche, et que cette touche est R,V,B,J,G, ou M, on change la couleur.
                      */
                     case SDLK_r :

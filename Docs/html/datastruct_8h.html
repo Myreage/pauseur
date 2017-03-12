@@ -93,22 +93,31 @@ Functions</h2></td></tr>
 <tr class="memitem:acea10a5fa2fe6c3c3a340008bd4045d6"><td class="memItemLeft" align="right" valign="top">char **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="datastruct_8h.html#acea10a5fa2fe6c3c3a340008bd4045d6">createcolortable</a> (int n)</td></tr>
 <tr class="separator:acea10a5fa2fe6c3c3a340008bd4045d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab909647123cc7ccc5a45b4fedf71fd53"><td class="memItemLeft" align="right" valign="top">int **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="datastruct_8h.html#ab909647123cc7ccc5a45b4fedf71fd53">createconnexetab</a> (int n)</td></tr>
+<tr class="memdesc:ab909647123cc7ccc5a45b4fedf71fd53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contient un 1 si la cases est dans la composante connexe, 0 sinon.  <a href="#ab909647123cc7ccc5a45b4fedf71fd53">More...</a><br /></td></tr>
 <tr class="separator:ab909647123cc7ccc5a45b4fedf71fd53"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a348df1e9f5f956c365c416eeec01818b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="datastruct_8h.html#a348df1e9f5f956c365c416eeec01818b">freecolortable</a> (char **colortable, int n)</td></tr>
+<tr class="memdesc:a348df1e9f5f956c365c416eeec01818b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Libère l'espace mémoire attribué à la matrice de couleur.  <a href="#a348df1e9f5f956c365c416eeec01818b">More...</a><br /></td></tr>
 <tr class="separator:a348df1e9f5f956c365c416eeec01818b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9261892891db7b598b656dd0ffc1705f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="datastruct_8h.html#a9261892891db7b598b656dd0ffc1705f">freeconnextab</a> (int **connextab, int n)</td></tr>
+<tr class="memdesc:a9261892891db7b598b656dd0ffc1705f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Libère l'espace mémoire attribu à la matrice de connexité.  <a href="#a9261892891db7b598b656dd0ffc1705f">More...</a><br /></td></tr>
 <tr class="separator:a9261892891db7b598b656dd0ffc1705f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab53c78695b6d29e21fe1b4008b26dd08"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="datastruct_8h.html#ab53c78695b6d29e21fe1b4008b26dd08">fillcolortablerand</a> (char **colortable, int n)</td></tr>
+<tr class="memdesc:ab53c78695b6d29e21fe1b4008b26dd08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rempli une matrice de couleur aléatoirement à partir des valeures autorisées.  <a href="#ab53c78695b6d29e21fe1b4008b26dd08">More...</a><br /></td></tr>
 <tr class="separator:ab53c78695b6d29e21fe1b4008b26dd08"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a89571e673eae684c39a9b8342fa1f651"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="datastruct_8h.html#a89571e673eae684c39a9b8342fa1f651">fillcolortablefile</a> (char **colortable, int n, char *filename)</td></tr>
+<tr class="memdesc:a89571e673eae684c39a9b8342fa1f651"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rempli une matrice de couleur à partir d'un fichier. L'entrée attendu est un fichier conforme aux règles du jeux, c'est à dire ne contenant que les couleures autorisées, n lignes et n colonnes, sans espaces.  <a href="#a89571e673eae684c39a9b8342fa1f651">More...</a><br /></td></tr>
 <tr class="separator:a89571e673eae684c39a9b8342fa1f651"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7568671ab63b27ba76e59dd82ea59663"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="datastruct_8h.html#a7568671ab63b27ba76e59dd82ea59663">createnewcolorfile</a> (char *name, int n)</td></tr>
+<tr class="memdesc:a7568671ab63b27ba76e59dd82ea59663"><td class="mdescLeft">&#160;</td><td class="mdescRight">Génère un fichier de couleur aléatoire, conforme aux conditions d'entrée de la fonction de remplissage de la table de couleur à partir d'un fichier.  <a href="#a7568671ab63b27ba76e59dd82ea59663">More...</a><br /></td></tr>
 <tr class="separator:a7568671ab63b27ba76e59dd82ea59663"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b7bc9e3cb85eca96fe3db32e54308cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="datastruct_8h.html#a7b7bc9e3cb85eca96fe3db32e54308cc">switchcolor</a> (char **colortable, char color, int x, int y)</td></tr>
+<tr class="memdesc:a7b7bc9e3cb85eca96fe3db32e54308cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change la couleur de la case (x,y) par la couleur entrée en paramètre.  <a href="#a7b7bc9e3cb85eca96fe3db32e54308cc">More...</a><br /></td></tr>
 <tr class="separator:a7b7bc9e3cb85eca96fe3db32e54308cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade8f4b02321c5522f7247f8c9a75c3e9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="datastruct_8h.html#ade8f4b02321c5522f7247f8c9a75c3e9">displaycolortable</a> (char **colortable, int n)</td></tr>
+<tr class="memdesc:ade8f4b02321c5522f7247f8c9a75c3e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche la matrice de couleur entrée en paramètre.  <a href="#ade8f4b02321c5522f7247f8c9a75c3e9">More...</a><br /></td></tr>
 <tr class="separator:ade8f4b02321c5522f7247f8c9a75c3e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c1fa361d6498ed61baae1f200da3ec4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="datastruct_8h.html#a1c1fa361d6498ed61baae1f200da3ec4">displayconnexetab</a> (int **connexetab, int n)</td></tr>
+<tr class="memdesc:a1c1fa361d6498ed61baae1f200da3ec4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche la matrice de connexité.  <a href="#a1c1fa361d6498ed61baae1f200da3ec4">More...</a><br /></td></tr>
 <tr class="separator:a1c1fa361d6498ed61baae1f200da3ec4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -152,13 +161,15 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Contient un 1 si la cases est dans la composante connexe, 0 sinon. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">n</td><td>taille du tableau. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>renvoie une Matrice de connexité initialisée de taille n : : Elle a pour but de marquer les cases qui appartiennent à la composante connexe. Contient un 1 si la cases est dans la composante connexe, 0 sinon. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>renvoie une Matrice de connexité initialisée de taille n : : Elle a pour but de marquer les cases qui appartiennent à la composante connexe. </dd></dl>
 
 </div>
 </div>
@@ -187,10 +198,12 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Génère un fichier de couleur aléatoire, conforme aux conditions d'entrée de la fonction de remplissage de la table de couleur à partir d'un fichier. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">filename</td><td>nom du fichier à créer. </td></tr>
-    <tr><td class="paramname">n</td><td>taille de la matrice crée dans le fichier. Génère un fichier de couleur aléatoire, conforme aux conditions d'entrée de la fonction de remplissage de la table de couleur à partir d'un fichier. </td></tr>
+    <tr><td class="paramname">n</td><td>taille de la matrice crée dans le fichier. </td></tr>
   </table>
   </dd>
 </dl>
@@ -222,10 +235,12 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Affiche la matrice de couleur entrée en paramètre. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">colortable</td><td>matrice de couleur </td></tr>
-    <tr><td class="paramname">n</td><td>Taille de la matrice de couleur Affiche la matrice de couleur entrée en paramètre. </td></tr>
+    <tr><td class="paramname">n</td><td>Taille de la matrice de couleur </td></tr>
   </table>
   </dd>
 </dl>
@@ -257,10 +272,12 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Affiche la matrice de connexité. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">tab</td><td>matrice de connexité </td></tr>
-    <tr><td class="paramname">n</td><td>taille de la matrice de conexité Affiche la matrice de connexité. </td></tr>
+    <tr><td class="paramname">n</td><td>taille de la matrice de conexité </td></tr>
   </table>
   </dd>
 </dl>
@@ -298,11 +315,13 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Rempli une matrice de couleur à partir d'un fichier. L'entrée attendu est un fichier conforme aux règles du jeux, c'est à dire ne contenant que les couleures autorisées, n lignes et n colonnes, sans espaces. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">colortable</td><td>matrice de couleur </td></tr>
     <tr><td class="paramname">n</td><td>taille de la matrice de couleur </td></tr>
-    <tr><td class="paramname">filename</td><td>nom du fichier Rempli une matrice de couleur à partir d'un fichier. L'entrée attendu est un fichier conforme aux règles du jeux, c'est à dire ne contenant que les couleures autorisées, n lignes et n colonnes, sans espaces. </td></tr>
+    <tr><td class="paramname">filename</td><td>nom du fichier </td></tr>
   </table>
   </dd>
 </dl>
@@ -334,10 +353,12 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Rempli une matrice de couleur aléatoirement à partir des valeures autorisées. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">colortable</td><td>Matrice de couleur </td></tr>
-    <tr><td class="paramname">n</td><td>taille de la matrice de couleur Rempli une matrice de couleur aléatoirement à partir des valeures autorisées. </td></tr>
+    <tr><td class="paramname">n</td><td>taille de la matrice de couleur </td></tr>
   </table>
   </dd>
 </dl>
@@ -369,10 +390,12 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Libère l'espace mémoire attribué à la matrice de couleur. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">colortable</td><td>Matrice de couleur </td></tr>
-    <tr><td class="paramname">n</td><td>taille de la matrice de couleur. Libère l'espace mémoire attribué à la matrice de couleur </td></tr>
+    <tr><td class="paramname">n</td><td>taille de la matrice de couleur. </td></tr>
   </table>
   </dd>
 </dl>
@@ -404,10 +427,12 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Libère l'espace mémoire attribu à la matrice de connexité. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">connextab</td><td>Matrice de connexité </td></tr>
-    <tr><td class="paramname">n</td><td>taille de la matrice de connexité Libère l'espace mémoire attribu à la matrice de connexité. </td></tr>
+    <tr><td class="paramname">n</td><td>taille de la matrice de connexité </td></tr>
   </table>
   </dd>
 </dl>
@@ -451,16 +476,17 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Change la couleur de la case (x,y) par la couleur entrée en paramètre. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">colortable</td><td>matrice de couleur </td></tr>
     <tr><td class="paramname">color</td><td>nouvelle couleur de la case </td></tr>
     <tr><td class="paramname">x</td><td>coordonnée du point </td></tr>
-    <tr><td class="paramname">y</td><td>coordonnée du point</td></tr>
+    <tr><td class="paramname">y</td><td>coordonnée du point </td></tr>
   </table>
   </dd>
 </dl>
-<p>Change la couleur de la case (x,y) par la couleur entrée en paramètre. </p>
 
 </div>
 </div>

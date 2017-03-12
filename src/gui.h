@@ -24,7 +24,7 @@ SDL_Surface *initscreen();
  * @param off Offset en pixels
  * @param boardS Taille du board en pixels
  * @param squareS Taille d'une case en pixels
- * Met à jour les couleurs affichées
+ * \brief Met à jour les couleurs affichées
  **/
 void updateCaseColor(char **colortable, SDL_Surface *colorcase, SDL_Surface *screen, int n,int off, int boardS, int squareS);
 
@@ -35,14 +35,14 @@ void updateCaseColor(char **colortable, SDL_Surface *colorcase, SDL_Surface *scr
  * @param color Couleur d'écriture
  * @param fontsize Taille d'écriture
  * @param pos Position sur l'écran
- * Ecrit du texte à l'écran, avec la police, position et taille choisi.
+ * \brief Ecrit du texte à l'écran, avec la police, position et taille choisi.
  **/
 void TextOnScreen(SDL_Surface *screen, char *msg, char *font, char color, int fontsize, SDL_Rect pos);
 
 /**
  * @param screen Ecran
  * @return Renvoit le gamestate
- * Gestion et affichage de la page d'aide
+ * \brief Gestion et affichage de la page d'aide
  **/
 int HelpPage(SDL_Surface *screen);
 
@@ -55,7 +55,7 @@ void BlackScreen(SDL_Surface *screen);
 /**
  * @param screen Ecran
  * @return Renvoit le gamestate
- * Gestion et affichage de la page d'accueil
+ * \brief Gestion et affichage de la page d'accueil
  **/
 char HomePage(SDL_Surface *screen);
 
@@ -68,7 +68,7 @@ char HomePage(SDL_Surface *screen);
  * @param connexetab Matrice connexité
  * @param colorcase Case
  * @return Renvoie le gamestate
- * Gestion de la partie de jeu
+ * \brief Gestion de la partie de jeu
  **/
 int GameLoop(SDL_Surface *screen, int n, char color, int kmax, char **colortable, int **connexetab, SDL_Surface *colorcase);
 
