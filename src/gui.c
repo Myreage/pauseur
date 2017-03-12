@@ -1,29 +1,45 @@
 #include "gui.h"
 #include <time.h>
 
+/** Path de la police **/
 
 #define FONT_PATH "design/Xenotron.ttf"
+
+/** Path logo **/
 #define IMG_PATH "design/drowncube.jpg"
 
-/*------****Menu positions--***------*/
-/* L'écran est coupé en 100 colonnes */
+
+/** Position horizontale menu **/
 #define MENUPOS (float)80/100
+
+/** Position horizontale logo **/
 #define LOGOPOSH (float)50/100
+
+/** Position verticale Logo **/
 #define LOGOPOSW (float)50/100
+
+/** Position verticale Titre **/
 #define TITLEPOS (float)36/100
+
+/** Position verticale bouton Start **/
 #define STARTPOS (float)20/100
+
+/** Position verticale bouton Controls **/
 #define CONTROLSPOS (float)45/100
+
+/** Position verticale bouton Quit **/
 #define QUITPOS (float)80/100
 
-/*------****Game positions--***------*/
-/* L'écran est coupé en 100 colonnes */
+/** Position horizontale du score **/
 #define SCOREPOSH (float)95/100
+
+/** Position verticale du score **/
 #define SCOREPOSW (float)40/100
 
-/*Help page*/
+/** Position verticale help page **/
 #define HELPPOSW (float) 36/100
 
-/*Offset vertical*/
+/** Offset vertical**/
 #define OFF 10/100
 
 
