@@ -24,10 +24,10 @@ int getche(void) {
 }
 
 /*!\mainpage Colorflood : Les Pauseurs
- * \section intro_sec Mode d'Emploie :
+ * \section intro_sec Mode d'Emploi :
  * Appuyez sur "R" "V" "G" "B" "M" "J" pour changer la couleur de la composante connexe à la première case.
  *
- * \section install_sec Compilation et Execution :
+ * \section install_sec Compilation et Exécution :
  * Pour l'execution normale : make && ./Colorflood \n
  * Pour l'execution des tests : ******** à remplir ************
  * @return

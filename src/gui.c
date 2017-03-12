@@ -29,6 +29,9 @@
 
 
 
+/**
+ * @return Renvoie l'écran
+ */
 
 SDL_Surface *initscreen(){
 
@@ -63,6 +66,19 @@ SDL_Surface *initscreen(){
     return screen;
 }
 
+/**
+ * @param colortable Matrice de couleur.
+ * @param colorcase Case de couleur
+ * @param screen Ecran
+ * @param n Taille du board
+ * @param off Offset en pixels
+ * @param boardS Taille du board en pixels
+ * @param squareS Taille d'une case en pixels
+ * Met à jour les couleurs du board
+ **/
+
+
+
 void updateCaseColor(char **colortable, SDL_Surface *colorcase, SDL_Surface *screen, int n,int off, int boardS, int squareS) {
     int i, j;
     SDL_Rect pos;
@@ -81,6 +97,16 @@ void updateCaseColor(char **colortable, SDL_Surface *colorcase, SDL_Surface *scr
     }
     SDL_Flip(screen);
 }
+
+/**
+ * @param screen Ecran
+ * @param msg Texte à écrire
+ * @param font Police d'écriture
+ * @param color Couleur d'écriture
+ * @param fontsize Taille d'écriture
+ * @param pos Position sur l'écran
+ * Ecrit du texte à l'écran
+ **/
 
 void TextOnScreen(SDL_Surface *screen, char *msg, char *font, char color, int fontsize, SDL_Rect pos){
     TTF_Font *txtfont;
@@ -131,10 +157,21 @@ void TextOnScreen(SDL_Surface *screen, char *msg, char *font, char color, int fo
     SDL_FreeSurface(txt);
 }
 
+/**
+ * @param screen Ecran
+ * Colore l'écran en noir (pour réinitialiser l'affichage en quelque sorte)
+ **/
+
 void BlackScreen(SDL_Surface *screen) {
     SDL_FillRect(screen,NULL,SDL_MapRGB(screen->format, 0, 0, 0));
 }
 
+
+/**
+ * @param screen Ecran
+ * @return Renvoit le gamestate
+ * Gestion et affichage de la page d'aide
+ **/
 
 int HelpPage(SDL_Surface *screen) {
     BlackScreen(screen);
@@ -175,6 +212,12 @@ int HelpPage(SDL_Surface *screen) {
 
     return 0;
 }
+
+/**
+ * @param screen Ecran
+ * @return Renvoit le gamestate
+ * Gestion et affichage de la page d'accueil
+ **/
 
 
 char HomePage(SDL_Surface *screen){
@@ -330,6 +373,17 @@ char HomePage(SDL_Surface *screen){
     return gamestate;
 }
 
+/**
+ * @param screen Ecran
+ * @param n Taille du board
+ * @param color Couleur jouée
+ * @param kmax Nombre de coups max
+ * @param colortable Matrice Couleur
+ * @param connexetab Matrice connexité
+ * @param colorcase Case
+ * @return Renvoie le gamestate
+ * Gestion du jeu
+ **/
 
 int GameLoop(SDL_Surface *screen, int n, char color, int kmax, char **colortable, int **connexetab, SDL_Surface *colorcase) {
 
@@ -428,6 +482,10 @@ int GameLoop(SDL_Surface *screen, int n, char color, int kmax, char **colortable
     }
     return gamestate;
 }
+/**
+ * @param screen Ecran
+ * @return Renvoie le gamestate
+ **/
 
 int LooseScreen(SDL_Surface *screen){
     SDL_Rect pos;
@@ -469,6 +527,10 @@ int LooseScreen(SDL_Surface *screen){
     return gamestate;
 }
 
+/**
+ * @param screen Ecran
+ * @return Renvoie le gamestate
+ **/
 int VictoryScreen(SDL_Surface *screen){
     SDL_Rect pos;
 
