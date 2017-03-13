@@ -1,7 +1,5 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <stdlib.h>
-#include <stdio.h>
 #include <termios.h>
 #include <unistd.h>
 #include "datastruct.h"
@@ -32,7 +30,7 @@ int getche(void) {
  * Pour l'execution des tests : make testColors && make testDatastruct && ./TestColors && ./TestDatastruct \n
  * Pour l'execution avec affichage graphique : make gui && ./guiColorflood TailleGrille NombredeCoups \n
  * 	Pour le dimensionnement de la fenêtre, il est nécéssaire d'executer le script setup.sh avant execution du programme
-	ou d'entrer manuellement la dimension de l'écran dans le fichier setup.ini (largeurxhauteur de l'écran en pixels (Essentiellement pour les machines Windows))
+	ou d'entrer manuellement la dimension de l'écran dans le fichier config.ini (largeurxhauteur de l'écran en pixels (Essentiellement pour les machines Windows))
  * @return
  */
 

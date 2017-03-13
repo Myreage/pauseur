@@ -1,4 +1,11 @@
 #include "gui.h"
+#include <stdlib.h>
+#include <stdio.h>
+
+#include <unistd.h>
+#include "datastruct.h"
+#include "colors.h"
+
 #include <time.h>
 
 /** Path de la police **/

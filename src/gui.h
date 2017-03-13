@@ -1,15 +1,11 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <termios.h>
-#include <unistd.h>
-#include "datastruct.h"
-#include "colors.h"
-#include <SDL/SDL.h>
-#include <SDL/SDL_ttf.h>
-#include <SDL/SDL_image.h>
 
 #ifndef PAUSEUR_GUI_H
 #define PAUSEUR_GUI_H
+
+
+#include <SDL/SDL.h>
+#include <SDL/SDL_ttf.h>
+#include <SDL/SDL_image.h>
 
 /**
  * @return Renvoie un écran initialisé.
