@@ -10,7 +10,7 @@
 
 /** Path de la police **/
 
-#define FONT_PATH "design/Xenotron.ttf"
+#define FONT_PATH "design/Freshman.ttf"
 
 /** Path logo **/
 #define IMG_PATH "design/drowncube.jpg"
@@ -26,7 +26,7 @@
 #define LOGOPOSW (float)50/100
 
 /** Position verticale Titre **/
-#define TITLEPOS (float)36/100
+#define TITLEPOS (float)38/100
 
 /** Position verticale bouton Start **/
 #define STARTPOS (float)20/100
@@ -226,7 +226,7 @@ char HomePage(SDL_Surface *screen){
 
     menupos.x=screen->w*TITLEPOS;
     menupos.y=screen->h/10;
-    TextOnScreen(screen, "Colorflood", FONT_PATH, 'W', 40, menupos);
+    TextOnScreen(screen, "Colorflood", FONT_PATH, 'W', 60, menupos);
 
 
     menupos.y=screen->h*MENUPOS;
