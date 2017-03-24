@@ -13,7 +13,7 @@ struct fifo{
 };
 
 
-void thread(fifo *file, int value);
+void thread(fifo *file, char value);
 char popfirst(fifo *pile);
 void freefifo(fifo *pile);
 void displayfifo(fifo *pile);

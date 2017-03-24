@@ -22,7 +22,7 @@ $(APPLI):	$(COBJ)
 	$(CC) -o $(APPLI) $(COBJ) -lm
 
 clean:
-	-rm *.o *[~%] core *.bak
+	-rm *.o ./src/*.o *[~%] core *.bak
 
 testDatastruct:		$(CT1OBJ)
 	$(CC) -o TestDatastruct $(CT1OBJ) -lm -lcunit

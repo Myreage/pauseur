@@ -54,6 +54,7 @@ SDL_Surface *initscreen(){
 
     /*Récupération de la résolution dans setup.ini */
     int we,he;
+    float ratio=0.5;
 
     FILE* f = NULL;
     if((f = fopen("config.ini", "r")) == NULL){
@@ -62,10 +63,12 @@ SDL_Surface *initscreen(){
     }
 
     fscanf(f,"%dx%d", &we,&he);
+    we=ratio*we;
+    he=ratio*he;
     fclose(f);
 
 
-    SDL_Surface *screen=SDL_SetVideoMode(we,he, 32, SDL_FULLSCREEN);
+    SDL_Surface *screen=SDL_SetVideoMode(we,he, 32, SDL_HWSURFACE);
     if (SDL_Init(SDL_INIT_VIDEO)==-1){
         perror("SDL_INIT :");
         exit(EXIT_FAILURE);

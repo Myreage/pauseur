@@ -3,7 +3,7 @@
 #include "pile.h"
 
 
-void thread(fifo *file, int value){
+void thread(fifo *file, char value){
     f_Element *newelt=malloc(sizeof(f_Element *));
 
     if (file==NULL || newelt==NULL){
@@ -48,7 +48,8 @@ void freefifo(fifo *pile){
     while(pile!=NULL){
         popfirst(pile);
     }
+    free(pile);
 }
 void displayfifo(fifo * pile){
-    /*Afficher la file*/
+
 }
