@@ -1,4 +1,5 @@
-
+#ifndef PILE_H
+#define PILE_H
 
 typedef struct f_Element f_Element;
 struct f_Element{
@@ -17,3 +18,5 @@ void thread(fifo *file, char value);
 char popfirst(fifo *pile);
 void freefifo(fifo *pile);
 void displayfifo(fifo *pile);
+
+#endif
