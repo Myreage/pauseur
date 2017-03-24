@@ -1,3 +1,8 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#include "solver.h"
+
 int choixPertinent(char **colortable, char color, int **connexetab, int n){
   int i,j;
   int **aux = createconnexetab(n);
@@ -21,15 +26,19 @@ int choixPertinent(char **colortable, char color, int **connexetab, int n){
 
 }
 
-void solveur(grille g, pile solution) {
-  // déclarations des variables locales i, g2, …
-  for (i=0; i<6; i=i+1) { // pour toutes les couleurs possibles
-    if (choixPertinent(g,i)) {
-      solution = empiler(solution,c[i]);
-      g2 = propageCouleur(g, c[i]);
-      if (victoire(g2)) uneSolutionTrouvee(solution);
-      else solveur(g2, solution);
-      depiler(&solution);
-      }
+int solveur(char **colortable, int **connexetab, fifo *solution, int n) {
+
+  int i;
+  char colors[6]={'B','V','R','J','M','G'};
+  for (i=0; i<6; i++) { // pour toutes les couleurs possibles
+    if (choixPertinent(colortable, colors[i] connexetab,n)) {
+      thread(solution,c[i]);  /*empile*/
+      updateconnexetab(colortable, connexetab, colors[i], n);
+      switchconnexecolors(colortable, connexetab, colors[i], n);
+      if (wintest(connexetab,n)) return 1;
+      else solveur(colortable,connexetab,solution,n);
+      popfirst(solution);
+    }
   }
+  return 0;
 }
