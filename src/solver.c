@@ -34,7 +34,9 @@ int solveur(char **colortable, int **connexetab, fifo *solution, int n) {
   int i;
   char colors[6]={'B','V','R','J','M','G'};
   for (i=0; i<6; i++) { // pour toutes les couleurs possibles
+    printf("Couleur : %c", colors[i]);
     if (choixPertinent(colortable, colors[i], connexetab,n)) {
+      printf("choix pertinent\n");
       thread(solution,colors[i]);  /*empile*/
       updateconnexetab(colortable, connexetab, colors[i], n);
       switchconnexecolors(colortable, connexetab, colors[i], n);
@@ -42,6 +44,7 @@ int solveur(char **colortable, int **connexetab, fifo *solution, int n) {
       else solveur(colortable,connexetab,solution,n);
       popfirst(solution);
     }
+    else printf("choix non pertinent\n");
   }
   return 0;
 }

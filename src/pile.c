@@ -6,13 +6,15 @@
 void thread(fifo *file, char value){
     f_Element *newelt=malloc(sizeof(f_Element *));
 
-    if (file==NULL || newelt==NULL){
-        perror("thread Error :");
+    if (newelt==NULL){
+        perror("thread");
         exit(EXIT_FAILURE);
     }
 
+
     newelt->value=value;
     newelt->next=NULL;
+  
 
     file->length++;
     if (file->first!=NULL){
@@ -29,7 +31,7 @@ void thread(fifo *file, char value){
 
 char popfirst(fifo *pile){
     if (pile==NULL){
-        perror("thread Error :");
+        perror("popfirst");
         exit(EXIT_FAILURE);
     }
     int res;
@@ -51,5 +53,9 @@ void freefifo(fifo *pile){
     free(pile);
 }
 void displayfifo(fifo * pile){
-
+  f_Element* aux = pile->first;
+  while(aux != NULL){
+    printf("%c", aux->value);
+    aux = aux->next;
+  }
 }
