@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "pile.h"
 #include "datastruct.h"
@@ -33,10 +34,10 @@ int choixPertinent(char **colortable, char color, int **connexetab, int n){
 
 }
 
-int firstsolution(char **colortable, int **connexetab, fifo *solution, int n) {
+int firstsolution(char **colortable, int **connexetab,fifo *solution, int n) {
 
   int i;
-  char colors[6]={'B','V','R','J','M','G'};
+    char colors[6]={'B','V','R','J','M','G'};
 
   for (i=0; i<6; i++) { /* pour toutes les couleurs possibles */
     printf("Couleur : %c", colors[i]);
@@ -61,7 +62,6 @@ int firstsolution(char **colortable, int **connexetab, fifo *solution, int n) {
 }
 
 
-fifo *solver(char **colortable, int **connexetab, fifo *firstsolution, int kmax, int n){
-  fifo *newsolution=copyfifo(firstsolution, kmax-2);
-  return newsolution;
-}
+/*fifo *solver(char **colortable, int **connexetab, fifo *firstsolution, int kmax, int n){
+
+}*/
