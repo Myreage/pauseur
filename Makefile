@@ -26,14 +26,14 @@ $(APPLI):	$(COBJ)
 clean:
 	-rm *.o ./src/*.o *[~%] core *.bak
 
-testDatastruct:		$(CT1OBJ)
+testDatastruct:	$(CT1OBJ)
 	$(CC) -o TestDatastruct $(CT1OBJ) -lm -lcunit
 
-testColors:		$(CT2OBJ)
+testColors: $(CT2OBJ)
 	$(CC) -o TestColors $(CT2OBJ) -lm -lcunit
 
-gui:    $(GUIOBJ)
+gui:	$(GUIOBJ)
 	$(CC) -o guiColorflood $(GUIOBJ) -lSDL -lSDL_ttf -lSDL_image
 
-solver:     $(CT3OBJ)
-    $(CC) -o slvColorflood $(CT3OBJ) -lm
+solver:	$(CT3OBJ)
+	$(CC) -o slvColorflood $(CT3OBJ) -lm
