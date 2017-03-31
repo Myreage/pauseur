@@ -21,6 +21,30 @@ int **createconnexetab(int n){
     return tab;
 }
 
+char **copycolortable(char **colortable, int n){
+    int i,j;
+    char **copy=createcolortable(n);
+    for (i=0;i<n;i++){
+        for (j=0;j<n;j++){
+            copy[i][j]=colortable[i][j];
+        }
+    }
+    return(copy);
+
+}
+
+int **copyconnexetab(int **connextab, int n){
+    int i,j;
+    int **copy=createconnexetab(n);
+    for (i=0;i<n;i++){
+        for (j=0;j<n;j++){
+            copy[i][j]=connextab[i][j];
+        }
+    }
+    return(copy);
+
+}
+
 void freecolortable(char **colortable, int n){
     int i;
     for (i=0;i<n;i++){
@@ -111,3 +135,4 @@ void displayconnexetab(int **tab, int n){
     }
     printf("\n");
 }
+

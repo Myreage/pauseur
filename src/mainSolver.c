@@ -8,27 +8,32 @@
 #include "colors.h"
 
 int main(){
-  fifo *p = malloc(sizeof(fifo*));
-  p->length = 0;
-  p->first = NULL;
-
-  char **col = createcolortable(5);
-  int **con = createconnexetab(5);
+  int n=6;
+  fifo *p = initpile();
 
 
-  fillcolortablerand(col,5);
-  displaycolortable(col,5);
+  char **col = createcolortable(n);
+  int **con = createconnexetab(n);
 
-  /** COPIER LES TABLES KEK !!!! **/
-  solveur(col,con,p,5);
+
+
+  fillcolortablerand(col,n);
+  displaycolortable(col,n);
+
+  char **colortemp=copycolortable(col, n);
+  int **connextemp=copyconnexetab(con, n);
+
+  firstsolution(colortemp,connextemp,p,n);
+  int kmax=p->length;
+
+  printf("====     Première Solution : %d Coups     ==== \n ", kmax);
   displayfifo(p);
 
+  displayconnexetab(con, n);
+  displaycolortable(col, n);
 
 
-
-
-
-
+  printf("===> Recherche d'une Solution de moins de %d Coups <===\n", kmax);
 
   return 0;
 }
