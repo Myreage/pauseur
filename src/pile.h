@@ -13,10 +13,12 @@ struct fifo{
     f_Element *first;
 };
 
+fifo *copyfifo(fifo *pile, int maxlenght);
 fifo *initpile();
 void thread(fifo *file, char value);
 char popfirst(fifo *pile);
 void freefifo(fifo *pile);
 void displayfifo(fifo *pile);
+fifo *copyfifo(fifo *pile, int maxlenght);
 
 #endif

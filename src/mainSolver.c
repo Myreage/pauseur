@@ -24,22 +24,16 @@ int main(){
   int **connextemp=copyconnexetab(con, n);
 
   firstsolution(colortemp,connextemp,p,n);
-  int nbPlays=p->length;
-  printf("====     First Solution     ==== \n ");
+  int kmax=p->length;
+
+  printf("====     Première Solution : %d Coups     ==== \n ", kmax);
   displayfifo(p);
 
   displayconnexetab(con, n);
   displaycolortable(col, n);
 
 
-  printf("===> Searching for optimised Solution <===\n");
-
-
-
-
-
-
-
+  printf("===> Recherche d'une Solution de moins de %d Coups <===\n", kmax);
 
   return 0;
 }

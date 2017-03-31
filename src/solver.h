@@ -27,4 +27,4 @@ int choixPertinent(char **colortable, char color, int **connexetab, int n);
 int firstsolution(char **colortable, int **connexetab, fifo *solution, int n);
 
 
-fifo *solver(char **colortable, int connexetab, fifo *firstsolution, int n);
+fifo *solver(char **colortable, int **connexetab, fifo *firstsolution, int kmax, int n);

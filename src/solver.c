@@ -43,7 +43,7 @@ int firstsolution(char **colortable, int **connexetab, fifo *solution, int n) {
 
     if (choixPertinent(colortable, colors[i], connexetab,n)) {
       printf("%s Choix pertinent %s \n", KGRN, RESET);
-      thread(solution,colors[i]);  /*empile*/
+      thread(solution,colors[i]);  /* empile */
 
       updateconnexetab(colortable, connexetab, colors[i], n);
 
@@ -61,4 +61,7 @@ int firstsolution(char **colortable, int **connexetab, fifo *solution, int n) {
 }
 
 
-fifo *solver(char **colortable, int connexetab, fifo *firstsolution, int n);
+fifo *solver(char **colortable, int **connexetab, fifo *firstsolution, int kmax, int n){
+  fifo *newsolution=copyfifo(firstsolution, kmax-2);
+  return newsolution;
+}
