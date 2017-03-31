@@ -20,5 +20,6 @@ char popfirst(fifo *pile);
 void freefifo(fifo *pile);
 void displayfifo(fifo *pile);
 fifo *copyfifo(fifo *pile, int maxlenght);
+char *getElement(fifo *pile, int k);
 
 #endif

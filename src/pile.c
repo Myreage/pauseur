@@ -78,3 +78,13 @@ fifo *copyfifo(fifo *pile, int maxlenght){
     }
     return res;
 }
+
+char *getElement(fifo *pile, int k){
+    f_Element *temp=pile->first;
+    int p=0;
+    while(temp!=NULL || p!=k){
+        temp=temp->next;
+        p++;
+    }
+    return temp;
+}
