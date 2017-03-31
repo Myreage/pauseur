@@ -13,7 +13,7 @@ struct fifo{
     f_Element *first;
 };
 
-
+fifo *initpile();
 void thread(fifo *file, char value);
 char popfirst(fifo *pile);
 void freefifo(fifo *pile);

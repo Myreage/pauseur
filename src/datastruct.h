@@ -15,6 +15,19 @@ char** createcolortable(int n);
 int **createconnexetab(int n);
 
 /**
+ * @param connextab
+ * @param n
+ * @return une copie de la matrice de connexité
+ */
+int **copyconnexetab(int **connextab, int n);
+
+/**
+ * @param connextab
+ * @param n
+ * @return une copie de la Matrice de couleur
+ */
+char **copycolortable(char **colortable, int n);
+/**
 * @param colortable Matrice de couleur
 * @param n taille de la matrice de couleur.
 * \brief Libère l'espace mémoire attribué à la matrice de couleur

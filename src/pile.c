@@ -3,6 +3,12 @@
 #include "pile.h"
 
 
+fifo *initpile(){
+    fifo *res=malloc(sizeof(fifo *));
+    res->length=0;
+    res->first=NULL;
+    return res;
+}
 void thread(fifo *file, char value){
     f_Element *newelt=malloc(sizeof(f_Element *));
 
@@ -55,7 +61,8 @@ void freefifo(fifo *pile){
 void displayfifo(fifo * pile){
   f_Element* aux = pile->first;
   while(aux != NULL){
-    printf("%c", aux->value);
+    printf("%c\t", aux->value);
     aux = aux->next;
   }
+    printf("\n");
 }
