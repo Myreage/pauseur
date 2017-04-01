@@ -24,7 +24,7 @@ int choixPertinent(char **colortable, char color, int **connexetab, int n);
  * ATTENTION LA FONCTION MODIFIE LES TAB PAR EFFET DE BORD
  * UTILISER DES COPIES LORS DE L'APPEL !
  */
-int firstsolution(char **colortable, int **connexetab,fifo *solution, int n,int *kmax);
+int firstsolution(char **colortable, int **connexetab,fifo *solution, int n,int *kmax, int *nbiterate);
 
 
 fifo *solver(char **colortable, int **connexetab, fifo *firstsolution, int kmax, int n);

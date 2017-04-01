@@ -34,13 +34,15 @@ int choixPertinent(char **colortable, char color, int **connexetab, int n){
 
 }
 
-int firstsolution(char **colortable, int **connexetab,fifo *solution, int n,int *kmax) {
+int firstsolution(char **colortable, int **connexetab,fifo *solution, int n,int *kmax,int *nbiterate) {
 
 
   int i;
-    char colors[6]={'B','V','R','J','M','G'};
-    char** col;
-    int** con;
+  *nbiterate = *nbiterate + 1;
+
+  char colors[6]={'B','V','R','J','M','G'};
+  char** col;
+  int** con;
 
   for (i=0; i<6; i++) { /* pour toutes les couleurs possibles */
 
@@ -61,14 +63,17 @@ int firstsolution(char **colortable, int **connexetab,fifo *solution, int n,int 
           *kmax = solution->length;
           printf("Solution trouvée : ");
           displayreversefifo(solution);
-          printf(" en %d coups\n", *kmax);
+          printf(" en %d coups", *kmax);
+          printf(" en %d itérations\n", *nbiterate);
+
 
         }
 
-        else firstsolution(col,con,solution,n, kmax);
+        else firstsolution(col,con,solution,n, kmax,nbiterate);
       }
 
       popfirst(solution);
+
 
 
     }
