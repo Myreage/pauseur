@@ -21,5 +21,6 @@ void freefifo(fifo *pile);
 void displayfifo(fifo *pile);
 fifo *copyfifo(fifo *pile, int maxlenght);
 char *getElement(fifo *pile, int k);
+void displayreversefifo(fifo * pile);
 
 #endif

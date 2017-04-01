@@ -34,31 +34,48 @@ int choixPertinent(char **colortable, char color, int **connexetab, int n){
 
 }
 
-int firstsolution(char **colortable, int **connexetab,fifo *solution, int n) {
+int firstsolution(char **colortable, int **connexetab,fifo *solution, int n,int *kmax) {
+
 
   int i;
     char colors[6]={'B','V','R','J','M','G'};
+    char** col;
+    int** con;
 
   for (i=0; i<6; i++) { /* pour toutes les couleurs possibles */
-    printf("Couleur : %c", colors[i]);
+
 
     if (choixPertinent(colortable, colors[i], connexetab,n)) {
-      printf("%s Choix pertinent %s \n", KGRN, RESET);
+
       thread(solution,colors[i]);  /* empile */
 
-      updateconnexetab(colortable, connexetab, colors[i], n);
+      if(solution->length <= *kmax){
+        col = copycolortable(colortable,n);
+        con = copyconnexetab(connexetab,n);
 
-      switchconnexecolors(colortable, connexetab, colors[i], n);
+        updateconnexetab(col, con, colors[i], n);
 
-      if (wintest(connexetab,n)) return 1;
+        switchconnexecolors(col, con, colors[i], n);
 
-      else firstsolution(colortable,connexetab,solution,n);
+        if (wintest(con,n)){
+          *kmax = solution->length;
+          printf("Solution trouvée : ");
+          displayreversefifo(solution);
+          printf(" en %d coups\n", *kmax);
+
+        }
+
+        else firstsolution(col,con,solution,n, kmax);
+      }
+
+      popfirst(solution);
+
 
     }
-    else printf("%s Choix non pertinent %s\n",KRED, RESET);
+
   }
 
-  return 0;
+
 }
 
 

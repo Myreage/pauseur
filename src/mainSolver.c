@@ -8,8 +8,10 @@
 #include "colors.h"
 
 int main(){
-  int n=6;
+  int n=4;
   fifo *p = initpile();
+  int kmax = 1000000;
+
 
 
   char **col = createcolortable(n);
@@ -23,17 +25,16 @@ int main(){
   char **colortemp=copycolortable(col, n);
   int **connextemp=copyconnexetab(con, n);
 
-  firstsolution(colortemp,connextemp,p,n);
-  int kmax=p->length;
+  printf("===> Recherche de toutes les solutions :\n");
 
-  printf("====     Première Solution : %d Coups     ==== \n ", kmax);
-  displayfifo(p);
+  firstsolution(colortemp,connextemp,p,n,&kmax);
+
 
   displayconnexetab(con, n);
   displaycolortable(col, n);
 
 
-  printf("===> Recherche d'une Solution de moins de %d Coups <===\n", kmax);
+
 
   return 0;
 }

@@ -19,20 +19,13 @@ void thread(fifo *file, char value){
 
 
     newelt->value=value;
-    newelt->next=NULL;
-  
+    if(file != NULL ) newelt->next=file->first;
+    else newelt->next = NULL;
+
 
     file->length++;
-    if (file->first!=NULL){
-        f_Element *temp=file->first;
-        while (temp->next!=NULL){
-            temp=temp->next;
-        }
-        temp->next=newelt;
-    }
-    else {
-        file->first=newelt;
-    }
+    file->first=newelt;
+
 }
 
 char popfirst(fifo *pile){
@@ -49,6 +42,8 @@ char popfirst(fifo *pile){
         pile->first=temp->next;
         free(temp);
     }
+
+    pile->length--;
     return res;
 }
 
@@ -66,6 +61,33 @@ void displayfifo(fifo * pile){
         aux = aux->next;
     }
     printf("]\n");
+}
+
+void displayreversefifo(fifo * pile){
+
+  char auxtab[pile->length];
+
+  int i=0;
+
+  f_Element* aux = pile->first;
+
+
+  while(aux != NULL){
+      auxtab[i] = aux->value;
+      aux = aux->next;
+      i++;
+  }
+
+
+  printf("[ ");
+  for(i=i-1;i>=0;i--){
+
+    printf("%c", auxtab[i]);
+  }
+  printf(" ]");
+
+
+
 }
 
 fifo *copyfifo(fifo *pile, int maxlenght){
