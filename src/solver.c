@@ -51,7 +51,7 @@ int solver(char **colortable, int **connexetab,pile *solution, int n,int *kmax,i
 
       stack(solution,colors[i]);  /* empile */
 
-      if(solution->length <= *kmax){
+      if(solution->length < *kmax){
         col = copycolortable(colortable,n);
         con = copyconnexetab(connexetab,n);
 
