@@ -7,8 +7,16 @@
 #include "datastruct.h"
 #include "colors.h"
 
-int main(){
-  int n=5;
+int main(int argc, char *argv[]){
+  if (argc!=2){
+      printf("Executer sous forme ./slvColorflood <tailleMat>\n");
+      exit(0);
+  }
+
+  int n=atoi(argv[1]);
+
+
+
   pile *p = initpile();
   int kmax = 1000000;
   int nbiterate=0;
@@ -22,6 +30,9 @@ int main(){
 
   fillcolortablerand(col,n);
   displaycolortable(col,n);
+
+  updateconnexetab(col, con, col[0][0], n);
+  switchconnexecolors(col, con, col[0][0], n);
 
   char **colortemp=copycolortable(col, n);
   int **connextemp=copyconnexetab(con, n);
