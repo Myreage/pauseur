@@ -3,34 +3,34 @@
 #include "pile.h"
 
 
-fifo *initpile(){
-    fifo *res=malloc(sizeof(fifo *));
+pile *initpile(){
+    pile *res=malloc(sizeof(pile *));
     res->length=0;
     res->first=NULL;
     return res;
 }
-void thread(fifo *file, char value){
+void stack(pile *pile, char value){
     f_Element *newelt=malloc(sizeof(f_Element *));
 
     if (newelt==NULL){
-        perror("thread");
+        perror("stack");
         exit(EXIT_FAILURE);
     }
 
 
     newelt->value=value;
-    if(file != NULL ) newelt->next=file->first;
+    if(pile != NULL ) newelt->next=pile->first;
     else newelt->next = NULL;
 
 
-    file->length++;
-    file->first=newelt;
+    pile->length++;
+    pile->first=newelt;
 
 }
 
-char popfirst(fifo *pile){
+char pop(pile *pile){
     if (pile==NULL){
-        perror("popfirst");
+        perror("pop");
         exit(EXIT_FAILURE);
     }
     int res;
@@ -47,13 +47,13 @@ char popfirst(fifo *pile){
     return res;
 }
 
-void freefifo(fifo *pile){
+void freepile(pile *pile){
     while(pile!=NULL){
-        popfirst(pile);
+        pop(pile);
     }
     free(pile);
 }
-void displayfifo(fifo * pile){
+void displaypile(pile * pile){
     f_Element* aux = pile->first;
     printf("[  ");
     while(aux != NULL){
@@ -63,7 +63,7 @@ void displayfifo(fifo * pile){
     printf("]\n");
 }
 
-void displayreversefifo(fifo * pile){
+void displayreversepile(pile * pile){
 
   char auxtab[pile->length];
 
@@ -90,18 +90,9 @@ void displayreversefifo(fifo * pile){
 
 }
 
-fifo *copyfifo(fifo *pile, int maxlenght){
-    fifo *res=initpile();
-    int k=0;
-    f_Element *temp=pile->first;
-    while(temp!=NULL || k<maxlenght){
-        thread(res, temp->value);
-        k++;
-    }
-    return res;
-}
 
-char *getElement(fifo *pile, int k){
+
+f_Element *getElement(pile *pile, int k){
     f_Element *temp=pile->first;
     int p=0;
     while(temp!=NULL || p!=k){

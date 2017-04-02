@@ -7,20 +7,23 @@ struct f_Element{
     struct f_Element *next;
 };
 
-typedef struct fifo fifo;
-struct fifo{
+typedef struct pile pile;
+struct pile{
     int length;
     f_Element *first;
 };
 
-fifo *copyfifo(fifo *pile, int maxlenght);
-fifo *initpile();
-void thread(fifo *file, char value);
-char popfirst(fifo *pile);
-void freefifo(fifo *pile);
-void displayfifo(fifo *pile);
-fifo *copyfifo(fifo *pile, int maxlenght);
-char *getElement(fifo *pile, int k);
-void displayreversefifo(fifo * pile);
+/* INIT/FREE */
+pile *initpile();
+void freepile(pile *pile);
+
+/*Element manipulation*/
+void stack(pile *file, char value);
+char pop(pile *pile);
+f_Element *getElement(pile *pile, int k);
+
+/*DISPLAY*/
+void displayreversepile(pile * pile);
+void displaypile(pile *pile);
 
 #endif

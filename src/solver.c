@@ -34,7 +34,7 @@ int choixPertinent(char **colortable, char color, int **connexetab, int n){
 
 }
 
-int firstsolution(char **colortable, int **connexetab,fifo *solution, int n,int *kmax,int *nbiterate) {
+int solver(char **colortable, int **connexetab,pile *solution, int n,int *kmax,int *nbiterate) {
 
 
   int i;
@@ -49,7 +49,7 @@ int firstsolution(char **colortable, int **connexetab,fifo *solution, int n,int 
 
     if (choixPertinent(colortable, colors[i], connexetab,n)) {
 
-      thread(solution,colors[i]);  /* empile */
+      stack(solution,colors[i]);  /* empile */
 
       if(solution->length <= *kmax){
         col = copycolortable(colortable,n);
@@ -62,17 +62,17 @@ int firstsolution(char **colortable, int **connexetab,fifo *solution, int n,int 
         if (wintest(con,n)){
           *kmax = solution->length;
           printf("Solution trouvée : ");
-          displayreversefifo(solution);
+          displayreversepile(solution);
           printf(" en %d coups", *kmax);
           printf(" en %d itérations\n", *nbiterate);
 
 
         }
 
-        else firstsolution(col,con,solution,n, kmax,nbiterate);
+        else solver(col,con,solution,n, kmax,nbiterate);
       }
 
-      popfirst(solution);
+      pop(solution);
 
 
 
@@ -84,6 +84,6 @@ int firstsolution(char **colortable, int **connexetab,fifo *solution, int n,int 
 }
 
 
-/*fifo *solver(char **colortable, int **connexetab, fifo *firstsolution, int kmax, int n){
+/*pile *solver(char **colortable, int **connexetab, pile *firstsolution, int kmax, int n){
 
 }*/

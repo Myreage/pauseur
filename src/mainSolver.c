@@ -8,8 +8,8 @@
 #include "colors.h"
 
 int main(){
-  int n=6;
-  fifo *p = initpile();
+  int n=5;
+  pile *p = initpile();
   int kmax = 1000000;
   int nbiterate=0;
 
@@ -28,7 +28,7 @@ int main(){
 
   printf("===> Recherche de toutes les solutions :\n");
 
-  firstsolution(colortemp,connextemp,p,n,&kmax,&nbiterate);
+  solver(colortemp,connextemp,p,n,&kmax,&nbiterate);
 
 
   displayconnexetab(con, n);
