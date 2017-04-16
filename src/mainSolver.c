@@ -45,6 +45,12 @@ int main(int argc, char *argv[]){
   displayconnexetab(con, n);
   displaycolortable(col, n);
 
+  freecolortable(col,n);
+  freecolortable(colortemp,n);
+  freeconnextab(connextemp,n);
+  freeconnextab(con,n);
+  freepile(p);
+
 
 
 

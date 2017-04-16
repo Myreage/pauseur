@@ -26,10 +26,12 @@ int choixPertinent(char **colortable, char color, int **connexetab, int n){
   for(i=0;i<n;i++){   /* comparaison des tables */
     for(j=0;j<n;j++){
       if(aux[i][j] != connexetab[i][j]){
+        freeconnextab(aux,n);
         return 1;        /*s'il y a une modif, ok*/
       }
     }
   }
+  freeconnextab(aux,n);
   return 0; /* sinon, pas pertinent */
 
 }
@@ -70,6 +72,9 @@ int solver(char **colortable, int **connexetab,pile *solution, int n,int *kmax,i
         }
 
         else solver(col,con,solution,n, kmax,nbiterate);
+
+        freeconnextab(con,n);
+        freecolortable(col,n);
       }
 
       pop(solution);
@@ -82,8 +87,3 @@ int solver(char **colortable, int **connexetab,pile *solution, int n,int *kmax,i
 
 
 }
-
-
-/*pile *solver(char **colortable, int **connexetab, pile *firstsolution, int kmax, int n){
-
-}*/

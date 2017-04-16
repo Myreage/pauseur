@@ -4,27 +4,30 @@
 
 
 pile *initpile(){
-    pile *res=malloc(sizeof(pile *));
+    pile *res=malloc(sizeof(*res));
     res->length=0;
     res->first=NULL;
     return res;
 }
 void stack(pile *pile, char value){
-    f_Element *newelt=malloc(sizeof(f_Element *));
 
-    if (newelt==NULL){
-        perror("stack");
-        exit(EXIT_FAILURE);
+    if(pile != NULL ){
+
+      f_Element *newelt=malloc(sizeof(*newelt));
+      newelt->value=value;
+      newelt->next=pile->first;
+
+      pile->first=newelt;
+      pile->length++;
+
+
+
     }
 
-
-    newelt->value=value;
-    if(pile != NULL ) newelt->next=pile->first;
-    else newelt->next = NULL;
+    else exit(1);
 
 
-    pile->length++;
-    pile->first=newelt;
+
 
 }
 
@@ -48,7 +51,7 @@ char pop(pile *pile){
 }
 
 void freepile(pile *pile){
-    while(pile!=NULL){
+    while(pile->first !=NULL){
         pop(pile);
     }
     free(pile);
