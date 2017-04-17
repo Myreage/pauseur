@@ -26,42 +26,54 @@ int choixPertinent(char **colortable, char color, int **connexetab, int n){
   for(i=0;i<n;i++){   /* comparaison des tables */
     for(j=0;j<n;j++){
       if(aux[i][j] != connexetab[i][j]){
+        freeconnextab(aux,n);
         return 1;        /*s'il y a une modif, ok*/
       }
     }
   }
+  freeconnextab(aux,n);
   return 0; /* sinon, pas pertinent */
 
 }
 
-int firstsolution(char **colortable, int **connexetab,fifo *solution, int n) {
+void solver(char **colortable, int **connexetab,pile *solution, int n,int *kmax,int *nbiterate) {
+
 
   int i;
-    char colors[6]={'B','V','R','J','M','G'};
+  *nbiterate = *nbiterate + 1;
+
+  char colors[6]={'B','V','R','J','M','G'};
+  char** col;
+  int** con;
 
   for (i=0; i<6; i++) { /* pour toutes les couleurs possibles */
-    printf("Couleur : %c", colors[i]);
+
 
     if (choixPertinent(colortable, colors[i], connexetab,n)) {
-      printf("%s Choix pertinent %s \n", KGRN, RESET);
-      thread(solution,colors[i]);  /* empile */
 
-      updateconnexetab(colortable, connexetab, colors[i], n);
+      stack(solution,colors[i]);  /* empile */
 
-      switchconnexecolors(colortable, connexetab, colors[i], n);
+      if(solution->length < *kmax){
+        col = copycolortable(colortable,n);
+        con = copyconnexetab(connexetab,n);
 
-      if (wintest(connexetab,n)) return 1;
+        updateconnexetab(col, con, colors[i], n);
 
-      else firstsolution(colortable,connexetab,solution,n);
+        switchconnexecolors(col, con, colors[i], n);
 
+        if (wintest(con,n)){
+          *kmax = solution->length;
+          printf("Solution trouvée : ");
+          displayreversepile(solution);
+          printf(" en %d coups", *kmax);
+          printf(" en %d itérations\n", *nbiterate);
+        }
+        else solver(col,con,solution,n, kmax,nbiterate);
+        freeconnextab(con,n);
+        freecolortable(col,n);
+      }
+
+      pop(solution);
     }
-    else printf("%s Choix non pertinent %s\n",KRED, RESET);
   }
-
-  return 0;
 }
-
-
-/*fifo *solver(char **colortable, int **connexetab, fifo *firstsolution, int kmax, int n){
-
-}*/

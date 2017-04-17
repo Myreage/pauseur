@@ -3,41 +3,37 @@
 #include "pile.h"
 
 
-fifo *initpile(){
-    fifo *res=malloc(sizeof(fifo *));
+pile *initpile(){
+    pile *res=malloc(sizeof(*res));
     res->length=0;
     res->first=NULL;
     return res;
 }
-void thread(fifo *file, char value){
-    f_Element *newelt=malloc(sizeof(f_Element *));
+void stack(pile *pile, char value){
 
-    if (newelt==NULL){
-        perror("thread");
-        exit(EXIT_FAILURE);
+    if(pile != NULL ){
+
+      f_Element *newelt=malloc(sizeof(*newelt));
+      newelt->value=value;
+      newelt->next=pile->first;
+
+      pile->first=newelt;
+      pile->length++;
+
+
+
     }
 
+    else exit(1);
 
-    newelt->value=value;
-    newelt->next=NULL;
-  
 
-    file->length++;
-    if (file->first!=NULL){
-        f_Element *temp=file->first;
-        while (temp->next!=NULL){
-            temp=temp->next;
-        }
-        temp->next=newelt;
-    }
-    else {
-        file->first=newelt;
-    }
+
+
 }
 
-char popfirst(fifo *pile){
+char pop(pile *pile){
     if (pile==NULL){
-        perror("popfirst");
+        perror("pop");
         exit(EXIT_FAILURE);
     }
     int res;
@@ -49,16 +45,18 @@ char popfirst(fifo *pile){
         pile->first=temp->next;
         free(temp);
     }
+
+    pile->length--;
     return res;
 }
 
-void freefifo(fifo *pile){
-    while(pile!=NULL){
-        popfirst(pile);
+void freepile(pile *pile){
+    while(pile->first !=NULL){
+        pop(pile);
     }
     free(pile);
 }
-void displayfifo(fifo * pile){
+void displaypile(pile * pile){
     f_Element* aux = pile->first;
     printf("[  ");
     while(aux != NULL){
@@ -68,18 +66,36 @@ void displayfifo(fifo * pile){
     printf("]\n");
 }
 
-fifo *copyfifo(fifo *pile, int maxlenght){
-    fifo *res=initpile();
-    int k=0;
-    f_Element *temp=pile->first;
-    while(temp!=NULL || k<maxlenght){
-        thread(res, temp->value);
-        k++;
-    }
-    return res;
+void displayreversepile(pile * pile){
+
+  char auxtab[pile->length];
+
+  int i=0;
+
+  f_Element* aux = pile->first;
+
+
+  while(aux != NULL){
+      auxtab[i] = aux->value;
+      aux = aux->next;
+      i++;
+  }
+
+
+  printf("[ ");
+  for(i=i-1;i>=0;i--){
+
+    printf("%c", auxtab[i]);
+  }
+  printf(" ]");
+
+
+
 }
 
-char *getElement(fifo *pile, int k){
+
+
+f_Element *getElement(pile *pile, int k){
     f_Element *temp=pile->first;
     int p=0;
     while(temp!=NULL || p!=k){

@@ -20,11 +20,8 @@ int choixPertinent(char **colortable, char color, int **connexetab, int n);
  * @param connexetab
  * @param solution
  * @param n
- * @return renvoie 1 et stocke la 1ere solution dans la fifo solution, ou 0 si pas de sol
+ * @return renvoie 1 et stocke la 1ere solution dans la pile solution, ou 0 si pas de sol
  * ATTENTION LA FONCTION MODIFIE LES TAB PAR EFFET DE BORD
  * UTILISER DES COPIES LORS DE L'APPEL !
  */
-int firstsolution(char **colortable, int **connexetab,fifo *solution, int n);
-
-
-fifo *solver(char **colortable, int **connexetab, fifo *firstsolution, int kmax, int n);
+void solver(char **colortable, int **connexetab,pile *solution, int n,int *kmax, int *nbiterate);
