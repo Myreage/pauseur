@@ -45,8 +45,6 @@ int main(int argc, char *argv[]){
   solver(colortemp,connextemp,p,n,&kmax,&nbiterate);
 
 
-  displayconnexetab(con, n);
-  displaycolortable(col, n);
 
   freecolortable(col,n);
   freecolortable(colortemp,n);
