@@ -13,16 +13,29 @@ struct pile{
     f_Element *first;
 };
 
-/* INIT/FREE */
+/**
+ * @return Une pile* initialisée
+ */
 pile *initpile();
+
+
+/**
+ * @param pile La pile à free
+ */
 void freepile(pile *pile);
 
-/*Element manipulation*/
+/**
+ * @param pile La pile sur laquelle empiler
+ * @param value La valeur à empiler
+ */
 void stack(pile *file, char value);
-char pop(pile *pile);
-f_Element *getElement(pile *pile, int k);
 
-/*DISPLAY*/
+/**
+ * @param pile La pile à pop
+ */
+char pop(pile *pile);
+
+
 void displayreversepile(pile * pile);
 void displaypile(pile *pile);
 

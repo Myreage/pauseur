@@ -92,15 +92,3 @@ void displayreversepile(pile * pile){
 
 
 }
-
-
-
-f_Element *getElement(pile *pile, int k){
-    f_Element *temp=pile->first;
-    int p=0;
-    while(temp!=NULL || p!=k){
-        temp=temp->next;
-        p++;
-    }
-    return temp;
-}
