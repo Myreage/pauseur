@@ -36,7 +36,8 @@ int choixPertinent(char **colortable, char color, int **connexetab, int n){
 
 }
 
-int solver(char **colortable, int **connexetab,pile *solution, int n,int *kmax,int *nbiterate) {
+
+void solver(char **colortable, int **connexetab,pile *solution, int n,int *kmax,int *nbiterate) {
 
 
   int i;
@@ -61,6 +62,7 @@ int solver(char **colortable, int **connexetab,pile *solution, int n,int *kmax,i
 
         switchconnexecolors(col, con, colors[i], n);
 
+
         if (wintest(con,n)){
           *kmax = solution->length;
           printf("Solution trouvée : ");
@@ -84,6 +86,5 @@ int solver(char **colortable, int **connexetab,pile *solution, int n,int *kmax,i
     }
 
   }
-
 
 }

@@ -6,12 +6,16 @@
 
 #include "datastruct.h"
 #include "colors.h"
+#include <time.h>
 
 int main(int argc, char *argv[]){
   if (argc!=2){
       printf("Executer sous forme ./slvColorflood <tailleMat>\n");
       exit(0);
   }
+  float time;
+  clock_t t1, t2;
+  t1=clock();
 
   int n=atoi(argv[1]);
 
@@ -20,7 +24,6 @@ int main(int argc, char *argv[]){
   pile *p = initpile();
   int kmax = 1000000;
   int nbiterate=0;
-
 
 
   char **col = createcolortable(n);
@@ -50,6 +53,12 @@ int main(int argc, char *argv[]){
   freeconnextab(connextemp,n);
   freeconnextab(con,n);
   freepile(p);
+
+
+  t2=clock();
+  time=(float)(t2-t1)/CLOCKS_PER_SEC;
+  printf("Temps d'execution : %f secondes\n", time);
+
 
 
 
