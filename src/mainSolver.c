@@ -16,7 +16,7 @@ int main(int argc, char *argv[]){
   }
   float time;
   clock_t t1, t2;
-  t1=clock();
+
 
   int n=atoi(argv[1]);
 
@@ -42,16 +42,33 @@ int main(int argc, char *argv[]){
   char **colortemp=copycolortable(col, n);
   int **connextemp=copyconnexetab(con, n);
 
-  NTree tree = newTree(col,0,0);
+  NTree tree = newTree(col,con,0,0);
 
   printf("===> Recherche de toutes les solutions avec le solver simple :\n");
 
+  t1=clock();
+
   solver(colortemp,connextemp,p,n,&kmax,&nbiterate);
+
+  t2=clock();
+
+  time=(float)(t2-t1)/CLOCKS_PER_SEC;
+  printf("Temps d'execution : %f secondes\n", time);
 
   printf("===> Génération de l'arbre des solutions :\n");
 
+  t1=clock();
+
   generateTree(col,con,tree,n);
+
+  t2=clock();
+
   printTree(tree,0);
+
+
+
+  time=(float)(t2-t1)/CLOCKS_PER_SEC;
+  printf("Temps d'execution : %f secondes\n", time);
 
 
 
@@ -60,14 +77,6 @@ int main(int argc, char *argv[]){
   freeconnextab(connextemp,n);
   freeconnextab(con,n);
   freepile(p);
-
-
-  t2=clock();
-  time=(float)(t2-t1)/CLOCKS_PER_SEC;
-  printf("Temps d'execution : %f secondes\n", time);
-
-
-
 
 
   return 0;

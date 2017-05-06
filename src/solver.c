@@ -95,27 +95,68 @@ void generateTree(char **colortable, int **connexetab, NTree tree, int n){
   int i;
   char** col;
   int** con;
+  int k = 0;
+  int h = 0;
+
 
   if(!wintest(connexetab,n)) {
 
     char colors[6] = {'B', 'V', 'R', 'J', 'M', 'G'};
+    col = copycolortable(colortable, n);
+    con = copyconnexetab(connexetab, n);
+
+
+
+
     for (i = 0; i < 6; i++) {
-      if (choixPertinent(colortable, colors[i], connexetab, n)) {
-        col = copycolortable(colortable, n);
-        con = copyconnexetab(connexetab, n);
-
-        updateconnexetab(col, con, colors[i], n);
-        switchconnexecolors(col, con, colors[i], n);
-
-        NTree temptree = newTree(col,wintest(con,n),colors[i]);
-        tree = addChild(tree, temptree);
-
-
-        generateTree(col, con, temptree, n);
-
+      if (choixPertinent(col, colors[i], con, n)) {
+        if (heuristique(col, con, colors[i], n) > h) {
+          h = heuristique(col, con, colors[i], n);
+          k = i;
+        }
       }
     }
-  }
+
+      col = copycolortable(colortable, n);
+      con = copyconnexetab(connexetab, n);
+
+      updateconnexetab(col, con, colors[k], n);
+      switchconnexecolors(col, con, colors[k], n);
+
+      NTree temptree = newTree(col,con,wintest(con,n),colors[k]);
+      tree = addChild(tree, temptree);
+
+
+      generateTree(col, con, temptree, n);
+
+
+    }
 }
+
+
+int heuristique(char **colort, int** connext,char color, int n){
+  int i,j;
+  int** con;
+  char** col;
+  int total;
+
+  col = copycolortable(colort, n);
+  con = copyconnexetab(connext, n);
+
+  updateconnexetab(col, con, color, n);
+  switchconnexecolors(col, con, color, n);
+
+  for(i=0;i<n;i++){
+    for(j=0;j<n;j++){
+      total += con[i][j];
+
+    }
+  }
+
+  return total;
+
+}
+
+
 
 

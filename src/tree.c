@@ -4,10 +4,11 @@
 
 
 
-NTree newTree(char** g, int win, char col){
+NTree newTree(char** g, int** con, int win, char col){
     int i;
     NTree tree = malloc(sizeof(NNode));
     tree->c = g;
+    tree->con = con;
     tree->win = win;
     tree->col = col;
     for(i=0;i<MAXCHILDREN;i++){

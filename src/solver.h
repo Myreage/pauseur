@@ -29,3 +29,5 @@ void solver(char **colortable, int **connexetab,pile *solution, int n,int *kmax,
 
 
 void generateTree(char **colortable, int **connexetab, NTree tree, int n);
+
+int heuristique(char **col, int** con, char color, int n);

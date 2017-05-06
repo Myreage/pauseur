@@ -8,6 +8,7 @@
 
 typedef struct t_ntree {
     char** c;
+    int** con;
     char col;
     int win;
     struct t_narbre *tabChildren[MAXCHILDREN];
@@ -16,7 +17,7 @@ typedef struct t_ntree {
 } NNode, *NTree;
 
 
-NTree newTree(char** g, int win, char col);
+NTree newTree(char** g, int** con, int win, char col);
 NTree addChild(NTree a, NTree child);
 void printTree(NTree a, int p);
 
