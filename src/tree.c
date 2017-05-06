@@ -4,10 +4,12 @@
 
 
 
-NTree newTree(char** g){
+NTree newTree(char** g, int win, char col){
     int i;
     NTree tree = malloc(sizeof(NNode));
     tree->c = g;
+    tree->win = win;
+    tree->col = col;
     for(i=0;i<MAXCHILDREN;i++){
         tree->tabChildren[i] = NULL;
     }
@@ -19,7 +21,7 @@ NTree newTree(char** g){
 
 NTree addChild(NTree a, NTree child){
     if(a->nbChildren == MAXCHILDREN){
-        printf("Too much children !\n");
+        printf("Too many children !\n");
         return a;
     }
     else{
@@ -27,4 +29,19 @@ NTree addChild(NTree a, NTree child){
         a->nbChildren += 1;
     }
     return a;
+}
+
+void printTree(NTree a, int p){
+    int i;
+    if(a != NULL){
+
+        printf("n%d ", p);
+        printf("[label=%c];\n", a->col);
+        if(p != 0){
+            printf("n%d -> n%d;\n", (p-1)/MAXCHILDREN, p);
+        }
+        for(i=0; i<a->nbChildren;i++){
+            printTree(a->tabChildren[i], MAXCHILDREN*p+i+1);
+        }
+    }
 }

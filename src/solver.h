@@ -3,6 +3,7 @@
 
 #include "pile.h"
 #include "datastruct.h"
+#include "tree.h"
 
 
 /**
@@ -25,3 +26,6 @@ int choixPertinent(char **colortable, char color, int **connexetab, int n);
  */
 
 void solver(char **colortable, int **connexetab,pile *solution, int n,int *kmax, int *nbiterate);
+
+
+void generateTree(char **colortable, int **connexetab, NTree tree, int n);

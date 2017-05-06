@@ -6,6 +6,7 @@
 #include "datastruct.h"
 #include "colors.h"
 #include "solver.h"
+#include "tree.h"
 
 #define KRED  "\x1B[31m"
 #define KGRN  "\x1B[32m"
@@ -88,3 +89,33 @@ void solver(char **colortable, int **connexetab,pile *solution, int n,int *kmax,
   }
 
 }
+
+void generateTree(char **colortable, int **connexetab, NTree tree, int n){
+
+  int i;
+  char** col;
+  int** con;
+
+  if(!wintest(connexetab,n)) {
+
+    char colors[6] = {'B', 'V', 'R', 'J', 'M', 'G'};
+    for (i = 0; i < 6; i++) {
+      if (choixPertinent(colortable, colors[i], connexetab, n)) {
+        col = copycolortable(colortable, n);
+        con = copyconnexetab(connexetab, n);
+
+        updateconnexetab(col, con, colors[i], n);
+        switchconnexecolors(col, con, colors[i], n);
+
+        NTree temptree = newTree(col,wintest(con,n),colors[i]);
+        tree = addChild(tree, temptree);
+
+
+        generateTree(col, con, temptree, n);
+
+      }
+    }
+  }
+}
+
+

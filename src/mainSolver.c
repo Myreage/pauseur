@@ -3,6 +3,7 @@
 
 #include "solver.h"
 #include "pile.h"
+#include "tree.h"
 
 #include "datastruct.h"
 #include "colors.h"
@@ -26,6 +27,7 @@ int main(int argc, char *argv[]){
   int nbiterate=0;
 
 
+
   char **col = createcolortable(n);
   int **con = createconnexetab(n);
 
@@ -40,9 +42,16 @@ int main(int argc, char *argv[]){
   char **colortemp=copycolortable(col, n);
   int **connextemp=copyconnexetab(con, n);
 
-  printf("===> Recherche de toutes les solutions :\n");
+  NTree tree = newTree(col,0,0);
+
+  printf("===> Recherche de toutes les solutions avec le solver simple :\n");
 
   solver(colortemp,connextemp,p,n,&kmax,&nbiterate);
+
+  printf("===> Génération de l'arbre des solutions :\n");
+
+  generateTree(col,con,tree,n);
+  printTree(tree,0);
 
 
 
