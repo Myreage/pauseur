@@ -26,7 +26,6 @@ int main(int argc, char *argv[]){
   int nbiterate=0;
 
 
-
   char **col = createcolortable(n);
   int **con = createconnexetab(n);
 
@@ -55,9 +54,11 @@ int main(int argc, char *argv[]){
   freeconnextab(con,n);
   freepile(p);
 
+
   t2=clock();
   time=(float)(t2-t1)/CLOCKS_PER_SEC;
   printf("Temps d'execution : %f secondes\n", time);
+
 
 
 
