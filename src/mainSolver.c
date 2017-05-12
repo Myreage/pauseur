@@ -26,6 +26,8 @@ int main(int argc, char *argv[]){
   int kmax = 1000000;
   int nbiterate=0;
 
+  int hmax = 0;
+
 
 
   char **col = createcolortable(n);
@@ -43,6 +45,7 @@ int main(int argc, char *argv[]){
   int **connextemp=copyconnexetab(con, n);
 
   NTree tree = newTree(col,con,0,0);
+  NTree arbremax = tree;
 
   printf("===> Recherche de toutes les solutions avec le solver simple :\n");
 
@@ -59,11 +62,16 @@ int main(int argc, char *argv[]){
 
   t1=clock();
 
-  generateTree(col,con,tree,n);
+
+
+  generateTree(tree,arbremax,col,con,n,2,&hmax);
+
 
   t2=clock();
 
   printTree(tree,0);
+  printf("---------\n");
+  printTree(arbremax,0);
 
 
 

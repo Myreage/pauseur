@@ -12,6 +12,8 @@
 #define KGRN  "\x1B[32m"
 #define RESET "\x1B[0m"
 
+
+
 int choixPertinent(char **colortable, char color, int **connexetab, int n){
   int i,j;
   int **aux = createconnexetab(n);
@@ -90,66 +92,57 @@ void solver(char **colortable, int **connexetab,pile *solution, int n,int *kmax,
 
 }
 
-void generateTree(char **colortable, int **connexetab, NTree tree, int n){
+void generateTree(NTree tree, NTree arbremax, char **colortable, int **connexetab, int n, int depth, int *hmax){
 
-  int i;
-  char** col;
-  int** con;
-  int k = 0;
-  int h = 0;
+    if(depth && !wintest(connexetab,n) ){
+        char colors[6]={'B','V','R','J','M','G'};
+        char** col;
+        int** con;
+        int i;
+        NTree child = NULL;
+
+        for(i=0;i<6;i++){
+            if(choixPertinent(colortable,colors[i],connexetab,n)){
+                col = copycolortable(colortable, n);
+                con = copyconnexetab(connexetab, n);
+                updateconnexetab(col, con, colors[i], n);
+                switchconnexecolors(col, con, colors[i], n);
+
+                child = newTree(col,con,wintest(con,n),colors[i]);
+                tree = addChild(tree,child);
+
+                generateTree(child,arbremax,col,con,n,depth-1,hmax);
 
 
-  if(!wintest(connexetab,n)) {
-
-    char colors[6] = {'B', 'V', 'R', 'J', 'M', 'G'};
-    col = copycolortable(colortable, n);
-    con = copyconnexetab(connexetab, n);
-
-
-
-
-    for (i = 0; i < 6; i++) {
-      if (choixPertinent(col, colors[i], con, n)) {
-        if (heuristique(col, con, colors[i], n) > h) {
-          h = heuristique(col, con, colors[i], n);
-          k = i;
+            }
         }
-      }
+    }
+    else{
+
+        if(heuristique(connexetab,n) > *hmax) {
+            *hmax = heuristique(connexetab, n);
+            arbremax = tree;
+            printTree(arbremax,0);
+            printf("***\n");
+        }
     }
 
-      col = copycolortable(colortable, n);
-      con = copyconnexetab(connexetab, n);
+    /*if(!wintest(arbremax->con,n)){
+        *hmax = 0;
+        generateTree(arbremax,NULL,colortable,connexetab,n,depth,hmax);
+    }*/
 
-      updateconnexetab(col, con, colors[k], n);
-      switchconnexecolors(col, con, colors[k], n);
-
-      NTree temptree = newTree(col,con,wintest(con,n),colors[k]);
-      tree = addChild(tree, temptree);
-
-
-      generateTree(col, con, temptree, n);
-
-
-    }
 }
 
 
-int heuristique(char **colort, int** connext,char color, int n){
+int heuristique(int** connext, int n){
   int i,j;
-  int** con;
-  char** col;
-  int total;
+  int total=0;
 
-  col = copycolortable(colort, n);
-  con = copyconnexetab(connext, n);
-
-  updateconnexetab(col, con, color, n);
-  switchconnexecolors(col, con, color, n);
 
   for(i=0;i<n;i++){
     for(j=0;j<n;j++){
-      total += con[i][j];
-
+        total+=connext[i][j];
     }
   }
 

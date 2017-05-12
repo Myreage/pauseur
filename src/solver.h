@@ -28,6 +28,6 @@ int choixPertinent(char **colortable, char color, int **connexetab, int n);
 void solver(char **colortable, int **connexetab,pile *solution, int n,int *kmax, int *nbiterate);
 
 
-void generateTree(char **colortable, int **connexetab, NTree tree, int n);
+void generateTree(NTree tree, NTree arbremax, char **colortable, int **connexetab, int n, int depth, int* hmax);
 
-int heuristique(char **col, int** con, char color, int n);
+int heuristique(int** con, int n);
