@@ -92,7 +92,7 @@ void solver(char **colortable, int **connexetab,pile *solution, int n,int *kmax,
 
 }
 
-void generateTree(NTree tree, NTree arbremax, char **colortable, int **connexetab, int n, int depth, int *hmax){
+void aux(NTree tree, char **colortable, int **connexetab, int n, int depth, int *hmax){
 
     if(depth && !wintest(connexetab,n) ){
         char colors[6]={'B','V','R','J','M','G'};
@@ -111,28 +111,65 @@ void generateTree(NTree tree, NTree arbremax, char **colortable, int **connexeta
                 child = newTree(col,con,wintest(con,n),colors[i]);
                 tree = addChild(tree,child);
 
-                generateTree(child,arbremax,col,con,n,depth-1,hmax);
 
-
+                aux(child, col, con, n, depth - 1, hmax);
             }
-        }
-    }
-    else{
-
-        if(heuristique(connexetab,n) > *hmax) {
-            *hmax = heuristique(connexetab, n);
-            arbremax = tree;
-            printTree(arbremax,0);
-            printf("***\n");
         }
     }
 
     /*if(!wintest(arbremax->con,n)){
         *hmax = 0;
-        generateTree(arbremax,NULL,colortable,connexetab,n,depth,hmax);
+        aux(arbremax,NULL,colortable,connexetab,n,depth,hmax);
     }*/
 
 }
+
+void solverTree(NTree tree, char **colortable, int **connexetab, int n, int depth){
+    char** col;
+    int** con;
+    int hmax = 0;
+    pile *res = initpile();
+
+
+
+    col = copycolortable(colortable, n);
+    con = copyconnexetab(connexetab, n);
+
+    while(!wintest(con,n)) {
+        aux(tree, col, con, n, depth, &hmax);
+
+        updateconnexetab(col, con, maxNode(tree, n)->col, n);
+        switchconnexecolors(col, con, maxNode(tree, n)->col, n);
+        stack(res,maxNode(tree, n)->col);
+
+        tree = newTree(col,con,0,0);
+    }
+
+    displayreversepile(res);
+
+
+}
+
+NTree maxNode(NTree tree, int n){
+    int max = 0;
+    int i;
+    int imax;
+    if(tree->nbChildren == 0){
+        return tree;
+    }
+    else{
+        for(i=0;i<tree->nbChildren;i++){
+            if(heuristique(maxNode(tree->tabChildren[i],n)->con,n) > max){
+                imax = i;
+                max = heuristique(maxNode(tree->tabChildren[i],n)->con,n);
+            }
+        }
+        return tree->tabChildren[imax];
+
+    }
+}
+
+
 
 
 int heuristique(int** connext, int n){

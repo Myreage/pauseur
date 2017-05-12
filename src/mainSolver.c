@@ -26,7 +26,7 @@ int main(int argc, char *argv[]){
   int kmax = 1000000;
   int nbiterate=0;
 
-  int hmax = 0;
+
 
 
 
@@ -45,7 +45,7 @@ int main(int argc, char *argv[]){
   int **connextemp=copyconnexetab(con, n);
 
   NTree tree = newTree(col,con,0,0);
-  NTree arbremax = tree;
+
 
   printf("===> Recherche de toutes les solutions avec le solver simple :\n");
 
@@ -64,14 +64,13 @@ int main(int argc, char *argv[]){
 
 
 
-  generateTree(tree,arbremax,col,con,n,2,&hmax);
+  solverTree(tree,col,con,n,7);
 
 
   t2=clock();
 
-  printTree(tree,0);
-  printf("---------\n");
-  printTree(arbremax,0);
+
+
 
 
 

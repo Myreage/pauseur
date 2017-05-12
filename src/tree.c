@@ -20,6 +20,7 @@ NTree newTree(char** g, int** con, int win, char col){
 }
 
 
+
 NTree addChild(NTree a, NTree child){
     if(a->nbChildren == MAXCHILDREN){
         printf("Too many children !\n");
@@ -46,3 +47,4 @@ void printTree(NTree a, int p){
         }
     }
 }
+

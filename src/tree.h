@@ -11,7 +11,7 @@ typedef struct t_ntree {
     int** con;
     char col;
     int win;
-    struct t_narbre *tabChildren[MAXCHILDREN];
+    struct t_ntree *tabChildren[MAXCHILDREN];
     int nbChildren;
 
 } NNode, *NTree;
