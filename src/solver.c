@@ -43,6 +43,7 @@ void solver(char **colortable, int **connexetab,pile *solution, int n,int *kmax,
   *nbiterate = *nbiterate + 1;
 
   char colors[6]={'B','V','R','J','M','G'};
+
   char** col;
   int** con;
 

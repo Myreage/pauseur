@@ -60,10 +60,10 @@ int main(int argc, char *argv[]){
                 gamestate=HelpPage(screen);
                 break;
             case 3:
-                gamestate=VictoryScreen(screen);
+                gamestate=VictoryScreen(screen, n);
                 break;
             case 4:
-                gamestate=LooseScreen(screen);
+                gamestate=LooseScreen(screen, colorcase, boardS, squareS, off, n);
                 break;
             case 5:
                 exitcond=1;

@@ -72,13 +72,12 @@ int GameLoop(SDL_Surface *screen, int n, char color, int kmax, char **colortable
  * @param screen Ecran
  * @return Renvoie le gamestate
  **/
-int LooseScreen(SDL_Surface *screen);
-
+ int LooseScreen(SDL_Surface *screen,SDL_Surface *colorcase, int boardS, int squareS, int off,int n);
 /**
  * @param screen Ecran
  * @return Renvoie le gamestate
  **/
-int VictoryScreen(SDL_Surface *screen);
+int VictoryScreen(SDL_Surface *screen,int n);
 
 
 /**
