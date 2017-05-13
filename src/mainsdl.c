@@ -22,7 +22,7 @@
 
 int main(int argc, char *argv[]){
     if (argc<2){
-        printf("Deux arguments nécessaires : Taille de la Grille et Nombre de Coups\n");
+        printf("Deux arguments nécessaires : Taille de la Grille et Profondeur de Recherche du Solveur\n");
         exit(0);
     }
 
@@ -66,7 +66,7 @@ int main(int argc, char *argv[]){
                 }
                 else {
                   SearchingSolution(screen);
-                  solution=solverTree(tree, colortable, connexetab, n, 7);
+                  solution=solverTree(tree, colortable, connexetab, n, kmax);
                   solved=true;
                 }
                 break;
@@ -94,6 +94,9 @@ int main(int argc, char *argv[]){
 
                 updateconnexetab(colortable, connexetab, colortable[0][0], n);
                 gamestate=1;
+                solved=false;
+                freeTree(tree);
+                NTree tree = newTree(colortable, connexetab,0,0);
                 break;
             default:
                 exitcond=1;

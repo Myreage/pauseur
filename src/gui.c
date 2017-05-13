@@ -276,7 +276,8 @@ char HomePage(SDL_Surface *screen){
 
     menupos.y=screen->h/10;
     TextOnScreenCenterX(screen, "Colorflood", FONT_PATH, 'W', 60, menupos);
-
+    menupos.y+=65;
+    TextOnScreenCenterX(screen,"-- Les Pauseurs --",FONT_PATH, 'W', 15, menupos);
 
     menupos.y=screen->h*STARTPOS;
 
@@ -520,18 +521,16 @@ int LooseScreen(SDL_Surface *screen){
     BlackScreen(screen);
 
     SDL_Event event;
-    srand(time(NULL));
 
     int gamestate=0;
-    char color[6]={'R','B','V','G','M','J'};
     while(gamestate==0){
         pos.x=screen->w*TITLEPOS;
         pos.y=screen->h/10;
-        TextOnScreen(screen, "Defaite !", FONT_PATH, color[rand()%6], 40,pos);
+        TextOnScreenCenterX(screen, "Defaite !", FONT_PATH, 'R', 40,pos);
         pos.y=screen->h/2;
-        TextOnScreen(screen, "r pour rejouer", FONT_PATH, 'V', 40,pos);
+        TextOnScreenCenterX(screen, "r pour rejouer", FONT_PATH, 'W', 40,pos);
         pos.y=3*screen->h/4;
-        TextOnScreen(screen, "q pour quitter", FONT_PATH, 'R', 40,pos);
+        TextOnScreenCenterX(screen, "q pour quitter", FONT_PATH, 'W', 40,pos);
         SDL_WaitEvent(&event);
         switch(event.type) {
             case SDL_KEYDOWN :
@@ -564,18 +563,15 @@ int VictoryScreen(SDL_Surface *screen){
     BlackScreen(screen);
 
     SDL_Event event;
-    srand(time(NULL));
 
     int gamestate=0;
-    char color[6]={'R','B','V','G','M','J'};
     while(gamestate==0){
-      pos.x=screen->w*TITLEPOS;
       pos.y=screen->h/10;
-      TextOnScreen(screen, "Victoire !", FONT_PATH, color[rand()%6], 40,pos);
+      TextOnScreenCenterX(screen, "Victoire !", FONT_PATH,'V', 40,pos);
       pos.y=screen->h/2;
-      TextOnScreen(screen, "r pour rejouer", FONT_PATH, 'V', 40,pos);
+      TextOnScreenCenterX(screen, "r pour rejouer", FONT_PATH, 'W', 40,pos);
       pos.y=3*screen->h/4;
-      TextOnScreen(screen, "q pour quitter", FONT_PATH, 'R', 40,pos);
+      TextOnScreenCenterX(screen, "q pour quitter", FONT_PATH, 'W', 40,pos);
         SDL_WaitEvent(&event);
         switch(event.type) {
             case SDL_KEYDOWN :
