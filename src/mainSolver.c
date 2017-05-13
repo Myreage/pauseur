@@ -17,7 +17,7 @@ int main(int argc, char *argv[]){
       printf("-s : solveur simple bruteforce\n");
       printf("-t : solveur avec arbre/heuristique\n");
       printf("-a : lancer les deux algorithmes\n");
-      printf("<depth> : mettre à 0 si le solveur heuristique n'est pas utilisé. Valeur conseillée : tailleMat\n");
+      printf("<depth> : mettre à 0 si le solveur heuristique n'est pas utilisé\n");
       exit(0);
   }
   float time;
@@ -50,7 +50,7 @@ int main(int argc, char *argv[]){
   char **colortemp=copycolortable(col, n);
   int **connextemp=copyconnexetab(con, n);
 
-  NTree tree = newTree(col,con,0,0);
+
 
     if(!strcmp(argv[1],"-s")){
 
@@ -75,7 +75,7 @@ int main(int argc, char *argv[]){
         t1 = clock();
 
 
-        solverTree(tree, col, con, n, atoi(argv[3]));
+        solverTree(col, con, n, atoi(argv[3]));
 
 
         t2 = clock();
@@ -102,7 +102,7 @@ int main(int argc, char *argv[]){
         t1 = clock();
 
 
-        solverTree(tree, col, con, n, atoi(argv[3]));
+        solverTree(col, con, n, atoi(argv[3]));
 
 
         t2 = clock();

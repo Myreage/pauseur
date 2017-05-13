@@ -32,6 +32,6 @@ void aux(NTree tree, char **colortable, int **connexetab, int n, int depth, int*
 
 NTree maxNode(NTree tree, int n);
 
-void solverTree(NTree tree, char **colortable, int **connexetab, int n, int depth);
+void solverTree(char **colortable, int **connexetab, int n, int depth);
 
 int heuristique(int** con, int n);

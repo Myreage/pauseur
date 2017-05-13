@@ -99,10 +99,12 @@ void aux(NTree tree, char **colortable, int **connexetab, int n, int depth, int 
         char** col;
         int** con;
         int i;
-        NTree child = NULL;
+
+        NTree child;
 
         for(i=0;i<6;i++){
             if(choixPertinent(colortable,colors[i],connexetab,n)){
+
                 col = copycolortable(colortable, n);
                 con = copyconnexetab(connexetab, n);
                 updateconnexetab(col, con, colors[i], n);
@@ -116,36 +118,43 @@ void aux(NTree tree, char **colortable, int **connexetab, int n, int depth, int 
             }
         }
     }
-
-    /*if(!wintest(arbremax->con,n)){
-        *hmax = 0;
-        aux(arbremax,NULL,colortable,connexetab,n,depth,hmax);
-    }*/
-
 }
 
-void solverTree(NTree tree, char **colortable, int **connexetab, int n, int depth){
+void solverTree(char **colortable, int **connexetab, int n, int depth){
     char** col;
     int** con;
+    int i;
     int hmax = 0;
     pile *res = initpile();
-
+    NTree tree = newTree(colortable,connexetab,0,0);
 
 
     col = copycolortable(colortable, n);
     con = copyconnexetab(connexetab, n);
 
+
+
     while(!wintest(con,n)) {
+        initTree(tree,col,con,0,0,n);
         aux(tree, col, con, n, depth, &hmax);
 
         updateconnexetab(col, con, maxNode(tree, n)->col, n);
         switchconnexecolors(col, con, maxNode(tree, n)->col, n);
         stack(res,maxNode(tree, n)->col);
-
-        tree = newTree(col,con,0,0);
     }
 
+    printf("Solution trouvée : ");
     displayreversepile(res);
+    printf(" en %d coups\n", res->length);
+
+    freepile(res);
+    freecolortable(col,n);
+    freeconnextab(con,n);
+    freeTree(tree,n);
+
+
+
+
 
 
 }

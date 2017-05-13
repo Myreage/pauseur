@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "datastruct.h"
 
 #ifndef PAUSEUR_TREE_H
 #define PAUSEUR_TREE_H
@@ -20,5 +21,7 @@ typedef struct t_ntree {
 NTree newTree(char** g, int** con, int win, char col);
 NTree addChild(NTree a, NTree child);
 void printTree(NTree a, int p);
+void freeTree(NTree a, int n);
+void initTree(NTree tree, char** g, int** con, int win, char col,int n );
 
 #endif //PAUSEUR_TREE_H
