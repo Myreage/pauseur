@@ -112,12 +112,15 @@ void aux(NTree tree, char **colortable, int **connexetab, int n, int depth, int 
 
                 child = newTree(col,con,wintest(con,n),colors[i]);
                 tree = addChild(tree,child);
-
-
                 aux(child, col, con, n, depth - 1, hmax);
+
+
             }
+
         }
+
     }
+
 }
 
 void solverTree(char **colortable, int **connexetab, int n, int depth){
