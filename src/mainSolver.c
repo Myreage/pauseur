@@ -1,24 +1,31 @@
+
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 #include "solver.h"
 #include "pile.h"
-#include "tree.h"
+
 
 #include "datastruct.h"
 #include "colors.h"
 #include <time.h>
 
 int main(int argc, char *argv[]){
-  if (argc!=2){
-      printf("Executer sous forme ./slvColorflood <tailleMat>\n");
+  if (argc!=4){
+      printf("Executer sous forme ./slvColorflood [-s;-t;-a] <tailleMat> <depth> \n");
+      printf("------------------------------------------------------------------ \n");
+      printf("-s : solveur simple bruteforce\n");
+      printf("-t : solveur avec arbre/heuristique\n");
+      printf("-a : lancer les deux algorithmes\n");
+      printf("<depth> : mettre à 0 si le solveur heuristique n'est pas utilisé\n");
       exit(0);
   }
   float time;
   clock_t t1, t2;
 
 
-  int n=atoi(argv[1]);
+  int n=atoi(argv[2]);
 
 
 
@@ -44,38 +51,82 @@ int main(int argc, char *argv[]){
   char **colortemp=copycolortable(col, n);
   int **connextemp=copyconnexetab(con, n);
 
-  NTree tree = newTree(col,con,0,0);
 
 
-  printf("===> Recherche de toutes les solutions avec le solver simple :\n");
-
-  t1=clock();
-
-  solver(colortemp,connextemp,p,n,&kmax,&nbiterate);
-
-  t2=clock();
-
-  time=(float)(t2-t1)/CLOCKS_PER_SEC;
-  printf("Temps d'execution : %f secondes\n", time);
-
-  printf("===> Génération de l'arbre des solutions :\n");
-
-  t1=clock();
+    if(!strcmp(argv[1],"-s")){
 
 
+        printf("===> Recherche de toutes les solutions avec le solver simple :\n");
 
-  solverTree(tree,col,con,n,7);
+        t1 = clock();
+
+        solver(colortemp, connextemp, p, n, &kmax, &nbiterate);
+
+        t2 = clock();
+
+        time = (float) (t2 - t1) / CLOCKS_PER_SEC;
+        printf("Temps d'execution : %f secondes\n", time);
+
+    }
+
+    else if(!strcmp(argv[1],"-t")) {
+
+        printf("===> Génération de l'arbre des solutions :\n");
+
+        t1 = clock();
 
 
-  t2=clock();
+        pile *pile=solverTree(col, con, n, atoi(argv[3]));
+
+        t2 = clock();
+        printf("Solution trouvée : ");
+        displayreversepile(pile);
+        printf(" en %d coups\n", pile->length);
+
+        time = (float) (t2 - t1) / CLOCKS_PER_SEC;
+        printf("Temps d'execution : %f secondes\n", time);
+        free(pile);
+
+    }
+
+    else if(!strcmp(argv[1],"-a")){
+        printf("===> Recherche de toutes les solutions avec le solver simple :\n");
+
+        t1 = clock();
+
+        solver(colortemp, connextemp, p, n, &kmax, &nbiterate);
+
+        t2 = clock();
+
+        time = (float) (t2 - t1) / CLOCKS_PER_SEC;
+        printf("Temps d'execution : %f secondes\n", time);
+
+        printf("===> Génération de l'arbre des solutions :\n");
+
+        t1 = clock();
 
 
+        pile *pile=solverTree(col, con, n, atoi(argv[3]));
 
+        t2 = clock();
+        printf("Solution trouvée : ");
+        displayreversepile(pile);
+        printf(" en %d coups\n", pile->length);
 
+        time = (float) (t2 - t1) / CLOCKS_PER_SEC;
+        printf("Temps d'execution : %f secondes\n", time);
+        free(pile);
+    }
 
-
-  time=(float)(t2-t1)/CLOCKS_PER_SEC;
-  printf("Temps d'execution : %f secondes\n", time);
+    else{
+      printf("Executer sous forme ./slvColorflood [-s;-t;-a] <tailleMat> <depth> \n");
+      printf("------------------------------------------------------------------ \n");
+      printf("-s : solveur simple bruteforce\n");
+      printf("-t : solveur avec arbre/heuristique\n");
+      printf("-a : lancer les deux algorithmes\n");
+      printf("<depth> : mettre à 0 si le solveur heuristique n'est pas utilisé\n");
+      exit(1);
+    }
 
 
 

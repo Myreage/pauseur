@@ -6,7 +6,6 @@
 #include "datastruct.h"
 #include "colors.h"
 #include "solver.h"
-#include "tree.h"
 
 #define KRED  "\x1B[31m"
 #define KGRN  "\x1B[32m"
@@ -99,10 +98,12 @@ void aux(NTree tree, char **colortable, int **connexetab, int n, int depth, int 
         char** col;
         int** con;
         int i;
-        NTree child = NULL;
+
+        NTree child;
 
         for(i=0;i<6;i++){
             if(choixPertinent(colortable,colors[i],connexetab,n)){
+
                 col = copycolortable(colortable, n);
                 con = copyconnexetab(connexetab, n);
                 updateconnexetab(col, con, colors[i], n);
@@ -110,45 +111,43 @@ void aux(NTree tree, char **colortable, int **connexetab, int n, int depth, int 
 
                 child = newTree(col,con,wintest(con,n),colors[i]);
                 tree = addChild(tree,child);
-
-
                 aux(child, col, con, n, depth - 1, hmax);
-            }
-        }
-    }
 
-    /*if(!wintest(arbremax->con,n)){
-        *hmax = 0;
-        aux(arbremax,NULL,colortable,connexetab,n,depth,hmax);
-    }*/
+
+            }
+
+          }
+
+    }
 
 }
 
-pile *solverTree(NTree tree, char **colortable, int **connexetab, int n, int depth){
+pile *solverTree(char **colortable, int **connexetab, int n, int depth){
     char** col;
     int** con;
     int hmax = 0;
     pile *res = initpile();
-
+    NTree tree = newTree(colortable,connexetab,0,0);
 
 
     col = copycolortable(colortable, n);
     con = copyconnexetab(connexetab, n);
 
+
+
     while(!wintest(con,n)) {
+        initTree(tree,col,con,0,0,n);
         aux(tree, col, con, n, depth, &hmax);
 
         updateconnexetab(col, con, maxNode(tree, n)->col, n);
         switchconnexecolors(col, con, maxNode(tree, n)->col, n);
         stack(res,maxNode(tree, n)->col);
-
-        tree = newTree(col,con,0,0);
     }
+
     freecolortable(col,n);
     freeconnextab(con,n);
-    return (res);
-
-
+    freeTree(tree,n);
+    return res;
 }
 
 NTree maxNode(NTree tree, int n){

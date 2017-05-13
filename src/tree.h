@@ -1,8 +1,7 @@
+
 #include <stdio.h>
 #include <stdlib.h>
-
-#ifndef PAUSEUR_TREE_H
-#define PAUSEUR_TREE_H
+#include "datastruct.h"
 
 #define MAXCHILDREN 6
 
@@ -20,5 +19,5 @@ typedef struct t_ntree {
 NTree newTree(char** g, int** con, int win, char col);
 NTree addChild(NTree a, NTree child);
 void printTree(NTree a, int p);
-
-#endif //PAUSEUR_TREE_H
+void freeTree(NTree a, int n);
+void initTree(NTree tree, char** g, int** con, int win, char col,int n );

@@ -6,7 +6,6 @@
 #include "datastruct.h"
 #include "colors.h"
 #include "solver.h"
-#include "tree.h"
 
 #include <SDL/SDL.h>
 #include <SDL/SDL_ttf.h>
@@ -53,7 +52,6 @@ int main(int argc, char *argv[]){
 
     pile *solution=initpile();
     bool solved=false;
-    NTree tree = newTree(colortable, connexetab,0,0);
 
     while(!exitcond){
         switch(gamestate){
@@ -66,7 +64,7 @@ int main(int argc, char *argv[]){
                 }
                 else {
                   SearchingSolution(screen);
-                  solution=solverTree(tree, colortable, connexetab, n, kmax);
+                  solution=solverTree(colortable, connexetab, n, kmax);
                   solved=true;
                 }
                 break;
@@ -95,8 +93,6 @@ int main(int argc, char *argv[]){
                 updateconnexetab(colortable, connexetab, colortable[0][0], n);
                 gamestate=1;
                 solved=false;
-                freeTree(tree);
-                NTree tree = newTree(colortable, connexetab,0,0);
                 break;
             default:
                 exitcond=1;
@@ -104,7 +100,7 @@ int main(int argc, char *argv[]){
         }
     }
 
-
+    freepile(solution);
     SDL_FreeSurface(colorcase);
     SDL_FreeSurface(screen);
     freecolortable(colortable,n);

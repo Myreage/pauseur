@@ -19,6 +19,37 @@ NTree newTree(char** g, int** con, int win, char col){
     return tree;
 }
 
+void initTree(NTree tree, char** g, int** con, int win, char col, int n){
+    int i;
+    tree->c = g;
+    tree->con = con;
+    tree->win = win;
+    tree->col = col;
+    for(i=0;i<tree->nbChildren;i++){
+        freeTree(tree->tabChildren[i],n);
+        tree->tabChildren[i] = NULL;
+    }
+    tree->nbChildren = 0;
+
+
+}
+
+void freeTree(NTree a,int n) {
+    int i;
+
+    if (a->nbChildren == 0) {
+        freeconnextab(a->con,n);
+        freecolortable(a->c,n);
+        free(a);
+    }
+    else {
+        for (i = 0; i < a->nbChildren; i++) {
+            freeTree(a->tabChildren[i],n);
+        }
+        free(a);
+    }
+}
+
 
 
 NTree addChild(NTree a, NTree child){
@@ -47,4 +78,3 @@ void printTree(NTree a, int p){
         }
     }
 }
-
