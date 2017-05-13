@@ -65,12 +65,9 @@ int main(int argc, char *argv[]){
                   gamestate=GameLoop(screen,n,color,solution->length,colortable,connexetab,colorcase);
                 }
                 else {
-                  char **colortemp=copycolortable(colortable, n);
-                  int **connextemp=copyconnexetab(connexetab, n);
-                  solution=solverTree(tree, colortemp, connextemp, n, n);
+                  SearchingSolution(screen);
+                  solution=solverTree(tree, colortable, connexetab, n, 7);
                   solved=true;
-                  freecolortable(colortemp,n);
-                  freeconnextab(connextemp,n);
                 }
                 break;
             case 2:

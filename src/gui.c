@@ -29,10 +29,10 @@
 #define TITLEPOS (float)38/100
 
 /** Position verticale bouton Start **/
-#define STARTPOS (float)20/100
+#define STARTPOS (float)40/100
 
 /** Position verticale bouton Controls **/
-#define CONTROLSPOS (float)45/100
+#define CONTROLSPOS (float)60/100
 
 /** Position verticale bouton Quit **/
 #define QUITPOS (float)80/100
@@ -85,7 +85,6 @@ SDL_Surface *initscreen(){
 
     return screen;
 }
-
 
 
 
@@ -160,6 +159,55 @@ void TextOnScreen(SDL_Surface *screen, char *msg, char *font, char color, int fo
     SDL_FreeSurface(txt);
 }
 
+void TextOnScreenCenterX(SDL_Surface *screen, char *msg, char *font, char color, int fontsize, SDL_Rect pos){
+    TTF_Font *txtfont;
+    SDL_Surface *txt;
+    txtfont=TTF_OpenFont(font,fontsize);
+
+    if (txtfont==NULL){
+        perror("Invalid Font");
+        exit(EXIT_FAILURE);
+    }
+    SDL_Color colorR = {255,0,0,0};
+    SDL_Color colorG = {128,128,128,0};
+    SDL_Color colorV = {0,204,0,0};
+    SDL_Color colorB = {0,0,255,0};
+    SDL_Color colorJ = {255,255,0,0};
+    SDL_Color colorM = {102,51,0,0};
+    SDL_Color black={0,0,0,0};
+    SDL_Color white={255,255,255,0};
+
+    switch (color) {
+        case 'R' :
+            txt=TTF_RenderText_Shaded(txtfont, msg, colorR,black);
+            break;
+        case 'G' :
+            txt=TTF_RenderText_Shaded(txtfont, msg, colorG,black);
+            break;
+        case 'V' :
+            txt=TTF_RenderText_Shaded(txtfont, msg, colorV,black);
+            break;
+        case 'B' :
+            txt=TTF_RenderText_Shaded(txtfont, msg, colorB,black);
+            break;
+        case 'J' :
+            txt=TTF_RenderText_Shaded(txtfont, msg, colorJ,black);
+            break;
+        case 'M' :
+            txt=TTF_RenderText_Shaded(txtfont, msg, colorM,black);
+            break;
+        case 'W' :
+            txt=TTF_RenderText_Shaded(txtfont, msg, white, black);
+        default :
+            break;
+    }
+    pos.x=screen->w/2 -txt->w/2;
+    SDL_BlitSurface(txt, NULL, screen, &pos);
+    SDL_Flip(screen);
+    TTF_CloseFont(txtfont);
+    SDL_FreeSurface(txt);
+}
+
 
 void BlackScreen(SDL_Surface *screen) {
     SDL_FillRect(screen,NULL,SDL_MapRGB(screen->format, 0, 0, 0));
@@ -176,33 +224,32 @@ int HelpPage(SDL_Surface *screen) {
     while(!((BackToGame.type==SDL_KEYDOWN) && (BackToGame.key.keysym.sym==SDLK_r)))    {
 
 
-        helppos.x=screen->w*HELPPOSW;
-        helppos.y=64;
-        TextOnScreen(screen, "Pour jouer, pressez ", FONT_PATH, 'W', 25, helppos);
+        helppos.y=44;
+        TextOnScreenCenterX(screen, "Pour jouer, pressez ", FONT_PATH, 'W', 25, helppos);
         helppos.y=84;
-        TextOnScreen(screen, "une touche :", FONT_PATH, 'W', 25, helppos);
+        TextOnScreenCenterX(screen, "une touche :", FONT_PATH, 'W', 25, helppos);
         helppos.y=124;
-        TextOnScreen(screen, "r pour jouer rouge", FONT_PATH, 'W', 20, helppos);
+        TextOnScreenCenterX(screen, "r pour jouer rouge", FONT_PATH, 'W', 20, helppos);
         helppos.y=144;
-        TextOnScreen(screen, "b pour jouer bleu", FONT_PATH, 'W', 20, helppos);
+        TextOnScreenCenterX(screen, "b pour jouer bleu", FONT_PATH, 'W', 20, helppos);
         helppos.y=164;
-        TextOnScreen(screen, "m pour jouer marron", FONT_PATH, 'W', 20, helppos);
+        TextOnScreenCenterX(screen, "m pour jouer marron", FONT_PATH, 'W', 20, helppos);
         helppos.y=184;
-        TextOnScreen(screen, "g pour jouer gris", FONT_PATH, 'W', 20, helppos);
+        TextOnScreenCenterX(screen, "g pour jouer gris", FONT_PATH, 'W', 20, helppos);
         helppos.y=204;
-        TextOnScreen(screen, "j pour jouer jaune", FONT_PATH, 'W', 20, helppos);
+        TextOnScreenCenterX(screen, "j pour jouer jaune", FONT_PATH, 'W', 20, helppos);
         helppos.y=224;
-        TextOnScreen(screen, "v pour jouer vert", FONT_PATH, 'W', 20, helppos);
+        TextOnScreenCenterX(screen, "v pour jouer vert", FONT_PATH, 'W', 20, helppos);
         helppos.y=244;
-        TextOnScreen(screen, "q pour quitter la partie", FONT_PATH, 'W', 20, helppos);
+        TextOnScreenCenterX(screen, "q pour quitter la partie", FONT_PATH, 'W', 20, helppos);
         helppos.y=284;
-        TextOnScreen(screen, "Pressez h pour", FONT_PATH, 'W', 25, helppos);
+        TextOnScreenCenterX(screen, "Pressez h pour", FONT_PATH, 'W', 15, helppos);
         helppos.y=304;
-        TextOnScreen(screen, "ouvrir l'aide en jeu", FONT_PATH, 'W', 25, helppos);
+        TextOnScreenCenterX(screen, "ouvrir l'aide en jeu", FONT_PATH, 'W', 15, helppos);
         helppos.y=344;
-        TextOnScreen(screen, "Pressez r pour", FONT_PATH, 'W', 25, helppos);
+        TextOnScreenCenterX(screen, "Pressez r pour", FONT_PATH, 'W', 15, helppos);
         helppos.y=364;
-        TextOnScreen(screen, "revenir a la partie", FONT_PATH, 'W', 25, helppos);
+        TextOnScreenCenterX(screen, "revenir a la partie", FONT_PATH, 'W', 15, helppos);
 
 
         SDL_WaitEvent(&BackToGame);
@@ -225,24 +272,22 @@ char HomePage(SDL_Surface *screen){
     SDL_Rect menupos;
     menupos.x=screen->w*LOGOPOSW - 250/2;
     menupos.y=screen->h*LOGOPOSH - 215/2;
-    SDL_BlitSurface(menuimg, NULL, screen, &menupos);
+    /*SDL_BlitSurface(menuimg, NULL, screen, &menupos);*/
 
-    menupos.x=screen->w*TITLEPOS;
     menupos.y=screen->h/10;
-    TextOnScreen(screen, "Colorflood", FONT_PATH, 'W', 60, menupos);
+    TextOnScreenCenterX(screen, "Colorflood", FONT_PATH, 'W', 60, menupos);
 
 
-    menupos.y=screen->h*MENUPOS;
-    menupos.x=screen->w*STARTPOS;
+    menupos.y=screen->h*STARTPOS;
 
 
-    TextOnScreen(screen, "Start", FONT_PATH, 'G', 20, menupos);
+    TextOnScreenCenterX(screen, "Start", FONT_PATH, 'G', 20, menupos);
 
-    menupos.x=screen->w*CONTROLSPOS;
-    TextOnScreen(screen, "Controles", FONT_PATH, 'W', 20, menupos);
+    menupos.y=screen->h*CONTROLSPOS;
+    TextOnScreenCenterX(screen, "Controles", FONT_PATH, 'W', 20, menupos);
 
-    menupos.x=screen->w*QUITPOS;
-    TextOnScreen(screen, "Quitter", FONT_PATH, 'W', 20, menupos);
+    menupos.y=screen->h*QUITPOS;
+    TextOnScreenCenterX(screen, "Quitter", FONT_PATH, 'W', 20, menupos);
     /*
      * Afficher les autres champs avec avec la couleur blanche : Controlles et Quitter
      */
@@ -254,84 +299,84 @@ char HomePage(SDL_Surface *screen){
       switch (move.type) {
           case SDL_KEYDOWN :
               switch (move.key.keysym.sym) {
-                  case SDLK_LEFT :
+                  case SDLK_UP :
                       if (actualpos == 0) {
-                          menupos.x=screen->w*STARTPOS;
+                          menupos.y=screen->h*STARTPOS;
 
-                          TextOnScreen(screen, "Start", FONT_PATH, 'W', 20, menupos);
+                          TextOnScreenCenterX(screen, "Start", FONT_PATH, 'W', 20, menupos);
 
-                          menupos.x=screen->w*CONTROLSPOS;
-                          TextOnScreen(screen, "Controles", FONT_PATH, 'W', 20, menupos);
+                          menupos.y=screen->h*CONTROLSPOS;
+                          TextOnScreenCenterX(screen, "Controles", FONT_PATH, 'W', 20, menupos);
 
-                          menupos.x=screen->w*QUITPOS;
-                          TextOnScreen(screen, "Quitter", FONT_PATH, 'G', 20, menupos);
+                          menupos.y=screen->h*QUITPOS;
+                          TextOnScreenCenterX(screen, "Quitter", FONT_PATH, 'G', 20, menupos);
                           actualpos = 2;
                           break;
                       }
                       else if (actualpos == 1) {
-                          menupos.x=screen->w*STARTPOS;
+                          menupos.y=screen->h*STARTPOS;
 
-                          TextOnScreen(screen, "Start", FONT_PATH, 'G', 20, menupos);
+                          TextOnScreenCenterX(screen, "Start", FONT_PATH, 'G', 20, menupos);
 
-                          menupos.x=screen->w*CONTROLSPOS;
-                          TextOnScreen(screen, "Controles", FONT_PATH, 'W', 20, menupos);
+                          menupos.y=screen->h*CONTROLSPOS;
+                          TextOnScreenCenterX(screen, "Controles", FONT_PATH, 'W', 20, menupos);
 
-                          menupos.x=screen->w*QUITPOS;
-                          TextOnScreen(screen, "Quitter", FONT_PATH, 'W', 20, menupos);
+                          menupos.y=screen->h*QUITPOS;
+                          TextOnScreenCenterX(screen, "Quitter", FONT_PATH, 'W', 20, menupos);
                           actualpos = 0;
                           break;
                       }
                       else if (actualpos == 2) {
-                          menupos.x=screen->w*STARTPOS;
+                          menupos.y=screen->h*STARTPOS;
 
-                          TextOnScreen(screen, "Start", FONT_PATH, 'W', 20, menupos);
+                          TextOnScreenCenterX(screen, "Start", FONT_PATH, 'W', 20, menupos);
 
-                          menupos.x=screen->w*CONTROLSPOS;
-                          TextOnScreen(screen, "Controles", FONT_PATH, 'G', 20, menupos);
+                          menupos.y=screen->h*CONTROLSPOS;
+                          TextOnScreenCenterX(screen, "Controles", FONT_PATH, 'G', 20, menupos);
 
-                          menupos.x=screen->w*QUITPOS;
-                          TextOnScreen(screen, "Quitter", FONT_PATH, 'W', 20, menupos);
+                          menupos.y=screen->h*QUITPOS;
+                          TextOnScreenCenterX(screen, "Quitter", FONT_PATH, 'W', 20, menupos);
                           actualpos = 1;
                           break;
                       }
 
-                  case SDLK_RIGHT :
+                  case SDLK_DOWN :
                       if (actualpos == 0) {
-                          menupos.x=screen->w*STARTPOS;
+                          menupos.y=screen->h*STARTPOS;
 
-                          TextOnScreen(screen, "Start", FONT_PATH, 'W', 20, menupos);
+                          TextOnScreenCenterX(screen, "Start", FONT_PATH, 'W', 20, menupos);
 
-                          menupos.x=screen->w*CONTROLSPOS;
-                          TextOnScreen(screen, "Controles", FONT_PATH, 'G', 20, menupos);
+                          menupos.y=screen->h*CONTROLSPOS;
+                          TextOnScreenCenterX(screen, "Controles", FONT_PATH, 'G', 20, menupos);
 
-                          menupos.x=screen->w*QUITPOS;
-                          TextOnScreen(screen, "Quitter", FONT_PATH, 'W', 20,menupos);
+                          menupos.y=screen->h*QUITPOS;
+                          TextOnScreenCenterX(screen, "Quitter", FONT_PATH, 'W', 20,menupos);
                           actualpos = 1;
                           break;
                       }
                       else if (actualpos == 1) {
-                          menupos.x=screen->w*STARTPOS;
+                          menupos.y=screen->h*STARTPOS;
 
-                          TextOnScreen(screen, "Start", FONT_PATH, 'W', 20,menupos);
+                          TextOnScreenCenterX(screen, "Start", FONT_PATH, 'W', 20,menupos);
 
-                          menupos.x=screen->w*CONTROLSPOS;
-                          TextOnScreen(screen, "Controles", FONT_PATH, 'W', 20, menupos);
+                          menupos.y=screen->h*CONTROLSPOS;
+                          TextOnScreenCenterX(screen, "Controles", FONT_PATH, 'W', 20, menupos);
 
-                          menupos.x=screen->w*QUITPOS;
-                          TextOnScreen(screen, "Quitter", FONT_PATH, 'G', 20,menupos);
+                          menupos.y=screen->h*QUITPOS;
+                          TextOnScreenCenterX(screen, "Quitter", FONT_PATH, 'G', 20,menupos);
                           actualpos = 2;
                           break;
                       }
                       else if (actualpos == 2) {
-                          menupos.x=screen->w*STARTPOS;
+                          menupos.y=screen->h*STARTPOS;
 
-                          TextOnScreen(screen, "Start", FONT_PATH, 'G', 20,menupos);
+                          TextOnScreenCenterX(screen, "Start", FONT_PATH, 'G', 20,menupos);
 
-                          menupos.x=screen->w*CONTROLSPOS;
-                          TextOnScreen(screen, "Controles", FONT_PATH, 'W', 20, menupos);
+                          menupos.y=screen->h*CONTROLSPOS;
+                          TextOnScreenCenterX(screen, "Controles", FONT_PATH, 'W', 20, menupos);
 
-                          menupos.x=screen->w*QUITPOS;
-                          TextOnScreen(screen, "Quitter", FONT_PATH, 'W', 20,menupos);
+                          menupos.y=screen->h*QUITPOS;
+                          TextOnScreenCenterX(screen, "Quitter", FONT_PATH, 'W', 20,menupos);
                           actualpos = 0;
                           break;
                       }
@@ -384,7 +429,6 @@ int GameLoop(SDL_Surface *screen, int n, char color, int kmax, char **colortable
     char msgCount[64];
     SDL_Rect txtpos;
     txtpos.y=screen->h*SCOREPOSH;
-    txtpos.x=screen->w*SCOREPOSW;
 
     while(!wintest(connexetab, n) && color!='Q' && kmax>=k) {
         updateCaseColor(colortable, colorcase, screen, n, off, boardS, squareS);
@@ -396,7 +440,7 @@ int GameLoop(SDL_Surface *screen, int n, char color, int kmax, char **colortable
             sprintf(msgCount, "Nombre de coups : %d/%d ", k, kmax);
         }
 
-        TextOnScreen(screen, msgCount,FONT_PATH, color, 20,txtpos);
+        TextOnScreenCenterX(screen, msgCount,FONT_PATH, color, 20,txtpos);
         SDL_WaitEvent(&keyevent);
 
         /*
@@ -552,6 +596,14 @@ int VictoryScreen(SDL_Surface *screen){
 
     }
     return gamestate;
+}
+
+void SearchingSolution(SDL_Surface *screen){
+  BlackScreen(screen);
+  SDL_Rect pos;
+  pos.y=screen->h/10;
+  TextOnScreenCenterX(screen, "Calcul du nombre de coups", FONT_PATH, 'W', 40, pos);
+
 }
 
 

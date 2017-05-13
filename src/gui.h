@@ -7,6 +7,7 @@
 #include <SDL/SDL_ttf.h>
 #include <SDL/SDL_image.h>
 
+void TextOnScreenCenterX(SDL_Surface *screen, char *msg, char *font, char color, int fontsize, SDL_Rect pos);
 /**
  * @return Renvoie un écran initialisé.
  **/
@@ -84,4 +85,6 @@ int VictoryScreen(SDL_Surface *screen);
 /**
  * Différenciation faite entre l'écran de victoire et de défaite pour la simplifier un ajout potentiel d'animation
  **/
+
+ void SearchingSolution(SDL_Surface *screen);
 #endif //PAUSEUR_GUI_H

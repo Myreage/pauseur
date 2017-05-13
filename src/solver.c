@@ -144,7 +144,8 @@ pile *solverTree(NTree tree, char **colortable, int **connexetab, int n, int dep
 
         tree = newTree(col,con,0,0);
     }
-
+    freecolortable(col,n);
+    freeconnextab(con,n);
     return (res);
 
 
