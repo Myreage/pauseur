@@ -1,9 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdbool.h>
 
 #include "datastruct.h"
 #include "colors.h"
+#include "solver.h"
+#include "tree.h"
 
 #include <SDL/SDL.h>
 #include <SDL/SDL_ttf.h>
@@ -48,22 +51,36 @@ int main(int argc, char *argv[]){
     int exitcond=0;
     int gamestate=0;
 
+    pile *solution=initpile();
+    bool solved=false;
+    NTree tree = newTree(colortable, connexetab,0,0);
+
     while(!exitcond){
         switch(gamestate){
             case 0:
                 gamestate=HomePage(screen);
                 break;
             case 1:
-                gamestate=GameLoop(screen,n,color,kmax,colortable,connexetab,colorcase);
+                if (solved){
+                  gamestate=GameLoop(screen,n,color,solution->length,colortable,connexetab,colorcase);
+                }
+                else {
+                  char **colortemp=copycolortable(colortable, n);
+                  int **connextemp=copyconnexetab(connexetab, n);
+                  solution=solverTree(tree, colortemp, connextemp, n, n);
+                  solved=true;
+                  freecolortable(colortemp,n);
+                  freeconnextab(connextemp,n);
+                }
                 break;
             case 2:
                 gamestate=HelpPage(screen);
                 break;
             case 3:
-                gamestate=VictoryScreen(screen, n);
+                gamestate=VictoryScreen(screen);
                 break;
             case 4:
-                gamestate=LooseScreen(screen, colorcase, boardS, squareS, off, n);
+                gamestate=LooseScreen(screen);
                 break;
             case 5:
                 exitcond=1;

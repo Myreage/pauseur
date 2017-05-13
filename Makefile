@@ -2,9 +2,9 @@ APPLI=Colorflood
 CSRC=src/datastruct.c src/colors.c src/main.c
 CT1SRC=src/datastruct.c src/tests/datastructTests.c
 CT2SRC=src/datastruct.c src/colors.c src/tests/colorsTest.c
-CT3SRC=src/datastruct.c src/colors.c src/pile.c src/solver.c src/mainSolver.c
+CT3SRC=src/datastruct.c src/colors.c src/pile.c src/tree.c src/solver.c src/mainSolver.c
 
-GUISRC= src/datastruct.c src/colors.c src/mainsdl.c src/gui.c
+GUISRC= src/datastruct.c src/colors.c src/pile.c src/tree.c src/solver.c src/gui.c src/mainsdl.c
 CC = gcc
 
 CFLAGS = -Wall -Wextra -g

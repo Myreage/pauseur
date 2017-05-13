@@ -5,7 +5,7 @@
 #include <unistd.h>
 #include "datastruct.h"
 #include "colors.h"
-#include <signal.h>
+
 #include <time.h>
 
 /** Path de la police **/
@@ -227,7 +227,7 @@ char HomePage(SDL_Surface *screen){
     menupos.y=screen->h*LOGOPOSH - 215/2;
     SDL_BlitSurface(menuimg, NULL, screen, &menupos);
 
-    menupos.x=screen->w*TITLEPOS -60;
+    menupos.x=screen->w*TITLEPOS;
     menupos.y=screen->h/10;
     TextOnScreen(screen, "Colorflood", FONT_PATH, 'W', 60, menupos);
 
@@ -384,7 +384,7 @@ int GameLoop(SDL_Surface *screen, int n, char color, int kmax, char **colortable
     char msgCount[64];
     SDL_Rect txtpos;
     txtpos.y=screen->h*SCOREPOSH;
-    txtpos.x=screen->w*SCOREPOSW -20;
+    txtpos.x=screen->w*SCOREPOSW;
 
     while(!wintest(connexetab, n) && color!='Q' && kmax>=k) {
         updateCaseColor(colortable, colorcase, screen, n, off, boardS, squareS);
@@ -470,46 +470,24 @@ int GameLoop(SDL_Surface *screen, int n, char color, int kmax, char **colortable
  * @return Renvoie le gamestate
  **/
 
-int LooseScreen(SDL_Surface *screen,SDL_Surface *colorcase, int boardS, int squareS, int off, int n){
-    int gamestate=0;
+int LooseScreen(SDL_Surface *screen){
+    SDL_Rect pos;
 
     BlackScreen(screen);
+
     SDL_Event event;
-    int pid=fork();
     srand(time(NULL));
 
-    if (pid==0){
-      sleep(1);
-      char **animationtable=createcolortable(n);
-      fillcolortablerand(animationtable, n);
-      int **connexetab=createconnexetab(n);
-      updateconnexetab(animationtable, connexetab, animationtable[0][0], n);
-      char color;
-      char colors[6]={'B','V','R','J','M','G'};
-      while(!wintest(connexetab, n)){
-        color=colors[rand()%6];
-        printf("%c", color);
-        updateconnexetab(animationtable, connexetab, animationtable[0][0], n);
-        switchconnexecolors(animationtable, connexetab, color, n);
-        updateCaseColor(animationtable, colorcase, screen, n, off, boardS, squareS);
-        sleep(1);
-
-      }
-      free(animationtable);
-      free(connexetab);
-      free(colorcase);
-      exit(0);
-    }
-    else {
-      /*SDL_Rect pos;
-      pos.y=screen->h*SCOREPOSH;
-      pos.x=screen->w*STARTPOS;
-      TextOnScreen(screen, "r pour rejouer", FONT_PATH, 'W', 20,pos);
-      pos.x=screen->w*CONTROLSPOS;
-      TextOnScreen(screen, "Defaite !", FONT_PATH, 'W', 20,pos);
-      pos.x=screen->w*QUITPOS;
-      TextOnScreen(screen, "q pour quitter", FONT_PATH, 'W', 20,pos);*/
-      while(gamestate==0){
+    int gamestate=0;
+    char color[6]={'R','B','V','G','M','J'};
+    while(gamestate==0){
+        pos.x=screen->w*TITLEPOS;
+        pos.y=screen->h/10;
+        TextOnScreen(screen, "Defaite !", FONT_PATH, color[rand()%6], 40,pos);
+        pos.y=screen->h/2;
+        TextOnScreen(screen, "r pour rejouer", FONT_PATH, 'V', 40,pos);
+        pos.y=3*screen->h/4;
+        TextOnScreen(screen, "q pour quitter", FONT_PATH, 'R', 40,pos);
         SDL_WaitEvent(&event);
         switch(event.type) {
             case SDL_KEYDOWN :
@@ -528,8 +506,6 @@ int LooseScreen(SDL_Surface *screen,SDL_Surface *colorcase, int boardS, int squa
                 break;
         }
 
-      }
-      kill(pid, SIGKILL);
     }
     return gamestate;
 }
@@ -538,7 +514,7 @@ int LooseScreen(SDL_Surface *screen,SDL_Surface *colorcase, int boardS, int squa
  * @param screen Ecran
  * @return Renvoie le gamestate
  **/
-int VictoryScreen(SDL_Surface *screen, int n){
+int VictoryScreen(SDL_Surface *screen){
     SDL_Rect pos;
 
     BlackScreen(screen);
@@ -547,14 +523,15 @@ int VictoryScreen(SDL_Surface *screen, int n){
     srand(time(NULL));
 
     int gamestate=0;
+    char color[6]={'R','B','V','G','M','J'};
     while(gamestate==0){
       pos.x=screen->w*TITLEPOS;
       pos.y=screen->h/10;
-      TextOnScreen(screen, "Victoire !", FONT_PATH, 'W', 20,pos);
+      TextOnScreen(screen, "Victoire !", FONT_PATH, color[rand()%6], 40,pos);
       pos.y=screen->h/2;
-      TextOnScreen(screen, "r pour rejouer", FONT_PATH, 'W', 20,pos);
+      TextOnScreen(screen, "r pour rejouer", FONT_PATH, 'V', 40,pos);
       pos.y=3*screen->h/4;
-      TextOnScreen(screen, "q pour quitter", FONT_PATH, 'W', 20,pos);
+      TextOnScreen(screen, "q pour quitter", FONT_PATH, 'R', 40,pos);
         SDL_WaitEvent(&event);
         switch(event.type) {
             case SDL_KEYDOWN :
