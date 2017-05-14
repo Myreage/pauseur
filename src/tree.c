@@ -66,18 +66,5 @@ NTree addChild(NTree a, NTree child){
     return a;
 }
 
-void printTree(NTree a, int p){
-    int i;
-    if(a != NULL){
 
-        printf("n%d ", p);
-        printf("[label=%c];\n", a->col);
-        if(p != 0){
-            printf("n%d -> n%d;\n", (p-1)/MAXCHILDREN, p);
-        }
-        for(i=0; i<a->nbChildren;i++){
-            printTree(a->tabChildren[i], MAXCHILDREN*p+i+1);
-        }
-    }
-}
 

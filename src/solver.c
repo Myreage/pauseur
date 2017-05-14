@@ -92,7 +92,7 @@ void solver(char **colortable, int **connexetab,pile *solution, int n,int *kmax,
 
 }
 
-void aux(NTree tree, char **colortable, int **connexetab, int n, int depth, int *hmax){
+void aux(NTree tree, char **colortable, int **connexetab, int n, int depth){
 
     if(depth && !wintest(connexetab,n) ){
         char colors[6]={'B','V','R','J','M','G'};
@@ -112,7 +112,7 @@ void aux(NTree tree, char **colortable, int **connexetab, int n, int depth, int 
 
                 child = newTree(col[i],con[i],wintest(con[i],n),colors[i]);
                 tree = addChild(tree,child);
-                aux(child, col[i], con[i], n, depth - 1, hmax);
+                aux(child, col[i], con[i], n, depth - 1);
 
 
             }
@@ -129,7 +129,6 @@ void aux(NTree tree, char **colortable, int **connexetab, int n, int depth, int 
 void solverTree(char **colortable, int **connexetab, int n, int depth){
     char** col;
     int** con;
-    int hmax = 0;
     pile *res = initpile();
     NTree tree = newTree(colortable,connexetab,0,0);
 
@@ -141,7 +140,7 @@ void solverTree(char **colortable, int **connexetab, int n, int depth){
 
     while(!wintest(con,n)) {
         initTree(tree,col,con,0,0,n);
-        aux(tree, col, con, n, depth, &hmax);
+        aux(tree, col, con, n, depth);
 
         updateconnexetab(col, con, maxNode(tree, n)->col, n);
         switchconnexecolors(col, con, maxNode(tree, n)->col, n);
