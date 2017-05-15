@@ -30,6 +30,7 @@ int main(int argc, char *argv[]){
 
 
   pile *p = initpile();
+  pile *pile;
   int kmax = 1000000;
   int nbiterate=0;
 
@@ -76,7 +77,7 @@ int main(int argc, char *argv[]){
         t1 = clock();
 
 
-        pile *pile=solverTree(col, con, n, atoi(argv[3]));
+        pile=solverTree(col, con, n, atoi(argv[3]));
 
         t2 = clock();
         printf("Solution trouvée : ");
@@ -85,7 +86,7 @@ int main(int argc, char *argv[]){
 
         time = (float) (t2 - t1) / CLOCKS_PER_SEC;
         printf("Temps d'execution : %f secondes\n", time);
-        free(pile);
+
 
     }
 
@@ -106,7 +107,7 @@ int main(int argc, char *argv[]){
         t1 = clock();
 
 
-        pile *pile=solverTree(col, con, n, atoi(argv[3]));
+        pile = solverTree(col, con, n, atoi(argv[3]));
 
         t2 = clock();
         printf("Solution trouvée : ");
@@ -115,7 +116,7 @@ int main(int argc, char *argv[]){
 
         time = (float) (t2 - t1) / CLOCKS_PER_SEC;
         printf("Temps d'execution : %f secondes\n", time);
-        free(pile);
+
     }
 
     else{
@@ -135,6 +136,7 @@ int main(int argc, char *argv[]){
   freeconnextab(connextemp,n);
   freeconnextab(con,n);
   freepile(p);
+  freepile(pile);
 
 
   return 0;
