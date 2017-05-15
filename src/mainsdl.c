@@ -49,8 +49,8 @@ int main(int argc, char *argv[]){
     colorcase=SDL_CreateRGBSurface(0,squareS,squareS,32,0,0,0,0);
     int exitcond=0;
     int gamestate=0;
-
     pile *solution;
+
     bool solved=false;
 
     while(!exitcond){
@@ -59,13 +59,14 @@ int main(int argc, char *argv[]){
                 gamestate=HomePage(screen);
                 break;
             case 1:
-                if (solved){
-                  gamestate=GameLoop(screen,n,color,solution->length,colortable,connexetab,colorcase);
-                }
-                else {
+                if (!solved){
                   SearchingSolution(screen);
                   solution=solverTree(colortable, connexetab, n, kmax);
                   solved=true;
+                }
+                else {
+                  gamestate=GameLoop(screen,n,color,solution->length,colortable,connexetab,colorcase);
+
                 }
                 break;
             case 2:
@@ -93,6 +94,7 @@ int main(int argc, char *argv[]){
                 updateconnexetab(colortable, connexetab, colortable[0][0], n);
                 gamestate=1;
                 solved=false;
+                freepile(solution);
                 break;
             default:
                 exitcond=1;

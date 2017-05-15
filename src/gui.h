@@ -7,7 +7,6 @@
 #include <SDL/SDL_ttf.h>
 #include <SDL/SDL_image.h>
 
-void TextOnScreenCenterX(SDL_Surface *screen, char *msg, char *font, char color, int fontsize, SDL_Rect pos);
 /**
  * @return Renvoie un écran initialisé.
  **/
@@ -36,6 +35,16 @@ void updateCaseColor(char **colortable, SDL_Surface *colorcase, SDL_Surface *scr
  **/
 void TextOnScreen(SDL_Surface *screen, char *msg, char *font, char color, int fontsize, SDL_Rect pos);
 
+/**
+ * @param screen Ecran
+ * @param msg Texte à écrire
+ * @param font Police d'écriture
+ * @param color Couleur d'écriture
+ * @param fontsize Taille d'écriture
+ * @param pos Position sur l'écran
+ * \brief Ecrit du texte centré à l'écran, avec la police, position et taille choisi.
+ **/
+void TextOnScreenCenterX(SDL_Surface *screen, char *msg, char *font, char color, int fontsize, SDL_Rect pos);
 /**
  * @param screen Ecran
  * @return Renvoit le gamestate
