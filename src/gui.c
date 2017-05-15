@@ -597,7 +597,7 @@ int VictoryScreen(SDL_Surface *screen){
 void SearchingSolution(SDL_Surface *screen){
   BlackScreen(screen);
   SDL_Rect pos;
-  pos.y=screen->h/10;
+  pos.y=screen->h/2;
   TextOnScreenCenterX(screen, "Calcul du nombre de coups", FONT_PATH, 'W', 40, pos);
 
 }

@@ -45,7 +45,10 @@ void freeTree(NTree a,int n) {
     else {
         for (i = 0; i < a->nbChildren; i++) {
             freeTree(a->tabChildren[i],n);
+
         }
+        freeconnextab(a->con,n);
+        freecolortable(a->c,n);
         free(a);
     }
 }

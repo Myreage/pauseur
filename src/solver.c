@@ -91,12 +91,12 @@ void solver(char **colortable, int **connexetab,pile *solution, int n,int *kmax,
 
 }
 
-void aux(NTree tree, char **colortable, int **connexetab, int n, int depth, int *hmax){
+void aux(NTree tree, char **colortable, int **connexetab, int n, int depth){
 
     if(depth && !wintest(connexetab,n) ){
         char colors[6]={'B','V','R','J','M','G'};
-        char** col;
-        int** con;
+        char*** col=malloc(6*sizeof(char **));
+        int*** con=malloc(6*sizeof(int **));
         int i;
 
         NTree child;
@@ -104,19 +104,22 @@ void aux(NTree tree, char **colortable, int **connexetab, int n, int depth, int 
         for(i=0;i<6;i++){
             if(choixPertinent(colortable,colors[i],connexetab,n)){
 
-                col = copycolortable(colortable, n);
-                con = copyconnexetab(connexetab, n);
-                updateconnexetab(col, con, colors[i], n);
-                switchconnexecolors(col, con, colors[i], n);
+                col[i] = copycolortable(colortable, n);
+                con[i] = copyconnexetab(connexetab, n);
+                updateconnexetab(col[i], con[i], colors[i], n);
+                switchconnexecolors(col[i], con[i], colors[i], n);
 
-                child = newTree(col,con,wintest(con,n),colors[i]);
+                child = newTree(col[i],con[i],wintest(con[i],n),colors[i]);
                 tree = addChild(tree,child);
-                aux(child, col, con, n, depth - 1, hmax);
+                aux(child, col[i], con[i], n, depth - 1);
 
 
             }
 
           }
+          free(col);
+          free(con);
+
 
     }
 
@@ -125,7 +128,6 @@ void aux(NTree tree, char **colortable, int **connexetab, int n, int depth, int 
 pile *solverTree(char **colortable, int **connexetab, int n, int depth){
     char** col;
     int** con;
-    int hmax = 0;
     pile *res = initpile();
     NTree tree = newTree(colortable,connexetab,0,0);
 
@@ -137,15 +139,13 @@ pile *solverTree(char **colortable, int **connexetab, int n, int depth){
 
     while(!wintest(con,n)) {
         initTree(tree,col,con,0,0,n);
-        aux(tree, col, con, n, depth, &hmax);
+        aux(tree, col, con, n, depth);
 
         updateconnexetab(col, con, maxNode(tree, n)->col, n);
         switchconnexecolors(col, con, maxNode(tree, n)->col, n);
         stack(res,maxNode(tree, n)->col);
     }
 
-    freecolortable(col,n);
-    freeconnextab(con,n);
     freeTree(tree,n);
     return res;
 }

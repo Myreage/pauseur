@@ -28,7 +28,7 @@ int choixPertinent(char **colortable, char color, int **connexetab, int n);
 void solver(char **colortable, int **connexetab,pile *solution, int n,int *kmax, int *nbiterate);
 
 
-void aux(NTree tree, char **colortable, int **connexetab, int n, int depth, int* hmax);
+void aux(NTree tree, char **colortable, int **connexetab, int n, int depth);
 
 NTree maxNode(NTree tree, int n);
 
