@@ -50,7 +50,7 @@ int main(int argc, char *argv[]){
     int exitcond=0;
     int gamestate=0;
 
-    pile *solution=initpile();
+    pile *solution;
     bool solved=false;
 
     while(!exitcond){
