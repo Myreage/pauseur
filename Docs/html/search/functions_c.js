@@ -1,4 +1,9 @@
 var searchData=
 [
-  ['victoryscreen',['VictoryScreen',['../gui_8c.html#aae251c408389e584584d1c8dc48a9d14',1,'VictoryScreen(SDL_Surface *screen):&#160;gui.c'],['../gui_8h.html#aae251c408389e584584d1c8dc48a9d14',1,'VictoryScreen(SDL_Surface *screen):&#160;gui.c']]]
+  ['searchingsolution',['SearchingSolution',['../gui_8c.html#aa6e62917113122ea9dd8646a79808d18',1,'SearchingSolution(SDL_Surface *screen):&#160;gui.c'],['../gui_8h.html#aa6e62917113122ea9dd8646a79808d18',1,'SearchingSolution(SDL_Surface *screen):&#160;gui.c']]],
+  ['solver',['solver',['../solver_8c.html#a3cb88a3d4680cca470f2229f4fa7ba48',1,'solver(char **colortable, int **connexetab, pile *solution, int n, int *kmax, int *nbiterate):&#160;solver.c'],['../solver_8h.html#a3cb88a3d4680cca470f2229f4fa7ba48',1,'solver(char **colortable, int **connexetab, pile *solution, int n, int *kmax, int *nbiterate):&#160;solver.c']]],
+  ['solvertree',['solverTree',['../solver_8c.html#ae3685ef0e1ef2802ec25f182c18ca3e5',1,'solverTree(char **colortable, int **connexetab, int n, int depth):&#160;solver.c'],['../solver_8h.html#ae3685ef0e1ef2802ec25f182c18ca3e5',1,'solverTree(char **colortable, int **connexetab, int n, int depth):&#160;solver.c']]],
+  ['stack',['stack',['../pile_8c.html#a3d63026fe3f788e0c4ce3e083e07b11e',1,'stack(pile *pile, char value):&#160;pile.c'],['../pile_8h.html#a06e668d20586b64595dc228a77822730',1,'stack(pile *file, char value):&#160;pile.c']]],
+  ['switchcolor',['switchcolor',['../datastruct_8c.html#a7b7bc9e3cb85eca96fe3db32e54308cc',1,'switchcolor(char **colortable, char color, int x, int y):&#160;datastruct.c'],['../datastruct_8h.html#a7b7bc9e3cb85eca96fe3db32e54308cc',1,'switchcolor(char **colortable, char color, int x, int y):&#160;datastruct.c']]],
+  ['switchconnexecolors',['switchconnexecolors',['../colors_8c.html#a33c893216f9e4d14316db79f3c76a277',1,'switchconnexecolors(char **colortable, int **connexetab, char color, int n):&#160;colors.c'],['../colors_8h.html#a33c893216f9e4d14316db79f3c76a277',1,'switchconnexecolors(char **colortable, int **connexetab, char color, int n):&#160;colors.c']]]
 ];

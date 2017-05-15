@@ -9,13 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-  $(document).ready(initResizable);
-</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -49,21 +42,6 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-$(document).ready(function(){initNavTree('gui_8c.html','');});
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -78,6 +56,11 @@ $(document).ready(function(){initNavTree('gui_8c.html','');});
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#define-members">Macros</a> &#124;
@@ -87,11 +70,16 @@ $(document).ready(function(){initNavTree('gui_8c.html','');});
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="gui_8h_source.html">gui.h</a>&quot;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;unistd.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="datastruct_8h_source.html">datastruct.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="colors_8h_source.html">colors.h</a>&quot;</code><br />
 <code>#include &lt;time.h&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:af326d9b4cced6fd44a9f9567dc666014"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gui_8c.html#af326d9b4cced6fd44a9f9567dc666014">FONT_PATH</a>&#160;&#160;&#160;&quot;design/Xenotron.ttf&quot;</td></tr>
+<tr class="memitem:af326d9b4cced6fd44a9f9567dc666014"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gui_8c.html#af326d9b4cced6fd44a9f9567dc666014">FONT_PATH</a>&#160;&#160;&#160;&quot;design/Freshman.ttf&quot;</td></tr>
 <tr class="separator:af326d9b4cced6fd44a9f9567dc666014"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac6acca5b567b29950c4197ebacadf6dc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gui_8c.html#ac6acca5b567b29950c4197ebacadf6dc">IMG_PATH</a>&#160;&#160;&#160;&quot;design/drowncube.jpg&quot;</td></tr>
 <tr class="separator:ac6acca5b567b29950c4197ebacadf6dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -101,11 +89,11 @@ Macros</h2></td></tr>
 <tr class="separator:af9e5fd9edefb6968dcec2d93fb0837d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a4dd091ed5fcc2ba0021625dea3d69a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gui_8c.html#a0a4dd091ed5fcc2ba0021625dea3d69a">LOGOPOSW</a>&#160;&#160;&#160;(float)50/100</td></tr>
 <tr class="separator:a0a4dd091ed5fcc2ba0021625dea3d69a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05a5d06fd9e5b0dc25f0ae1d02583463"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gui_8c.html#a05a5d06fd9e5b0dc25f0ae1d02583463">TITLEPOS</a>&#160;&#160;&#160;(float)36/100</td></tr>
+<tr class="memitem:a05a5d06fd9e5b0dc25f0ae1d02583463"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gui_8c.html#a05a5d06fd9e5b0dc25f0ae1d02583463">TITLEPOS</a>&#160;&#160;&#160;(float)38/100</td></tr>
 <tr class="separator:a05a5d06fd9e5b0dc25f0ae1d02583463"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7557b49b2830b00e5cac7cf377e29c9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gui_8c.html#ad7557b49b2830b00e5cac7cf377e29c9">STARTPOS</a>&#160;&#160;&#160;(float)20/100</td></tr>
+<tr class="memitem:ad7557b49b2830b00e5cac7cf377e29c9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gui_8c.html#ad7557b49b2830b00e5cac7cf377e29c9">STARTPOS</a>&#160;&#160;&#160;(float)40/100</td></tr>
 <tr class="separator:ad7557b49b2830b00e5cac7cf377e29c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5e8f9a7a4a5ecb7e24481062fc90d81"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gui_8c.html#af5e8f9a7a4a5ecb7e24481062fc90d81">CONTROLSPOS</a>&#160;&#160;&#160;(float)45/100</td></tr>
+<tr class="memitem:af5e8f9a7a4a5ecb7e24481062fc90d81"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gui_8c.html#af5e8f9a7a4a5ecb7e24481062fc90d81">CONTROLSPOS</a>&#160;&#160;&#160;(float)60/100</td></tr>
 <tr class="separator:af5e8f9a7a4a5ecb7e24481062fc90d81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49a5020ddac3383f63ac6ac8a0c626ac"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gui_8c.html#a49a5020ddac3383f63ac6ac8a0c626ac">QUITPOS</a>&#160;&#160;&#160;(float)80/100</td></tr>
 <tr class="separator:a49a5020ddac3383f63ac6ac8a0c626ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -128,6 +116,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a5ea314b09fd8d774197563c84f2ac613"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gui_8c.html#a5ea314b09fd8d774197563c84f2ac613">TextOnScreen</a> (SDL_Surface *screen, char *msg, char *font, char color, int fontsize, SDL_Rect pos)</td></tr>
 <tr class="memdesc:a5ea314b09fd8d774197563c84f2ac613"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ecrit du texte à l'écran, avec la police, position et taille choisi.  <a href="#a5ea314b09fd8d774197563c84f2ac613">More...</a><br /></td></tr>
 <tr class="separator:a5ea314b09fd8d774197563c84f2ac613"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a840da761415509cb4783581bd758dfb1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gui_8c.html#a840da761415509cb4783581bd758dfb1">TextOnScreenCenterX</a> (SDL_Surface *screen, char *msg, char *font, char color, int fontsize, SDL_Rect pos)</td></tr>
+<tr class="memdesc:a840da761415509cb4783581bd758dfb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ecrit du texte centré à l'écran, avec la police, position et taille choisi.  <a href="#a840da761415509cb4783581bd758dfb1">More...</a><br /></td></tr>
+<tr class="separator:a840da761415509cb4783581bd758dfb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4efed19d80e4fe3c69ce48c922821123"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gui_8c.html#a4efed19d80e4fe3c69ce48c922821123">BlackScreen</a> (SDL_Surface *screen)</td></tr>
 <tr class="separator:a4efed19d80e4fe3c69ce48c922821123"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af600318aee46ccde7a0d10c77191d05d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gui_8c.html#af600318aee46ccde7a0d10c77191d05d">HelpPage</a> (SDL_Surface *screen)</td></tr>
@@ -143,6 +134,8 @@ Functions</h2></td></tr>
 <tr class="separator:a181f1e8f9b627528531388251e3e9521"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aae251c408389e584584d1c8dc48a9d14"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gui_8c.html#aae251c408389e584584d1c8dc48a9d14">VictoryScreen</a> (SDL_Surface *screen)</td></tr>
 <tr class="separator:aae251c408389e584584d1c8dc48a9d14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6e62917113122ea9dd8646a79808d18"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gui_8c.html#aa6e62917113122ea9dd8646a79808d18">SearchingSolution</a> (SDL_Surface *screen)</td></tr>
+<tr class="separator:aa6e62917113122ea9dd8646a79808d18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="af5e8f9a7a4a5ecb7e24481062fc90d81"></a>
@@ -152,7 +145,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define CONTROLSPOS&#160;&#160;&#160;(float)45/100</td>
+          <td class="memname">#define CONTROLSPOS&#160;&#160;&#160;(float)60/100</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -167,7 +160,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define FONT_PATH&#160;&#160;&#160;&quot;design/Xenotron.ttf&quot;</td>
+          <td class="memname">#define FONT_PATH&#160;&#160;&#160;&quot;design/Freshman.ttf&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -317,7 +310,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define STARTPOS&#160;&#160;&#160;(float)20/100</td>
+          <td class="memname">#define STARTPOS&#160;&#160;&#160;(float)40/100</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -332,7 +325,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define TITLEPOS&#160;&#160;&#160;(float)36/100</td>
+          <td class="memname">#define TITLEPOS&#160;&#160;&#160;(float)38/100</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -535,6 +528,25 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="aa6e62917113122ea9dd8646a79808d18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6e62917113122ea9dd8646a79808d18">&#9670;&nbsp;</a></span>SearchingSolution()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SearchingSolution </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Surface *&#160;</td>
+          <td class="paramname"><em>screen</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Différenciation faite entre l'écran de victoire et de défaite pour la simplifier un ajout potentiel d'animation </p>
+
+</div>
+</div>
 <a id="a5ea314b09fd8d774197563c84f2ac613"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5ea314b09fd8d774197563c84f2ac613">&#9670;&nbsp;</a></span>TextOnScreen()</h2>
 
@@ -586,6 +598,71 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Ecrit du texte à l'écran, avec la police, position et taille choisi. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">screen</td><td>Ecran </td></tr>
+    <tr><td class="paramname">msg</td><td>Texte à écrire </td></tr>
+    <tr><td class="paramname">font</td><td>Police d'écriture </td></tr>
+    <tr><td class="paramname">color</td><td>Couleur d'écriture </td></tr>
+    <tr><td class="paramname">fontsize</td><td>Taille d'écriture </td></tr>
+    <tr><td class="paramname">pos</td><td>Position sur l'écran </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a840da761415509cb4783581bd758dfb1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a840da761415509cb4783581bd758dfb1">&#9670;&nbsp;</a></span>TextOnScreenCenterX()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TextOnScreenCenterX </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Surface *&#160;</td>
+          <td class="paramname"><em>screen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>msg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>font</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>color</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>fontsize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Rect&#160;</td>
+          <td class="paramname"><em>pos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Ecrit du texte centré à l'écran, avec la police, position et taille choisi. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">screen</td><td>Ecran </td></tr>
@@ -698,15 +775,11 @@ Functions</h2></td></tr>
 </div>
 </div>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="gui_8c.html">gui.c</a></li>
-    <li class="footer">Generated by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
 </body>
 </html>

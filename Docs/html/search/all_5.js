@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['helppage',['HelpPage',['../gui_8c.html#af600318aee46ccde7a0d10c77191d05d',1,'HelpPage(SDL_Surface *screen):&#160;gui.c'],['../gui_8h.html#af600318aee46ccde7a0d10c77191d05d',1,'HelpPage(SDL_Surface *screen):&#160;gui.c']]],
-  ['helpposw',['HELPPOSW',['../gui_8c.html#a254b0cd35c548a9a4fae29acd2788df2',1,'gui.c']]],
-  ['homepage',['HomePage',['../gui_8c.html#a178e8d9e3b1886fc77f7337185603264',1,'HomePage(SDL_Surface *screen):&#160;gui.c'],['../gui_8h.html#a178e8d9e3b1886fc77f7337185603264',1,'HomePage(SDL_Surface *screen):&#160;gui.c']]]
+  ['gameloop',['GameLoop',['../gui_8c.html#a4aa5503ef0361b52e649ce480912e6e3',1,'GameLoop(SDL_Surface *screen, int n, char color, int kmax, char **colortable, int **connexetab, SDL_Surface *colorcase):&#160;gui.c'],['../gui_8h.html#a4aa5503ef0361b52e649ce480912e6e3',1,'GameLoop(SDL_Surface *screen, int n, char color, int kmax, char **colortable, int **connexetab, SDL_Surface *colorcase):&#160;gui.c']]],
+  ['getche',['getche',['../main_8c.html#aadf7975398ecc96b06dbe9ed342103e5',1,'main.c']]],
+  ['gui_2ec',['gui.c',['../gui_8c.html',1,'']]],
+  ['gui_2eh',['gui.h',['../gui_8h.html',1,'']]]
 ];

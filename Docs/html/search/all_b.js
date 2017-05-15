@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['scoreposh',['SCOREPOSH',['../gui_8c.html#afb4aa2b2df8bfed0cb1cf28dd903f65f',1,'gui.c']]],
-  ['scoreposw',['SCOREPOSW',['../gui_8c.html#a037a37118f0f7e8586b6589a3aa5b9bd',1,'gui.c']]],
-  ['startpos',['STARTPOS',['../gui_8c.html#ad7557b49b2830b00e5cac7cf377e29c9',1,'gui.c']]],
-  ['switchcolor',['switchcolor',['../datastruct_8c.html#a7b7bc9e3cb85eca96fe3db32e54308cc',1,'switchcolor(char **colortable, char color, int x, int y):&#160;datastruct.c'],['../datastruct_8h.html#a7b7bc9e3cb85eca96fe3db32e54308cc',1,'switchcolor(char **colortable, char color, int x, int y):&#160;datastruct.c']]],
-  ['switchconnexecolors',['switchconnexecolors',['../colors_8c.html#a33c893216f9e4d14316db79f3c76a277',1,'switchconnexecolors(char **colortable, int **connexetab, char color, int n):&#160;colors.c'],['../colors_8h.html#a33c893216f9e4d14316db79f3c76a277',1,'switchconnexecolors(char **colortable, int **connexetab, char color, int n):&#160;colors.c']]]
+  ['nbchildren',['nbChildren',['../structt__ntree.html#aff638e3b06e20639277f3a23e0cefc42',1,'t_ntree']]],
+  ['newtree',['newTree',['../tree_8c.html#a0c960378c220bc8a99fe6e51bf583b6e',1,'newTree(char **g, int **con, int win, char col):&#160;tree.c'],['../tree_8h.html#a0c960378c220bc8a99fe6e51bf583b6e',1,'newTree(char **g, int **con, int win, char col):&#160;tree.c']]],
+  ['next',['next',['../structf___element.html#a39390ec0676d1377b1c3af60007dfefd',1,'f_Element']]],
+  ['nnode',['NNode',['../tree_8h.html#aeda36d2544293f0c85948062f56c35a3',1,'tree.h']]],
+  ['ntree',['NTree',['../tree_8h.html#ae863af55996c6def63e5189667008d6b',1,'tree.h']]]
 ];

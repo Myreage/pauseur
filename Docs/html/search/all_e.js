@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['victoryscreen',['VictoryScreen',['../gui_8c.html#aae251c408389e584584d1c8dc48a9d14',1,'VictoryScreen(SDL_Surface *screen):&#160;gui.c'],['../gui_8h.html#aae251c408389e584584d1c8dc48a9d14',1,'VictoryScreen(SDL_Surface *screen):&#160;gui.c']]]
+  ['quitpos',['QUITPOS',['../gui_8c.html#a49a5020ddac3383f63ac6ac8a0c626ac',1,'gui.c']]]
 ];

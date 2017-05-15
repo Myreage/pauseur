@@ -9,13 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-  $(document).ready(initResizable);
-</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -50,20 +43,6 @@ $(function() {
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-$(document).ready(function(){initNavTree('globals.html','');});
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -81,6 +60,18 @@ $(document).ready(function(){initNavTree('globals.html','');});
 <div class="contents">
 <div class="textblock">Here is a list of all functions, variables, defines, enums, and typedefs with links to the files they belong to:</div>
 
+<h3><a id="index_a"></a>- a -</h3><ul>
+<li>addChild()
+: <a class="el" href="tree_8c.html#a533bf1fbc0fdcefa7cb6e4a1d80c1efa">tree.c</a>
+, <a class="el" href="tree_8h.html#a533bf1fbc0fdcefa7cb6e4a1d80c1efa">tree.h</a>
+</li>
+<li>aux()
+: <a class="el" href="solver_8c.html#a55cdd8ebbef22ad10a3f9f72a6cd19c9">solver.c</a>
+, <a class="el" href="solver_8h.html#a55cdd8ebbef22ad10a3f9f72a6cd19c9">solver.h</a>
+</li>
+</ul>
+
+
 <h3><a id="index_b"></a>- b -</h3><ul>
 <li>BlackScreen()
 : <a class="el" href="gui_8c.html#a4efed19d80e4fe3c69ce48c922821123">gui.c</a>
@@ -90,20 +81,32 @@ $(document).ready(function(){initNavTree('globals.html','');});
 
 
 <h3><a id="index_c"></a>- c -</h3><ul>
+<li>choixPertinent()
+: <a class="el" href="solver_8c.html#aa999a9d3261d80d84df6370cea9d72ae">solver.c</a>
+, <a class="el" href="solver_8h.html#aa999a9d3261d80d84df6370cea9d72ae">solver.h</a>
+</li>
 <li>CONTROLSPOS
 : <a class="el" href="gui_8c.html#af5e8f9a7a4a5ecb7e24481062fc90d81">gui.c</a>
+</li>
+<li>copycolortable()
+: <a class="el" href="datastruct_8c.html#ab3117eaf20f66127872dc5edd0133dad">datastruct.c</a>
+, <a class="el" href="datastruct_8h.html#ab3117eaf20f66127872dc5edd0133dad">datastruct.h</a>
+</li>
+<li>copyconnexetab()
+: <a class="el" href="datastruct_8c.html#a0dfb5ed143cffa35ae3715744f1c4cee">datastruct.c</a>
+, <a class="el" href="datastruct_8h.html#a0dfb5ed143cffa35ae3715744f1c4cee">datastruct.h</a>
 </li>
 <li>createcolortable()
 : <a class="el" href="datastruct_8c.html#acea10a5fa2fe6c3c3a340008bd4045d6">datastruct.c</a>
 , <a class="el" href="datastruct_8h.html#acea10a5fa2fe6c3c3a340008bd4045d6">datastruct.h</a>
 </li>
 <li>createconnexetab()
-: <a class="el" href="datastruct_8c.html#ab909647123cc7ccc5a45b4fedf71fd53">datastruct.c</a>
-, <a class="el" href="datastruct_8h.html#ab909647123cc7ccc5a45b4fedf71fd53">datastruct.h</a>
+: <a class="el" href="datastruct_8h.html#ab909647123cc7ccc5a45b4fedf71fd53">datastruct.h</a>
+, <a class="el" href="datastruct_8c.html#ab909647123cc7ccc5a45b4fedf71fd53">datastruct.c</a>
 </li>
 <li>createnewcolorfile()
-: <a class="el" href="datastruct_8c.html#abd4b655fc2f6ea2d20beca74135fe1e7">datastruct.c</a>
-, <a class="el" href="datastruct_8h.html#a7568671ab63b27ba76e59dd82ea59663">datastruct.h</a>
+: <a class="el" href="datastruct_8h.html#a7568671ab63b27ba76e59dd82ea59663">datastruct.h</a>
+, <a class="el" href="datastruct_8c.html#abd4b655fc2f6ea2d20beca74135fe1e7">datastruct.c</a>
 </li>
 </ul>
 
@@ -114,13 +117,24 @@ $(document).ready(function(){initNavTree('globals.html','');});
 , <a class="el" href="datastruct_8h.html#ade8f4b02321c5522f7247f8c9a75c3e9">datastruct.h</a>
 </li>
 <li>displayconnexetab()
-: <a class="el" href="datastruct_8c.html#a9c912c56b0818d1f9abbd5cbd71fb90a">datastruct.c</a>
-, <a class="el" href="datastruct_8h.html#a1c1fa361d6498ed61baae1f200da3ec4">datastruct.h</a>
+: <a class="el" href="datastruct_8h.html#a1c1fa361d6498ed61baae1f200da3ec4">datastruct.h</a>
+, <a class="el" href="datastruct_8c.html#a9c912c56b0818d1f9abbd5cbd71fb90a">datastruct.c</a>
+</li>
+<li>displaypile()
+: <a class="el" href="pile_8c.html#a312cb6a12b5aa749afa072d1835cd6dc">pile.c</a>
+, <a class="el" href="pile_8h.html#a312cb6a12b5aa749afa072d1835cd6dc">pile.h</a>
+</li>
+<li>displayreversepile()
+: <a class="el" href="pile_8h.html#a9771f48937e8eb6532f353f9425fb017">pile.h</a>
+, <a class="el" href="pile_8c.html#a9771f48937e8eb6532f353f9425fb017">pile.c</a>
 </li>
 </ul>
 
 
 <h3><a id="index_f"></a>- f -</h3><ul>
+<li>f_Element
+: <a class="el" href="pile_8h.html#a50936bb5579c7234dda0d29e2f1f2472">pile.h</a>
+</li>
 <li>fillcolortablefile()
 : <a class="el" href="datastruct_8c.html#a89571e673eae684c39a9b8342fa1f651">datastruct.c</a>
 , <a class="el" href="datastruct_8h.html#a89571e673eae684c39a9b8342fa1f651">datastruct.h</a>
@@ -133,12 +147,20 @@ $(document).ready(function(){initNavTree('globals.html','');});
 : <a class="el" href="gui_8c.html#af326d9b4cced6fd44a9f9567dc666014">gui.c</a>
 </li>
 <li>freecolortable()
-: <a class="el" href="datastruct_8c.html#a348df1e9f5f956c365c416eeec01818b">datastruct.c</a>
-, <a class="el" href="datastruct_8h.html#a348df1e9f5f956c365c416eeec01818b">datastruct.h</a>
+: <a class="el" href="datastruct_8h.html#a348df1e9f5f956c365c416eeec01818b">datastruct.h</a>
+, <a class="el" href="datastruct_8c.html#a348df1e9f5f956c365c416eeec01818b">datastruct.c</a>
 </li>
 <li>freeconnextab()
 : <a class="el" href="datastruct_8c.html#a9261892891db7b598b656dd0ffc1705f">datastruct.c</a>
 , <a class="el" href="datastruct_8h.html#a9261892891db7b598b656dd0ffc1705f">datastruct.h</a>
+</li>
+<li>freepile()
+: <a class="el" href="pile_8c.html#a9d24387e8f54a4c1caa9d52b0fb06508">pile.c</a>
+, <a class="el" href="pile_8h.html#a9d24387e8f54a4c1caa9d52b0fb06508">pile.h</a>
+</li>
+<li>freeTree()
+: <a class="el" href="tree_8h.html#a9d34c22d63866d2d79379df3fb118674">tree.h</a>
+, <a class="el" href="tree_8c.html#a9d34c22d63866d2d79379df3fb118674">tree.c</a>
 </li>
 </ul>
 
@@ -162,6 +184,10 @@ $(document).ready(function(){initNavTree('globals.html','');});
 <li>HELPPOSW
 : <a class="el" href="gui_8c.html#a254b0cd35c548a9a4fae29acd2788df2">gui.c</a>
 </li>
+<li>heuristique()
+: <a class="el" href="solver_8h.html#adc200f64ead4a4075ea6b435b13bd817">solver.h</a>
+, <a class="el" href="solver_8c.html#ad84fdbb9170585fcd9049008e782095c">solver.c</a>
+</li>
 <li>HomePage()
 : <a class="el" href="gui_8c.html#a178e8d9e3b1886fc77f7337185603264">gui.c</a>
 , <a class="el" href="gui_8h.html#a178e8d9e3b1886fc77f7337185603264">gui.h</a>
@@ -173,13 +199,31 @@ $(document).ready(function(){initNavTree('globals.html','');});
 <li>IMG_PATH
 : <a class="el" href="gui_8c.html#ac6acca5b567b29950c4197ebacadf6dc">gui.c</a>
 </li>
+<li>initpile()
+: <a class="el" href="pile_8c.html#ac133177d1f286254c7284e48fc07e1b4">pile.c</a>
+, <a class="el" href="pile_8h.html#ac133177d1f286254c7284e48fc07e1b4">pile.h</a>
+</li>
 <li>initscreen()
 : <a class="el" href="gui_8c.html#ac3a72333a7347efee106c045df405e13">gui.c</a>
 , <a class="el" href="gui_8h.html#ac3a72333a7347efee106c045df405e13">gui.h</a>
 </li>
+<li>initTree()
+: <a class="el" href="tree_8h.html#a43371b01dab93140559f6d55b0086e4a">tree.h</a>
+, <a class="el" href="tree_8c.html#a43371b01dab93140559f6d55b0086e4a">tree.c</a>
+</li>
 <li>isconnexe()
-: <a class="el" href="colors_8c.html#af5405dceef45b577efb0c1f617f6fb62">colors.c</a>
-, <a class="el" href="colors_8h.html#a8b9897bca65ce22e5acdc4f52ec7cb93">colors.h</a>
+: <a class="el" href="colors_8h.html#a8b9897bca65ce22e5acdc4f52ec7cb93">colors.h</a>
+, <a class="el" href="colors_8c.html#af5405dceef45b577efb0c1f617f6fb62">colors.c</a>
+</li>
+</ul>
+
+
+<h3><a id="index_k"></a>- k -</h3><ul>
+<li>KGRN
+: <a class="el" href="solver_8c.html#ac081c83b067273757f7a2e54a5957d41">solver.c</a>
+</li>
+<li>KRED
+: <a class="el" href="solver_8c.html#a66290957baed5df3930ada4cb8caccf1">solver.c</a>
 </li>
 </ul>
 
@@ -202,9 +246,31 @@ $(document).ready(function(){initNavTree('globals.html','');});
 <li>main()
 : <a class="el" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main.c</a>
 , <a class="el" href="mainsdl_8c.html#a0ddf1224851353fc92bfbff6f499fa97">mainsdl.c</a>
+, <a class="el" href="main_solver_8c.html#a0ddf1224851353fc92bfbff6f499fa97">mainSolver.c</a>
+</li>
+<li>MAXCHILDREN
+: <a class="el" href="tree_8h.html#a8edf1866545432a18445a85f0cd49e56">tree.h</a>
+</li>
+<li>maxNode()
+: <a class="el" href="solver_8c.html#aa3d5bd6ed538e650e94bd32217848597">solver.c</a>
+, <a class="el" href="solver_8h.html#aa3d5bd6ed538e650e94bd32217848597">solver.h</a>
 </li>
 <li>MENUPOS
 : <a class="el" href="gui_8c.html#a87406fa9c80caf2d4e70ce800a71cbab">gui.c</a>
+</li>
+</ul>
+
+
+<h3><a id="index_n"></a>- n -</h3><ul>
+<li>newTree()
+: <a class="el" href="tree_8c.html#a0c960378c220bc8a99fe6e51bf583b6e">tree.c</a>
+, <a class="el" href="tree_8h.html#a0c960378c220bc8a99fe6e51bf583b6e">tree.h</a>
+</li>
+<li>NNode
+: <a class="el" href="tree_8h.html#aeda36d2544293f0c85948062f56c35a3">tree.h</a>
+</li>
+<li>NTree
+: <a class="el" href="tree_8h.html#ae863af55996c6def63e5189667008d6b">tree.h</a>
 </li>
 </ul>
 
@@ -217,9 +283,30 @@ $(document).ready(function(){initNavTree('globals.html','');});
 </ul>
 
 
+<h3><a id="index_p"></a>- p -</h3><ul>
+<li>pile
+: <a class="el" href="pile_8h.html#a8b1be516cd670e3808f29fa7576017db">pile.h</a>
+</li>
+<li>pop()
+: <a class="el" href="pile_8c.html#a1872725b026757dfc3120ebe089e98a4">pile.c</a>
+, <a class="el" href="pile_8h.html#a1872725b026757dfc3120ebe089e98a4">pile.h</a>
+</li>
+<li>printTree()
+: <a class="el" href="tree_8c.html#aa3e4528e619a08577ef1d7e744c852ed">tree.c</a>
+</li>
+</ul>
+
+
 <h3><a id="index_q"></a>- q -</h3><ul>
 <li>QUITPOS
 : <a class="el" href="gui_8c.html#a49a5020ddac3383f63ac6ac8a0c626ac">gui.c</a>
+</li>
+</ul>
+
+
+<h3><a id="index_r"></a>- r -</h3><ul>
+<li>RESET
+: <a class="el" href="solver_8c.html#ab702106cf3b3e96750b6845ded4e0299">solver.c</a>
 </li>
 </ul>
 
@@ -230,6 +317,22 @@ $(document).ready(function(){initNavTree('globals.html','');});
 </li>
 <li>SCOREPOSW
 : <a class="el" href="gui_8c.html#a037a37118f0f7e8586b6589a3aa5b9bd">gui.c</a>
+</li>
+<li>SearchingSolution()
+: <a class="el" href="gui_8h.html#aa6e62917113122ea9dd8646a79808d18">gui.h</a>
+, <a class="el" href="gui_8c.html#aa6e62917113122ea9dd8646a79808d18">gui.c</a>
+</li>
+<li>solver()
+: <a class="el" href="solver_8c.html#a3cb88a3d4680cca470f2229f4fa7ba48">solver.c</a>
+, <a class="el" href="solver_8h.html#a3cb88a3d4680cca470f2229f4fa7ba48">solver.h</a>
+</li>
+<li>solverTree()
+: <a class="el" href="solver_8h.html#ae3685ef0e1ef2802ec25f182c18ca3e5">solver.h</a>
+, <a class="el" href="solver_8c.html#ae3685ef0e1ef2802ec25f182c18ca3e5">solver.c</a>
+</li>
+<li>stack()
+: <a class="el" href="pile_8c.html#a3d63026fe3f788e0c4ce3e083e07b11e">pile.c</a>
+, <a class="el" href="pile_8h.html#a06e668d20586b64595dc228a77822730">pile.h</a>
 </li>
 <li>STARTPOS
 : <a class="el" href="gui_8c.html#ad7557b49b2830b00e5cac7cf377e29c9">gui.c</a>
@@ -249,6 +352,10 @@ $(document).ready(function(){initNavTree('globals.html','');});
 <li>TextOnScreen()
 : <a class="el" href="gui_8c.html#a5ea314b09fd8d774197563c84f2ac613">gui.c</a>
 , <a class="el" href="gui_8h.html#a5ea314b09fd8d774197563c84f2ac613">gui.h</a>
+</li>
+<li>TextOnScreenCenterX()
+: <a class="el" href="gui_8h.html#a840da761415509cb4783581bd758dfb1">gui.h</a>
+, <a class="el" href="gui_8c.html#a840da761415509cb4783581bd758dfb1">gui.c</a>
 </li>
 <li>TITLEPOS
 : <a class="el" href="gui_8c.html#a05a5d06fd9e5b0dc25f0ae1d02583463">gui.c</a>
@@ -283,14 +390,11 @@ $(document).ready(function(){initNavTree('globals.html','');});
 </li>
 </ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="footer">Generated by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
 </body>
 </html>
